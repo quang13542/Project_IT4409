@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Register Form</title>
+	<script>
+		function validateForm() {
+			let username = document.getElementById("username").value;
+			let email = document.getElementById("email").value;
+			let password1 = document.getElementById("password1").value;
+			let password2 = document.getElementById("password2").value;
+
+			if (username == "" || username.match(/^\s+$/)) {
+				alert("Please enter a valid username");
+				return false;
+			}
+
+			if (password1 == "" || password2 == "" || password1 != password2) {
+				alert("Please check the password and confirm password");
+				return false;
+			}
+
+			if (!validateEmail(email)) {
+				alert("Please enter a valid email");
+				return false;
+			}
+		}
+
+		function validateEmail(email) {
+			let re = /\S+@\S+\.\S+/;
+			return re.test(email);
+		}
+	</script>
+	<style>
+		body{
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+		.title{
+			margin:10px;
+		}
+	</style>
+</head>
+<body>
+	<form name="registerForm" action="/signup" method="post" onsubmit="return validateForm()">
+		<h1>Register Form</h1>
+		<label for="username">Username:</label>
+		<input type="text" id="username" name="username" required><br><br>
+
+		<label for="email">Email:</label>
+		<input type="email" id="email" name="email" required><br><br>
+
+		<label for="password1">Password:</label>
+		<input type="password" id="password1" name="password1" required><br><br>
+
+		<label for="password2">Confirm Password:</label>
+		<input type="password" id="password2" name="password2" required><br><br>
+
+		<input type="submit" value="Submit">
+	</form>
+</body>
+</html>
