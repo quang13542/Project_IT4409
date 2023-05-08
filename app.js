@@ -21,6 +21,7 @@ connection.connect((error) => {
 });
 
 const bodyParser = require('body-parser');
+const { compileFunction } = require("vm");
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -45,7 +46,20 @@ app.post("/signup", function(req, res) {
       console.log("User registered!");
       res.send("User registered!");
     });
-  });
+});
+
+app.get("/find_hotel", function(req, res) {
+    fs.readFile('find_hotel.html',function (err, data){
+        res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
+        res.write(data);
+        res.end();
+    });
+});
+
+app.post("/find_hotel", function(req, res)) {
+    const { city, checkin, nights, adults, chidren, rooms, duty } = req.body;
+    
+}
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Application listen on port ${PORT}!`))
