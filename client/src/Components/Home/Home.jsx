@@ -1,44 +1,42 @@
 import React from "react"
 import "./home.css"
-
-const Home= () => {
+import { AiOutlineArrowRight } from 'react-icons/ai'
+const Home = () => {
     return (
         <section className="home">
-             <div className="secContainer container">
-                {/* <div className="homeText">
+            <div className="homeContainer container">
+                <div className="homeText">
                     <h1 className="title">
-                        hello
+                        Khách sạn, homestay, khu nghỉ dưỡng & hơn thế nữa
                     </h1>
 
-                    <p className="subTitle">
-                        lkasjdlkadj
-                    </p>
-                    <button className="btn">
-                        <a href="#">Explore</a>
-                    </button>
-                </div> */}
+                  
+                </div>
                 <div className="homeCard grid">
                     <div className="locationDiv">
-                        <label htmlFor="location">Location</label>
-                        <input type="text" placeholder="Destination"/>
+                        <input type="text" placeholder="Nhập điểm du lịch hoặc tên khách sạn" />
                     </div>
 
-                    <div className="timeDiv">
-                        <label htmlFor="time">Time</label>
-                        <input type="text" placeholder="Time"/>
+                    <div className="flex">
+                        <div className="timeDiv">
+                            <input type="date" />
+                        </div>
+                        <div>
+                            <AiOutlineArrowRight className="icon" />
+                        </div>
+                        <div className="timeDiv">
+                            <input type="date" />
+                        </div>
                     </div>
 
                     <div className="peopleDiv">
-                        <label htmlFor="location">People</label>
-                        <input type="text" placeholder="People"/>
+                        <input type="text" placeholder="People" />
                     </div>
-
-                    <div className="priceDiv">
-                        <label htmlFor="location">Price</label>
-                        <input type="text" placeholder="Price"/>
-                    </div>
+                    <button className="btn">
+                        <a href="#">Tìm</a>
+                    </button>
                 </div>
-             </div>
+            </div>
         </section>
     )
 }

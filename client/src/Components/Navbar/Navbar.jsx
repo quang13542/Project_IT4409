@@ -28,20 +28,17 @@ const Navbar = () => {
                 <div className={active}>
                     <ul className="navList flex">
                         <li className="navItem">
-                            <a href="#" className="navLink">Home</a>
+                            <a href="#" className="navLink">Trang chủ</a>
                         </li>
                         <li className="navItem">
-                            <a href="#" className="navLink">Product</a>
-                        </li>
-                        <li className="navItem">
-                            <a href="#" className="navLink">Promotion</a>
+                            <a href="#" className="navLink">Kế hoạch</a>
                         </li>
                         <div className="navBtn">
                             <button className="btn loginBtn">
-                                <a href="#">Sign In</a>
+                                <a href="#">Đăng nhập</a>
                             </button>
                             <button className="btn">
-                                <a href="#">Sign Up</a>
+                                <a href="#">Đăng ký</a>
                             </button>
                         </div>
 
