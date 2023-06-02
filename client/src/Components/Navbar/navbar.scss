@@ -85,22 +85,22 @@
                             }
                         }
 
-                        .loginBtn {
-                            background: none;
-                            border: 1px solid var(--PrimaryColor);
+                        // .loginBtn {
+                        //     background: none;
+                        //     border: 1px solid var(--PrimaryColor);
 
-                            a {
-                                color: var(--PrimaryColor);
-                            }
+                        //     a {
+                        //         color: var(--PrimaryColor);
+                        //     }
 
-                            &:hover {
-                                background: var(--HoverColor);
+                        //     &:hover {
+                        //         background: var(--HoverColor);
 
-                                a {
-                                    color: var(--whiteColor);
-                                }
-                            }
-                        }
+                        //         a {
+                        //             color: var(--whiteColor);
+                        //         }
+                        //     }
+                        // }
                     }
 
                 }
@@ -135,6 +135,15 @@
             }
         }
 
+    }
+    .activeHeader{
+        background:rgba(37,150,190, 0.8);
+        box-shadow: 0 2px 8px 2px rgba(178,178,178,0.04);
+        // .loginBtn{
+        //     a{
+        //         color: white;
+        //     }
+        // }
     }
 
 
@@ -172,18 +181,18 @@
                     font-weight: 500;
                 }
             }
-            .loginBtn{
-                background: none;
-                border: 2px solid var(--PrimaryColor);
-                a{
-                    color: var(--PrimaryColor);
-                }
+            // .loginBtn{
+            //     background: var(--PrimaryColor);
+            //     border: 2px solid var(--PrimaryColor);
+            //     a{
+            //         color: var(--whiteColor);
+            //     }
 
-                &:hover{
-                    background: var(--PrimaryColor);
-                    a{color: var(--whiteColor);}
-                }
-            }
+            //     &:hover{
+            //         background: var(--PrimaryColor);
+            //         a{color: var(--whiteColor);}
+            //     }
+            // }
           }  
         }
     }

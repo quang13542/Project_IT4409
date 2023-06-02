@@ -12,7 +12,7 @@
 }
 
 .home{
-    height: 80vh;
+    height: 50vh;
     background:  linear-gradient(rgba(33,33,33,0.4), rgba(33,33,33,0.4)), url('https://www.luxurytraveldiary.com/wp-content/uploads/2019/06/hotel-review-telunas-beach-resort-near-singapore-8.jpg');
     background-position: center;
     background-size:cover;
@@ -32,7 +32,10 @@
                 font-size: 2rem;
                 font-weight: 700;
                 line-height: 2.5rem;
-                margin-bottom: 3rem;
+                margin-bottom: 20px;
+            }
+            .btn{
+                transform: translateY(15px);
             }
         }
 
@@ -40,7 +43,7 @@
     }
 
     .homeCard{
-        max-width: 50%;
+        min-width: 50%;
         border-radius: 1rem;
         padding: 2rem;
         background:var(--whiteColor);
@@ -49,7 +52,7 @@
         justify-content: center;
         transform: translate(-50%);
         left: 50%;
-        box-shadow: 0 2px 8px 4px rgba(178,178,178, 0.4);
+        box-shadow: 0 2px 8px 4px rgba(178,178,178, 0.5);
 
         .flex{
             justify-content: space-between;
@@ -61,11 +64,11 @@
         .locationDiv, .timeDiv, .peopleDiv {
             border-radius: 1rem;
             background: var(--greyBg);
-            width: 100%;
+            max-width: 100%;
             
             input{
-                width: 100%;
-                box-sizing: border-box;
+                max-width: 100%; 
+                // box-sizing: border-box;
                 background: var(--inputColor);
                 border-radius: 10px;
                 border:none;
@@ -89,7 +92,15 @@
         }
     }
 }
-@media screen and (min-width: 1024px) {
-    
-    
+
+@media screen and (min-width: 1023px) {
+    .home{
+        .homeContainer{
+            .homeCard{
+                bottom: -15%;
+                grid-template-columns: repeat(4,1fr);
+            }
+            
+        }
+    }
 }

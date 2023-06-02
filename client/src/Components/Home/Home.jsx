@@ -14,9 +14,8 @@ const Home = () => {
                 </div>
                 <div className="homeCard grid">
                     <div className="locationDiv">
-                        <input type="text" placeholder="Nhập điểm du lịch hoặc tên khách sạn" />
+                        <input type="text" placeholder="Địa điểm" />
                     </div>
-
                     <div className="flex">
                         <div className="timeDiv">
                             <input type="date" />
@@ -30,7 +29,7 @@ const Home = () => {
                     </div>
 
                     <div className="peopleDiv">
-                        <input type="text" placeholder="People" />
+                        <input type="dropdown" placeholder="Số lượng" />
                     </div>
                     <button className="btn">
                         <a href="#">Tìm</a>

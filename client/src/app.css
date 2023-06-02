@@ -1,18 +1,17 @@
-@import url('https://fonts.googleapis.com/css2?family=Geologica&family=Poppins:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro&family=Geologica&family=Poppins:wght@300&display=swap');
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Geologica', sans-serif;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Be Vietnam Pro', sans-serif;
     transition: .3s ease;
 }
 
 /* color variables */
 :root {
     --PrimaryColor: rgb(37, 150, 190);
-    --HoverColor: rgba(37, 150, 190,255);
+    --HoverColor: rgba(37, 150, 190, 255);
     --whiteColor: hsl(0, 0%, 100%);
     --blackColor: hsl(0, 0%, 18%);
     --textColor: hsl(240, 1%, 48%);
@@ -21,6 +20,10 @@
     --greyText: rgb(190, 190, 190);
     --inputColor: hsl(330, 12%, 97%);
 
+}
+
+body {
+    height: 10000px;
 }
 
 a {

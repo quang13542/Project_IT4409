@@ -75,19 +75,6 @@
   .navBarSection .header .navBar .navList .navBtn .btn a:hover {
     color: var(--whiteColor);
   }
-  .navBarSection .header .navBar .navList .navBtn .loginBtn {
-    background: none;
-    border: 1px solid var(--PrimaryColor);
-  }
-  .navBarSection .header .navBar .navList .navBtn .loginBtn a {
-    color: var(--PrimaryColor);
-  }
-  .navBarSection .header .navBar .navList .navBtn .loginBtn:hover {
-    background: var(--HoverColor);
-  }
-  .navBarSection .header .navBar .navList .navBtn .loginBtn:hover a {
-    color: var(--whiteColor);
-  }
   .navBarSection .header .navBar .closeNavbar {
     position: absolute;
     top: 1rem;
@@ -107,6 +94,10 @@
 }
 .navBarSection .header .toggleNavbar .icon:hover {
   color: var(--PrimaryColor);
+}
+.navBarSection .activeHeader {
+  background: rgba(37, 150, 190, 0.8);
+  box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.04);
 }
 
 @media screen and (min-width: 769px) {
@@ -137,19 +128,6 @@
   .header .navBar .navList .btn a {
     color: var(--whiteColor);
     font-weight: 500;
-  }
-  .header .navBar .navList .loginBtn {
-    background: none;
-    border: 2px solid var(--PrimaryColor);
-  }
-  .header .navBar .navList .loginBtn a {
-    color: var(--PrimaryColor);
-  }
-  .header .navBar .navList .loginBtn:hover {
-    background: var(--PrimaryColor);
-  }
-  .header .navBar .navList .loginBtn:hover a {
-    color: var(--whiteColor);
   }
 }
 @media screen and (min-width: 1024px) {

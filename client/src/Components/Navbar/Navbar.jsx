@@ -14,14 +14,27 @@ const Navbar = () => {
         setActive('navBar');
 
     }
+    
+    const[transparent, setTransparent] =useState('header');
+    const addBackground= () =>{
+        if(window.scrollY >=100) {
+            setTransparent('header activeHeader')
+        }
+        else{
+            setTransparent('header')
+        }
+    }
+
+    window.addEventListener('scroll', addBackground)
+
 
     return (
         <section className="navBarSection">
-            <div className="header">
+            <div className={transparent}>
 
                 <div className="logoDiv">
                     <a href="#" className="logo">
-                        <h1><MdOutlineModeOfTravel className="icon" /></h1>
+                        <h1><MdOutlineModeOfTravel className="icon" />Cheap Trip</h1>
                     </a>
                 </div>
 
