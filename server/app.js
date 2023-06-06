@@ -59,8 +59,8 @@ app.get("/find_hotel", function(req, res) {
 });
 
 app.post("/find_hotel", function(req, res) {
-    const { city, checkin, nights, adults, chidren, rooms, duty } = req.body;
-    
+    const { city, checkin, checkout, nights, adults, chidren, rooms, duty } = req.body;
+
 })
 
 const PORT = process.env.PORT || 8000;
