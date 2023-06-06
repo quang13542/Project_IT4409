@@ -59,7 +59,33 @@ app.get("/find_hotel", function(req, res) {
 });
 
 app.post("/find_hotel", function(req, res) {
-    const { city, checkin, checkout, nights, adults, chidren, rooms, duty } = req.body;
+    const { city, checkin, checkout, adults, children, rooms, duty } = req.body;
+
+    const sql = `
+        select hotel.id, hotel.room_id, hotel.rating
+        from hotel
+        join room on room.id = hotel.room_id
+        join city on city.id = hotel.city_id
+        where (
+            city.name like '%?%' and
+            adults>=? and
+            children>=? and
+            hotel.room_id not in (
+                select room_id
+                from service
+                where (
+                    (? between checkin and checkout) or
+                    (? between checkin and checkout)
+                )
+            )
+        )
+        order by hotel.rating desc
+    `
+    connection.query(sql, [city, adults, children, checkin.replace("T", " "), checkout.replace("T", " ")], function(err, result) {
+        if (err) throw err;
+        // To do: if success, redirect to the list of hotel url
+        
+      });
 
 })
 
