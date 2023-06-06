@@ -30,7 +30,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/signup", (req, res) => {
-    fs.readFile('register.html',function (err, data){
+    fs.readFile('./register.html',function (err, data){
         res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
         res.write(data);
         res.end();
@@ -50,6 +50,8 @@ app.post("/signup", function(req, res) {
 
 app.get("/find_hotel", function(req, res) {
     fs.readFile('find_hotel.html',function (err, data){
+        console.log(err);  // add this line to debug error 
+        console.log(data); // add this line to debug data
         res.writeHead(200, {'Content-Type': 'text/html','Content-Length':data.length});
         res.write(data);
         res.end();
