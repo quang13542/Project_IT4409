@@ -3,7 +3,7 @@ import './navbar.css'
 import { MdOutlineModeOfTravel } from 'react-icons/md'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { TbGridDots } from 'react-icons/tb'
-
+import { Link } from "react-router-dom"
 
 const Navbar = () => {
     const [active, setActive] = useState('navBar');
@@ -33,25 +33,25 @@ const Navbar = () => {
             <div className={transparent}>
 
                 <div className="logoDiv">
-                    <a href="#" className="logo">
+                    <Link to="/" className="logo">
                         <h1><MdOutlineModeOfTravel className="icon" />Cheap Trip</h1>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className={active}>
                     <ul className="navList flex">
                         <li className="navItem">
-                            <a href="#" className="navLink">Trang chủ</a>
+                            <Link to="/" className="navLink">Trang chủ</Link>
                         </li>
                         <li className="navItem">
                             <a href="#" className="navLink">Kế hoạch</a>
                         </li>
                         <div className="navBtn">
                             <button className="btn loginBtn">
-                                <a href="#">Đăng nhập</a>
+                                <Link to="/signin">Đăng nhập</Link>
                             </button>
                             <button className="btn">
-                                <a href="#">Đăng ký</a>
+                                <Link to="/signup">Đăng ký</Link>
                             </button>
                         </div>
 

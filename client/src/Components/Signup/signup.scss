@@ -1,0 +1,89 @@
+:root {
+    --PrimaryColor: rgb(37, 150, 190);
+    --HoverColor: rgba(37, 150, 190, 255);
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(0, 0%, 18%);
+    --textColor: hsl(240, 1%, 48%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyBg: hsl(0, 0%, 96%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: hsl(330, 12%, 97%);
+
+}
+
+.signup {
+    height: 100vh;
+    background: linear-gradient(rgba(33, 33, 33, 0.4), rgba(33, 33, 33, 0.4)), url('https://dynamic-media-cdn.tripadvisor.com/media/photo-o/07/64/fd/4f/getlstd-property-photo.jpg?w=1200&h=-1&s=1');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    .signupContainer {
+        min-width: 40%;
+        border-radius: 1rem;
+        padding: 2rem;
+        background: var(--whiteColor);
+        position: absolute;
+        gap: 1rem;
+        justify-content: center;
+        transform: translate(-50%);
+        left: 50%;
+        top: 10rem;
+
+        .flex {
+            justify-content: space-between;
+
+            .icon {
+                color: var(--textColor);
+            }
+
+        }
+
+        .title {
+            color: var(--PrimaryColor);
+        }
+
+        .emailDiv,
+        .passwordDiv,
+        .usernameDiv {
+            border-radius: 1rem;
+            background: var(--greyBg);
+            width: 30rem;
+
+            input {
+                width: 100%;
+                background: var(--inputColor);
+                border-radius: 10px;
+                border: none;
+                padding: 10px;
+                font-size: 15px;
+                font-weight: 500;
+
+                &:placeholder {
+                    font-size: 15px;
+                    opacity: .5;
+                    font-weight: 400;
+                }
+
+
+            }
+        }
+
+        .option {
+            display: flex;
+            justify-content: space-between;
+
+            h5 {
+                a {
+                    color: var(--PrimaryColor);
+
+                }
+            }
+        }
+
+        .btn {
+            width: 100%;
+            padding: .6rem 1.5rem;
+            color: var(--whiteColor);
+        }
+    }
+}
