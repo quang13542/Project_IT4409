@@ -8,7 +8,7 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'Quang301',
+    password: '',
     database: 'travelling'
 });
 

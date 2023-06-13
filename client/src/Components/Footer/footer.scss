@@ -1,0 +1,70 @@
+:root {
+    --PrimaryColor: rgb(37, 150, 190);
+    --HoverColor: rgba(37, 150, 190, 255);
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(0, 0%, 18%);
+    --textColor: hsl(240, 1%, 48%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyBg: hsl(0, 0%, 96%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: hsl(330, 12%, 97%);
+
+}
+
+.footer {
+    position:relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background: var(--greyBg);
+    padding: 2rem 0;
+
+
+    .footerContainer {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: row;
+        gap: 1.5rem;
+        text-align: center;
+
+        .footerLogo {
+            padding-bottom: .5rem;
+
+            .logo {
+                color: var(--blackColor);
+                font-weight: 500;
+                cursor: pointer;
+                align-items: center;
+                justify-content: center;
+                padding-bottom: .5rem;
+
+                .icon {
+                    font-size: 50px;
+                    color: black;
+                    margin-right: .5rem;
+                }
+
+            }
+        }
+
+        .footerInfo {
+            display: grid;
+            row-gap: .2rem;
+
+            .linkTitle {
+                padding-bottom: .5rem;
+                color: var(--blackColor);
+                font-weight: 700;
+
+            }
+
+            .phone,
+            .email {
+                color: var(--textColor);
+                font-size: 13px;
+                font-weight: 500;
+
+            }
+        }
+    }
+}

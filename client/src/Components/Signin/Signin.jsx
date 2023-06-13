@@ -3,26 +3,37 @@ import './signin.css';
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
 import ClipLoader from "react-spinners/ClipLoader";
+import { login } from '../../API/users';
 
 function Signin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
 
-    const handleLogin = () => {
-
+    const handleLogin = async (e) => {
+        e.preventDefault();
         console.log(email, password);
         const data = { email: email, password: password }
-        axios.post('https://reqres.in/api/login', data)
-            .then((res) => {
-                console.log(res.data.token, 17);
-                if (res.data.token) {
-                    navigate("/");
-                }
-            })
-            .catch((e) => {
-                console.log(e)
-            })
+        // axios.post('https://reqres.in/api/login', data)
+        //     .then((res) => {
+        //         console.log(res.data.token, 17);
+        //         if (res.data.token) {
+        //             navigate("/");
+        //         }
+        //     })
+        //     .catch((e) => {
+        //         console.log(e)
+        //     })
+        try {
+            const res = await login(data);
+            console.log(res);
+            if (res.token) {
+                navigate("/");
+            }
+
+        } catch (error) {
+
+        }
     }
 
     return (

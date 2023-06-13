@@ -32,11 +32,11 @@ function Signup() {
             setLoading(true);
 
             const result = await createUser(formData);
-            console.log(result);
-            if (result.success) {
+            // console.log(result);
+            // if (result.success) {
                 alert("Tạo tài khoản thành công");
                 navigate('/signin')
-            }
+            // }
         } catch (error) {
             console.log(error);
             alert(error.errMessage || "Xảy ra lỗi khi tạo tài khoản")

@@ -96,7 +96,7 @@
   color: var(--PrimaryColor);
 }
 .navBarSection .activeHeader {
-  background: rgba(37, 150, 190, 0.8);
+  background: var(--greyBg);
   box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.04);
 }
 

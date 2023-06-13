@@ -44,7 +44,7 @@ const Navbar = () => {
                             <Link to="/" className="navLink">Trang chủ</Link>
                         </li>
                         <li className="navItem">
-                            <a href="#" className="navLink">Kế hoạch</a>
+                            <Link to="/popular" className="navLink">Kế hoạch</Link>
                         </li>
                         <div className="navBtn">
                             <button className="btn loginBtn">

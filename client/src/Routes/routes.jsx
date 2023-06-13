@@ -7,11 +7,13 @@ import Navbar from "../Components/Navbar/Navbar";
 import Home from "../Components/Home/Home";
 import Signin from "../Components/Signin/Signin";
 import Signup from "../Components/Signup/Signup";
+import Popular from "../Components/Popular/Popular";
+import Footer from "../Components/Footer/Footer";
 
 const ProtectedRoute = ({ children, roles }) => {
     const user = useSelector((state) => state.user);
-
-    if (user) {
+    console.log('user: ', user);
+    if (user.id) {
         if (roles && !roles.includes(user.role))
             return <Navigate to="/403" replace />;
         return children;
@@ -31,6 +33,8 @@ const AppRoutes = () => {
                     <>
                         <Navbar />
                         <Home />
+                        <Popular/>
+                        <Footer />
                     </>
                 }
             />
@@ -40,7 +44,6 @@ const AppRoutes = () => {
                     <>
                         <Navbar />
                         <Signin />
-                        {/* <Footer />{" "} */}
                     </>
                 }
             />
@@ -51,9 +54,9 @@ const AppRoutes = () => {
                         <Signup />
                     </>
                 } />
-
-        </Routes>
+           
+                    </Routes>
     )
 }
 
-export default AppRoutes
+            export default AppRoutes

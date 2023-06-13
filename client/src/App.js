@@ -6,9 +6,11 @@ import Home from './Components/Home/Home'
 import Popular from './Components/Popular/Popular'
 import { BrowserRouter } from "react-router-dom";
 import AppRoutes from './Routes/routes'
-
+import { Provider } from 'react-redux'
+import {store} from './Redux/store';
 
 const App = () => {
+    
     return (
 
         // <div className='app'>
@@ -22,9 +24,11 @@ const App = () => {
         //     </div>
 
         // </div>
+        <Provider store={store}>
         <BrowserRouter>
             <AppRoutes />
         </BrowserRouter>
+        </Provider>
     )
 }
 
