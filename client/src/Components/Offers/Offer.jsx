@@ -107,3 +107,5 @@ const Offer = () => {
         </section>
     );
 }
+
+export default Offer
