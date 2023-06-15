@@ -4,7 +4,7 @@ import { AiOutlineArrowRight } from 'react-icons/ai'
 const Home = () => {
     return (
         <section className="home">
-            <div className="homeContainer container">
+            <div className="homeContainer">
                 <div className="homeText">
                     <h1 className="title">
                         Khách sạn, homestay, khu nghỉ dưỡng & hơn thế nữa
