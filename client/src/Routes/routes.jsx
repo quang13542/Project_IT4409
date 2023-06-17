@@ -7,9 +7,8 @@ import Navbar from "../Components/Navbar/Navbar";
 import Home from "../Components/Home/Home";
 import Signin from "../Components/Signin/Signin";
 import Signup from "../Components/Signup/Signup";
-import Popular from "../Components/Popular/Popular";
 import Footer from "../Components/Footer/Footer";
-import Offer from "../Components/Offers/Offer";
+import Feature from "../Components/Feature/Feature";
 
 const ProtectedRoute = ({ children, roles }) => {
     const user = useSelector((state) => state.user);
@@ -34,9 +33,8 @@ const AppRoutes = () => {
                     <>
                         <Navbar />
                         <Home />
-                        <Popular/>
-                        <Offer/>
-                        <Footer />
+                        <Feature/>
+                        {/* <Footer /> */}
                     </>
                 }
             />
