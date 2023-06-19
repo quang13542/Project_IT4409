@@ -8,7 +8,7 @@ const mysql = require('mysql');
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: '',
+    password: 'Quang301',
     database: 'travelling'
 });
 
@@ -45,6 +45,18 @@ app.post("/signup", function(req, res) {
       if (err) throw err;
       console.log("User registered!");
       res.send("User registered!");
+    });
+});
+
+app.post("/signin", function(req, res) {
+    const { email, password } = req.body;
+  
+    const sql = "SELECT COUNT(*) FROM user WHERE email = ? AND password = ?";
+    connection.query(sql, [ email, password], function(err, result) {
+      if (err) throw err;
+      const num = result[0]['COUNT(*)'];
+      if (num==1) res.send("ACCEPT");
+      else res.send("ERROR");
     });
 });
 
