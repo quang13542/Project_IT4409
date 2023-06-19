@@ -1,0 +1,74 @@
+:root {
+    --PrimaryColor: rgb(37, 150, 190);
+    --HoverColor: rgba(37, 150, 190, 255);
+    --whiteColor: hsl(0, 0%, 100%);
+    --blackColor: hsl(0, 0%, 18%);
+    --textColor: hsl(240, 1%, 48%);
+    --whiteColorDeam: hsl(0, 0%, 93%);
+    --greyBg: hsl(0, 0%, 96%);
+    --greyText: rgb(190, 190, 190);
+    --inputColor: hsl(330, 12%, 97%);
+
+}
+
+.listContainer {
+    position: relative;
+    top: 150px;
+    width: 75%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    .listHeader{
+        margin-bottom: 1.5rem;
+        margin-top: 2rem;
+    }
+    .roomList{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+       .listItem {
+        position: relative;
+        color: rgb(20, 20, 20);
+        border-radius: 10px 10px 0px 0px;
+        overflow: hidden;
+        height: 250px;
+        flex: 1;
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.06);
+        }
+
+        .listImg {
+            object-fit: cover;
+            width: 100%;
+        }
+        .rate{
+            position:absolute;
+            top: 10px;
+            color: white;
+            font-size: 12px;
+            right:10px;
+            width: min-content;
+            border-radius: 10px;
+            background-color: var(--PrimaryColor);
+            padding: 0.5rem;
+        }
+        .listDetail{
+            p{
+                color:var(--HoverColor)
+            };
+            span{
+                color:red;
+                font-weight: 300;
+            }
+        }
+
+
+        
+    }
+ 
+    }
+
+    
+
+}

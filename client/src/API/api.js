@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAccessToken, setAccessToken } from '../Configs/localStorage';
 
 export const api = axios.create({
-    baseURL: process.env.REACT_APP_END_POINT || "https://reqres.in/api/",
+    baseURL: process.env.REACT_APP_END_POINT || "http://localhost8000/",
     headers: {
         "Content-Type": "application/json",
         Accept: "*/*",

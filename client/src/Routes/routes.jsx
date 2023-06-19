@@ -1,14 +1,15 @@
 import React from "react";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
-import Error404 from "../Components/public/Error404";
-import Error403 from "../Components/public/Error403";
-import Navbar from "../Components/Navbar/Navbar";
-import Home from "../Components/Home/Home";
-import Signin from "../Components/Signin/Signin";
-import Signup from "../Components/Signup/Signup";
-import Footer from "../Components/Footer/Footer";
-import Feature from "../Components/Feature/Feature";
+import Error404 from "../Components/publicPage/Error404";
+import Error403 from "../Components/publicPage/Error403";
+import Navbar from "../Components/publicPage/Navbar/Navbar";
+import Home from "../Components/homePage/Home/Home";
+import Feature from "../Components/homePage/Feature/Feature";
+import Signin from "../Components/authPage/Signin/Signin";
+import Signup from "../Components/authPage/Signup/Signup";
+import RoomProp from "../Components/homePage/RoomProp/RoomProp";
+import RoomList from "../Components/homePage/RoomList/RoomList";
 
 const ProtectedRoute = ({ children, roles }) => {
     const user = useSelector((state) => state.user);
@@ -34,6 +35,8 @@ const AppRoutes = () => {
                         <Navbar />
                         <Home />
                         <Feature/>
+                        <RoomProp/>
+                        <RoomList/>
                         {/* <Footer /> */}
                     </>
                 }
@@ -43,7 +46,7 @@ const AppRoutes = () => {
                 element={
                     <>
                         <Navbar />
-                        <Signin />
+                        <Signin/>
                     </>
                 }
             />
@@ -51,7 +54,7 @@ const AppRoutes = () => {
                 element={
                     <>
                         <Navbar />
-                        <Signup />
+                        <Signup/>
                     </>
                 } />
            

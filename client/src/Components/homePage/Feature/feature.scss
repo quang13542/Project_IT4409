@@ -15,18 +15,28 @@
     position: relative;
     top: 150px;
     width: 75%;
-    display: flex;
-    justify-content: space-between;
     margin: 0 auto;
-    gap: 20px;
-
-    .featureItem {
+    
+    display: flex;
+    flex-direction: column;
+    .featureHeader{
+        margin-bottom: 1.5rem;
+    }
+    .featureList{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+       .featureItem {
         position: relative;
         color: rgb(20, 20, 20);
         border-radius: 10px;
         overflow: hidden;
         height: 250px;
-        flex:1;
+        flex: 1;
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.06);
+        }
 
         .featureImg {
             object-fit: cover;
@@ -42,6 +52,9 @@
             color: var(--whiteColor);
         }
     }
+ 
+    }
 
+    
 
 }

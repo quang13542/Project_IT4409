@@ -14,12 +14,19 @@
   position: relative;
   top: 150px;
   width: 75%;
-  display: flex;
-  justify-content: space-between;
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.feature .featureHeader {
+  margin-bottom: 1.5rem;
+}
+.feature .featureList {
+  display: flex;
+  flex-direction: row;
   gap: 20px;
 }
-.feature .featureItem {
+.feature .featureList .featureItem {
   position: relative;
   color: rgb(20, 20, 20);
   border-radius: 10px;
@@ -27,7 +34,11 @@
   height: 250px;
   flex: 1;
 }
-.feature .featureItem .featureImg {
+.feature .featureList .featureItem:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+}
+.feature .featureList .featureItem .featureImg {
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: bottom;
@@ -35,7 +46,7 @@
   height: 100%;
   width: 100%;
 }
-.feature .featureItem .featureTitle {
+.feature .featureList .featureItem .featureTitle {
   position: absolute;
   bottom: 1.5rem;
   left: 1rem;

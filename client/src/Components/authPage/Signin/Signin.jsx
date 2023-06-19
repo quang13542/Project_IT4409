@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './signin.css';
 import { Link, useNavigate } from "react-router-dom";
-import axios from 'axios';
-import ClipLoader from "react-spinners/ClipLoader";
-import { login } from '../../API/users';
+import { login } from '../../../API/users';
 
 function Signin() {
     const [email, setEmail] = useState("");

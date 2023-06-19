@@ -1,0 +1,55 @@
+:root {
+  --PrimaryColor: rgb(37, 150, 190);
+  --HoverColor: rgba(37, 150, 190, 255);
+  --whiteColor: hsl(0, 0%, 100%);
+  --blackColor: hsl(0, 0%, 18%);
+  --textColor: hsl(240, 1%, 48%);
+  --whiteColorDeam: hsl(0, 0%, 93%);
+  --greyBg: hsl(0, 0%, 96%);
+  --greyText: rgb(190, 190, 190);
+  --inputColor: hsl(330, 12%, 97%);
+}
+
+.prop {
+  position: relative;
+  top: 150px;
+  width: 75%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+.prop .propHeader {
+  margin-bottom: 1.5rem;
+  margin-top: 2rem;
+}
+.prop .propList {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+.prop .propList .propItem {
+  position: relative;
+  color: rgb(20, 20, 20);
+  border-radius: 10px;
+  overflow: hidden;
+  height: 250px;
+  flex: 1;
+}
+.prop .propList .propItem:hover {
+  cursor: pointer;
+  transform: scale(1.06);
+}
+.prop .propList .propItem .propImg {
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: bottom;
+     object-position: bottom;
+  height: 100%;
+  width: 100%;
+}
+.prop .propList .propItem .propTitle {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1rem;
+  color: var(--whiteColor);
+}/*# sourceMappingURL=roomProp.css.map */
