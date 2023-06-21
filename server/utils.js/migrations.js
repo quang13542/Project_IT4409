@@ -2,165 +2,115 @@ const colors = require("colors");
 const { query } = require("../db/database");
 
 function createUser(opt) {
-	const sql = `CREATE TABLE users (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        name VARCHAR(255) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        role ENUM('admin', 'user') NOT NULL,
-        avatar VARCHAR(255),
-        createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+	const sql = `CREATE TABLE user (
+        id int NOT NULL AUTO_INCREMENT,
+        username varchar(50) NOT NULL,
+        password varchar(50) NOT NULL,
+        email varchar(100) NOT NULL,
         PRIMARY KEY (id)
-      );
-      `;
-	const sqlDown = "DROP TABLE IF EXISTS users";
+        );
+    `;
+	const sqlDown = "DROP TABLE IF EXISTS user";
 	if (opt === true) {
 		query(sql);
-		setTimeout(() => createProduct(opt), 2000);
-	} else {
-		query(sqlDown);
-		setTimeout(() => createProduct(opt), 2000);
-	}
-}
-
-function createProduct(opt) {
-	const sql = `CREATE TABLE products (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        name VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ,
-        description TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ,
-        category VARCHAR(255),
-        price DECIMAL(10,2),
-        ratings DECIMAL(3,2),
-        seller VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-        stock INT(11),
-        numOfRev INT(11),
-        createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id)
-      );
-      `;
-	const sqlDown = "DROP TABLE IF EXISTS products";
-
-	if (opt === true) {
-		query(sql);
-		setTimeout(() => createReviews(opt), 2000);
+		setTimeout(() => createCity(opt), 2000);
 	} else {
 		query(sqlDown);
 		setTimeout(() => console.log("DELETE success".green), 2000);
 	}
 }
-function createReviews(opt) {
-	const sql = `CREATE TABLE reviews (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        comment TINYTEXT,
-        rating INT(11) NOT NULL,
-        idUser INT(11) NOT NULL,
-        idProduct INT(11) NOT NULL,
-        createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY (id),
-        FOREIGN KEY (idUser) REFERENCES users(id) ON DELETE CASCADE,
-        FOREIGN KEY (idProduct) REFERENCES products(id) ON DELETE CASCADE
+
+function createCity(opt) {
+	const sql = `CREATE TABLE city (
+        id int NOT NULL AUTO_INCREMENT,
+        name varchar(50) NOT NULL,
+        PRIMARY KEY (id)
+      );
+      `;
+	const sqlDown = "DROP TABLE IF EXISTS city";
+
+	if (opt === true) {
+		query(sql);
+		setTimeout(() => createRoom(opt), 2000);
+	} else {
+		query(sqlDown);
+		setTimeout(() => createUser(opt), 2000);
+	}
+}
+
+function createRoom(opt) {
+	const sql = `CREATE TABLE room (
+        id int NOT NULL AUTO_INCREMENT,
+        adults int NOT NULL,
+        children int NOT NULL,
+        PRIMARY KEY (id)
       );
       `;
 	const sqlDown = "DROP TABLE IF EXISTS reviews";
 
 	if (opt === true) {
 		query(sql);
-		setTimeout(() => createImageProduct(opt), 2000);
+		setTimeout(() => createHotel(opt), 2000);
 	} else {
 		query(sqlDown);
-		setTimeout(() => createImageProduct(opt), 2000);
+		setTimeout(() => createCity(opt), 2000);
 	}
 }
-function createImageProduct(opt) {
-	const sql = `CREATE TABLE images_product (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        idProduct INT(11) NOT NULL,
-        path VARCHAR(255),
+function createHotel(opt) {
+	const sql = `CREATE TABLE hotel (
+        id int NOT NULL AUTO_INCREMENT,
+        name varchar(50) DEFAULT NULL,
+        city_id int NOT NULL,
+        room_id int NOT NULL,
+        rating float DEFAULT NULL,
         PRIMARY KEY (id),
-        FOREIGN KEY (idProduct) REFERENCES products(id) ON DELETE CASCADE
+        KEY city_id (city_id),
+        KEY room_id (room_id),
+        CONSTRAINT hotel_ibfk_1 FOREIGN KEY (city_id) REFERENCES city (id) ON DELETE CASCADE,
+        CONSTRAINT hotel_ibfk_2 FOREIGN KEY (room_id) REFERENCES room (id) ON DELETE CASCADE
       );
       `;
-	const sqlDown = "DROP TABLE IF EXISTS images_product";
+	const sqlDown = "DROP TABLE IF EXISTS hotel";
 	if (opt === true) {
 		query(sql);
-		setTimeout(() => createShippingInfo(opt), 2000);
+		setTimeout(() => createService(opt), 2000);
 	} else {
 		query(sqlDown);
-		setTimeout(() => createOrder(opt), 2000);
+		setTimeout(() => createRoom(opt), 2000);
 	}
 }
-function createShippingInfo(opt) {
-	const sql = `CREATE TABLE shipping_info (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        address VARCHAR(255),
-        phoneNo VARCHAR(20) ,
-        city VARCHAR(100) ,
-        country VARCHAR(100) ,
-        postalCode VARCHAR(20),
-        PRIMARY KEY (id)
-      );
-      `;
-	const sqlDown = "DROP TABLE IF EXISTS shipping_info";
 
-	if (opt === true) {
-		query(sql);
-		setTimeout(() => createOrder(opt), 2000);
-	} else {
-		query(sqlDown);
-		setTimeout(() => createUser(opt), 2000);
-	}
-}
-function createOrder(opt) {
-	const sql = `CREATE TABLE orders (
-        id INT(11) NOT NULL AUTO_INCREMENT,
-        idUser INT,
-        idShippingInfo INT,
-        paymentInfo VARCHAR(255),
-        itemsPrice DECIMAL(13, 2),
-        taxPrice DECIMAL(13, 2),
-        shippingPrice DECIMAL(13, 2),
-        totalPrice DECIMAL(13, 2),
-        paidAt DATETIME,
-        orderStatus VARCHAR(255),
-        deliveredAt DATETIME,
-        createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,
+function createService(opt) {
+	const sql = `CREATE TABLE service (
+        id int NOT NULL AUTO_INCREMENT,
+        room_id int NOT NULL,
+        checkin datetime DEFAULT NULL,
+        checkout datetime DEFAULT NULL,
+        rating int DEFAULT NULL,
+        nights int NOT NULL,
+        duty tinyint(1) DEFAULT NULL,
+        user_id int DEFAULT NULL,
         PRIMARY KEY (id),
-        FOREIGN KEY (idUser) REFERENCES users(id) ON DELETE CASCADE,
-        FOREIGN KEY (idShippingInfo) REFERENCES shipping_info(id) ON DELETE CASCADE
+        KEY room_id (room_id),
+        KEY user_id (user_id),
+        CONSTRAINT service_ibfk_1 FOREIGN KEY (room_id) REFERENCES room (id) ON DELETE CASCADE,
+        CONSTRAINT service_ibfk_2 FOREIGN KEY (user_id) REFERENCES user (id),
+        CONSTRAINT checkin_smaller_than_checkout CHECK ((checkin < checkout))
       );
       `;
-	const sqlDown = "DROP TABLE IF EXISTS orders";
-
-	if (opt === true) {
-		query(sql);
-		setTimeout(() => createItemOrder(opt), 2000);
-	} else {
-		query(sqlDown);
-		setTimeout(() => createShippingInfo(opt), 2000);
-	}
-}
-function createItemOrder(opt) {
-	const sql = `CREATE TABLE itemOrder (
-        id INT(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        idProduct INT(11) NOT NULL,
-        idOrder INT NOT NULL,
-        amount INT UNSIGNED NOT NULL,
-        FOREIGN KEY (idProduct) REFERENCES products(id) ON DELETE CASCADE,
-        FOREIGN KEY (idOrder) REFERENCES orders(id) ON DELETE CASCADE
-      );
-      `;
-	const sqlDown = "DROP TABLE IF EXISTS itemOrder";
+	const sqlDown = "DROP TABLE IF EXISTS service";
 
 	if (opt === true) {
 		query(sql);
 		setTimeout(() => console.log("SUCCESSFULLY".green), 1000);
 	} else {
 		query(sqlDown);
-		setTimeout(() => createReviews(opt), 2000);
+		setTimeout(() => createHotel(opt), 2000)
 	}
 }
+
 // create tables
 createUser(true);
 
 // delete tables
-// createItemOrder(false);
+// createService(false);
