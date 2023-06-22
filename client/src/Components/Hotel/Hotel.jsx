@@ -1,13 +1,8 @@
 import "./hotel.css";
-import Navbar from "../../components/Navbar/Navbar";
-import Footer from "../../components/Footer/Footer";
+import Navbar from "../../Components/Navbar/Navbar";
+import Footer from "../../Components/Footer/Footer";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faCircleArrowLeft,
-    faCircleArrowRight,
-    faCircleXmark,
-    faLocationDot,
-} from "@fortawesome/free-solid-svg-icons";
+import {faCircleArrowLeft, faCircleArrowRight, faCircleXmark, faLocationDot,} from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 const Hotel = () => {
@@ -87,7 +82,7 @@ const Hotel = () => {
                         <span>HCM city </span>
                     </div>
                     <span className="hotelDistance">
-                        Vị trí đắc địa – 500m từ trung tâm
+                        Vị trí đắc địa - 500m từ trung tâm
                     </span>
                     <span className="hotelPriceHighlight">
                         Đặt kỳ nghỉ trên $114 tại khách sạn này và nhận taxi sân bay miễn phí

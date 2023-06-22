@@ -1,5 +1,5 @@
 import './list.css';
-import Navbar from "../../Components/Navbar/Navbar"
+import Navbar from "../../Components/Navbar/Navbar ";
 import { useLocation } from "react-router-dom";
 import { format } from "date-fns";
 import { DateRange } from "react-date-range";
