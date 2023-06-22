@@ -1,92 +1,98 @@
 import React, { useEffect, useState } from "react";
 import "./roomList.css"
-import roomApi from "../../../API/roomApi";
+import {FaLongArrowAltLeft,FaLongArrowAltRight} from 'react-icons/fa'
+import { useNavigate } from "react-router";
+import BeatLoader from 'react-spinners/BeatLoader'
+import { getAllRoom } from "../../../API/rooms";
 const RoomList = () => {
-    const[roomList, setRoomList] =useState([]);
-
+    const [roomList, setRoomList] = useState([]);
+    const [loading, setLoading] = useState(false);
+    const [page, setPage] = useState(0);
+    const navigate = useNavigate();
     const fetchData = async () => {
-        try{
-            //setLoading(true)
-            const res = await roomApi.getAll();
+        try {
+            setLoading(true)
+            const res = await getAllRoom({
+                limit:4,
+                skip:page*4
+            });
             console.log(">>check res:", res);
             // if(res.status === "success") {
-                setRoomList(res);
+            setRoomList(res.products);
             // }
         }
-        catch(error)
-        {
+        catch (error) {
             console.log(error);
         }
-        finally{
-            //setLoading(false)
+        finally {
+            setLoading(false);
         }
     }
     useEffect(() => {
-        console.log("room list:",roomList)
-        // console.log(">>Check state:");
-        // console.log(">>Check product:");
         fetchData();
-    },[])
+    }, [page])
 
+    const handlePrevPage= (page) => {
+        if(page<=0) setPage(0);
+        else setPage((prev) => prev-1);
+        console.log("pre, page:", page);
+    }
+    const handleNextPage= (page) => {
+        if(page>=5) setPage(0);
+        else setPage((prev) => prev+1);
+        console.log("next, page:", page);
+    }
+
+    console.log(roomList);
     return (
         <div className="listContainer">
             <div className="listHeader">
                 <h2>Những phòng nổi bật</h2>
+                <div>
+                    <FaLongArrowAltLeft className="icon" onClick={handlePrevPage}/>
+                    <FaLongArrowAltRight className="icon" onClick={handleNextPage}/>
+                </div>
             </div>
-            <div className="roomList">
-                {roomList.map ((room)=> {
-                    <div className="listItem">
-                    <div className="rate">
-                        <h3>9.2</h3>
-                    </div>
-                    <img className="listImg" src={room.url} alt="" />
-                    <div className="listDetail">
-                        <h3>{room.id}</h3>
-                        <p>{room.title}</p>
-                        <span>USD 234</span>
-                    </div>
+            {loading ? (
+                <div style={{textAlign:"center"}}>
+                    <BeatLoader color={'#2596be'} loading={loading} size={20}/>
                 </div>
-                })}
-                {/* <div className="listItem">
-                    <div className="rate">
-                        <h3>9.2</h3>
-                    </div>
-                    <img className="listImg" src="https://pix8.agoda.net/hotelImages/36924896/0/fff45b5dc3fd5ce71ad3bf0f1b0de55a.jpg?ce=0&s=1024x768" alt="" />
-                    <div className="listDetail">
-                        <h3>The ABCD</h3>
-                        <p>Thành phố Hồ Chí Minh</p>
-                        <span>USD 234</span>
+            ) : (
+                <>
+                    {roomList && roomList.length > 0 ? (
+                        <div className="roomList">
+                            {roomList.map((room) => {
+                                return (
+                                    <>
+                                        <div className="listItem">
+                                            <div className="rate">
+                                                <h3>{room.rating}</h3>
+                                            </div>
+                                            <img
+                                             className="listImg" 
+                                             src={room.thumbnail}
+                                             onClick={()=> navigate(`/room/${room.id}`)} />
+                                            <div className="listDetail">
+                                                <h3>{room.id}{room.title}</h3>
+                                                <p>{room.description}</p>
+                                                <span>USD {room.price}</span>
+                                            </div>
+                                        </div>
+                                    </>
+                                )
+                            })}
+                        </div>
+                    ) : (
+                        <h2>Không có phòng nào</h2>
+                    )}
+                </>
+            )}
 
-                    </div>
-                </div>
-                <div className="listItem">
-                    <div className="rate">
-                        <h3>9.2</h3>
-                    </div>
-                    <img className="listImg" src="https://pix8.agoda.net/hotelImages/36924896/0/fff45b5dc3fd5ce71ad3bf0f1b0de55a.jpg?ce=0&s=1024x768" alt="" />
-                    <div className="listDetail">
-                        <h3>The ABCD</h3>
-                        <p>Thành phố Hồ Chí Minh</p>
-                        <span>USD 234</span>
 
-                    </div>
-                </div>
-                <div className="listItem">
-                    <div className="rate">
-                        <h3>9.2</h3>
-                    </div>
-                    <img className="listImg" src="https://pix8.agoda.net/hotelImages/36924896/0/fff45b5dc3fd5ce71ad3bf0f1b0de55a.jpg?ce=0&s=1024x768" alt="" />
-                    <div className="listDetail">
-                        <h3>The ABCD</h3>
-                        <p>Thành phố Hồ Chí Minh</p>
-                        <span>USD 234</span>
-
-                    </div>
-                </div> */}
-                
-            </div>
 
         </div>
+
+
     )
 }
 export default RoomList

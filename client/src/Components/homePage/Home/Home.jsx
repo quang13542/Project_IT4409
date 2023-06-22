@@ -1,6 +1,7 @@
 import React from "react"
 import "./home.css"
 import { AiOutlineArrowRight } from 'react-icons/ai'
+import { Link } from "react-router-dom"
 const Home = () => {
     return (
         <section className="home">
@@ -32,7 +33,9 @@ const Home = () => {
                         <input type="dropdown" placeholder="Số lượng" />
                     </div>
                     <button className="btn">
-                        <a href="#">Tìm</a>
+                        <Link to={"/result"}>
+                            <a>Tìm</a>
+                        </Link>
                     </button>
                 </div>
             </div>

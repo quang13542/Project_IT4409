@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './signup.css';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUser } from '../../../API/users';
-
+import ClipLoader from 'react-spinners/ClipLoader';
 
 function Signup() {
-    
+
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -14,7 +14,7 @@ function Signup() {
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
-    
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -22,7 +22,7 @@ function Signup() {
             alert("Nhập lại mật khẩu chưa chính xác");
             return;
         }
-        const formData ={
+        const formData = {
             // username:username,
             email: email,
             password: password
@@ -35,8 +35,8 @@ function Signup() {
             const result = await createUser(formData);
             // console.log(result);
             // if (result.success) {
-                alert("Tạo tài khoản thành công");
-                navigate('/signin')
+            alert("Tạo tài khoản thành công");
+            navigate('/signin')
             // }
         } catch (error) {
             console.log(error);
@@ -60,7 +60,7 @@ function Signup() {
                                 name="name"
                                 placeholder="Username"
                                 value={username}
-                                onChange={(e)=> {setUsername(e.target.value)}}
+                                onChange={(e) => { setUsername(e.target.value) }}
                                 required
                             />
                         </div>
@@ -70,7 +70,7 @@ function Signup() {
                                 name="email"
                                 placeholder="eve.holt@reqres.in"
                                 value={email}
-                                onChange={(e)=> {setEmail(e.target.value)}}
+                                onChange={(e) => { setEmail(e.target.value) }}
                                 required
                             />
                         </div>
@@ -80,7 +80,7 @@ function Signup() {
                                 placeholder='Mật khẩu'
                                 required
                                 value={password}
-                                onChange={(e) => {setPassword(e.target.value)}}
+                                onChange={(e) => { setPassword(e.target.value) }}
                             />
                         </div>
                         <div className="passwordDiv">
@@ -89,7 +89,7 @@ function Signup() {
                                 name="confirmPassword"
                                 placeholder="Confirm Password"
                                 value={password1}
-                                onChange={(e) => {setPassword1(e.target.value)}}
+                                onChange={(e) => { setPassword1(e.target.value) }}
                                 required
                             />
                         </div>
@@ -97,9 +97,18 @@ function Signup() {
                             className='btn'
                             type='submit'
                             onClick={(e) => handleSubmit(e)}
-                        loading={loading}
                         >
-                            Đăng ký
+                            {loading ? (
+                                <ClipLoader
+                                    color='#ffffff'
+                                    loading={loading}
+                                    size={15}
+                                />
+                            ) : (
+                                <>
+                                    Đăng ký
+                                </>
+                            )}
                         </button>
                         <div className='option'>
                             <h5>Đã có tài khoản? <Link to="/signin">Đăng nhập</Link></h5>

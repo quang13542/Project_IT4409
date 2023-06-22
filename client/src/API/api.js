@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAccessToken, setAccessToken } from '../Configs/localStorage';
 
 export const api = axios.create({
-    baseURL:"https://jsonplaceholder.typicode.com/",
+    baseURL:"https://dummyjson.com/",
     headers: {
         "Content-Type": "application/json",
         Accept: "*/*",
