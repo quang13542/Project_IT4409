@@ -1,0 +1,149 @@
+.app-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 40px;
+    margin-left: 40px;
+    margin-right: 40px;
+  
+  }
+  
+  .left-section {
+    display: flex;
+    flex-direction: column;
+    width: 68%;
+    gap: 30px;
+  }
+  
+  .rectangle {
+    display: flex;
+    flex-direction: column;
+    background-color: #f2f2f2;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .rectangle-top {
+    background-color: #ffffff; /* Màu nền trắng */
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    border-radius: 10px;
+    height: max-content;
+  }
+  
+  .rectangle-top h3 {
+    margin: 0;
+  }
+  
+  .rectangle-bottom {
+    background-color: rgba(255, 255, 255, 0.8); /* Màu trắng đục */
+    padding: 10px;
+    border-radius: 8px;
+    margin-top: 10px;
+    border-radius: 10px;
+  }
+  
+  .item-info {
+    margin: 0;
+  }
+  
+  .item-price {
+    margin: 10px 0;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+  }
+  
+  .checkbox-container input {
+    margin-right: 5px;
+  }
+  
+  .right-section {
+    width: 30%;
+    position: sticky;
+    top: 0;
+    height: max-content;
+  }
+  
+  .total-price {
+    background-color: #e8e0e0;
+    padding: 10px;
+    border-radius: 8px;
+  }
+  
+  .total-price p {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .total-price-value {
+    color: rgb(233, 222, 222);
+  }
+  
+  button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(89, 89, 242);
+    color: white;
+    border: none;
+    width: 100%;
+    font-weight: 500;
+    border-radius: 10px;
+  }
+  
+  .hotelImage{
+  
+    object-fit: cover;
+    float: left;
+    margin-right: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    height: 200px;
+    width: 200px;
+    border-radius: 10px;
+  
+  }
+  
+  .hotel-info {
+    overflow: auto;
+  }
+  
+  
+  .contentMax {
+    overflow: auto; /* Đảm bảo nội dung không bị tràn ra khỏi phần tử cha */
+  }
+  
+  .body{
+    background-color: #b63030;
+  }
+  
+  
+  .pen2{
+    color: #f30000;
+    font-weight: 600;
+  }
+  
+  .total-price h3 {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+  
+  .total-price .pen2 {
+    justify-self: end;
+  }
+  
+  .rectangle-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .checkbox-container {
+    order: -1;
+  }
+  
+  
