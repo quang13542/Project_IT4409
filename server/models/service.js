@@ -1,11 +1,10 @@
 const { query } = require("../db/database");
-const jwt = require("jsonwebtoken");
 
 const ErrorHandler = require("../utils/errorHandler");
 
 class Service {
 	constructor(service) {
-		this.id = service.id || null;
+		this.id = service.id || null
 		this.room_id = service.room_id || null;
 		this.checkin = service.checkin || null;
         this.checkout = service.checkout || null;
@@ -32,23 +31,26 @@ class Service {
 	}
 
 	async save() {
-		if (!this.rating || !this.nights || !this.checkin || !this.checkout || !this.user_id) {
+		if (!this.nights || !this.checkin || !this.checkout || !this.user_id) {
 			throw new ErrorHandler(
-				"Rating, nights, checkin, checkout, user_id are required.",
+				"nights, checkin, checkout, user_id are required.",
 				400,
 			);
 		}
 		try {
 			const res = await query(
-				"INSERT INTO service (room_id, checkin, checkout, rating, nights, duty, user_id) VALUES (?, ?, ?, ?, ?, ?, ?)",
-				[this.room_id, this.checkin.replace("T", " "), this.checkout.replace("T", " "), this.rating, this.nights, this.duty, this.user_id],
+				"INSERT INTO service (room_id, checkin, checkout, nights, duty, user_id) VALUES (?, ?, ?,  ?, ?, ?)",
+				[this.room_id, this.checkin.replace("T", " "), this.checkout.replace("T", " "), this.nights, this.duty, this.user_id],
 			);
 
 			return (
 				await query("SELECT * FROM service WHERE id = ? ", [res.insertId])
 			)[0];
 		} catch (err) {
-			console.log(err);
+			throw new ErrorHandler(
+				"Timestamp from checkin to checkout of this room_id has been used",
+				400,
+			);
 		}
 	}
 
@@ -73,11 +75,6 @@ class Service {
 		return this;
 	}
 
-	getJwtToken() {
-		return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-			expiresIn: process.env.JWT_EXPIRES_IN,
-		});
-	}
 }
 
 module.exports = Service;

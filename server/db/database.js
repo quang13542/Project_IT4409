@@ -1,10 +1,13 @@
+// const mysql = require("mysql2/promise");
+// require("dotenv").config();
+
 const mysql = require('mysql');
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Quang301',
-    database: 'travelling'
+    host: process.env.HOST || "localhost",
+	user: process.env.USER || "root",
+	password: process.env.PASSWORD || "Quang301",
+	database: process.env.DATABASE || "travelling",
 });
 
 connection.connect((error) => {
@@ -15,34 +18,39 @@ connection.connect((error) => {
     }
 });
 
-async function query(sql, params) {
-	console.log(sql.green, params || "");
-	try {
-		const [row] = await dbconnection.execute(sql, params);
-		return row;
-	} catch (error) {
-		console.log(error);
-		throw error;
-	}
+// const connectInfo = {
+// 	host: process.env.HOST || "localhost",
+// 	user: process.env.USER || "root",
+// 	password: process.env.PASSWORD || "",
+// 	database: process.env.DATABASE || "travelling",
+// 	// connectionLimit: 10, //mysql connection pool length
+// };
 
-	// const connection = await mysql.createConnection({
-	// 	...connectInfo,
-	// 	namedPlaceholders: true,
-	// });
-	// await connection.connect();
+// var dbconnection = mysql.createPool(connectInfo);
 
-	// console.log("\nconnection established\n".green);
-	// try {
-	// 	const [rows] = await connection.execute(sql, params);
-	// 	return rows;
-	// } catch (err) {
-	// 	console.log(err);
-	// 	throw err;
-	// } finally {
-	// 	await connection.end();
-	// }
-}
+// // Attempt to catch disconnects
+// dbconnection.on("connection", function (connection) {
+// 	console.log("DB Connection established");
+
+// 	connection.on("error", function (err) {
+// 		console.error(new Date(), "MySQL error", err.code);
+// 	});
+// 	connection.on("close", function (err) {
+// 		console.error(new Date(), "MySQL close", err);
+// 	});
+// });
+
+// function query(sql, params) {
+//     try {
+//         const [row] = dbconnection.execute(sql, params);
+// 		console.log(row);
+// 		return row;
+//     } catch (error) {
+//         console.log(error);
+//         throw error;
+//     }
+// }
 
 module.exports = {
-	query,
+	connection,
 };

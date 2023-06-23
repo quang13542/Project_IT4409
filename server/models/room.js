@@ -1,5 +1,4 @@
 const { query } = require("../db/database");
-const jwt = require("jsonwebtoken");
 
 const ErrorHandler = require("../utils/errorHandler");
 
@@ -67,11 +66,6 @@ class Room {
 		return this;
 	}
 
-	getJwtToken() {
-		return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-			expiresIn: process.env.JWT_EXPIRES_IN,
-		});
-	}
 }
 
 module.exports = Room;

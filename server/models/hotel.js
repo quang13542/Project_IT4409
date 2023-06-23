@@ -1,15 +1,12 @@
 const { query } = require("../db/database");
-const jwt = require("jsonwebtoken");
 
 const ErrorHandler = require("../utils/errorHandler");
 
 class Hotel {
 	constructor(hotel) {
-		this.id = hotel.id || null;
 		this.name = hotel.name || "";
 		this.city_id = hotel.city_id || null;
-        this.room_id = hotel.room_id || null;
-        this.rating = hotel.rating || null;
+        this.rating = hotel.rating || 0;
 	}
 
 	async update() {
@@ -69,11 +66,6 @@ class Hotel {
 		return this;
 	}
 
-	getJwtToken() {
-		return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-			expiresIn: process.env.JWT_EXPIRES_IN,
-		});
-	}
 }
 
 module.exports = Hotel;
