@@ -1,4 +1,3 @@
-const jwt = require("jsonwebtoken");
 
 const newLocal = "./catchAsyncErrors";
 const catchErrors = require(newLocal);
@@ -19,7 +18,6 @@ exports.isAuthenticatedUser = catchErrors(async (req, res, next) => {
 
 	// get userId by token
 	try {
-		const decoded = jwt.verify(token, process.env.JWT_SECRET);
 		req.user = await User.findById(decoded.id);
 		next();
 	} catch (err) {

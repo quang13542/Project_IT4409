@@ -1,5 +1,4 @@
 const { query } = require("../db/database");
-const jwt = require("jsonwebtoken");
 
 const bcrypt = require("bcryptjs");
 const ErrorHandler = require("../utils/errorHandler");
@@ -128,11 +127,6 @@ class User {
 		return await bcrypt.compare(password, this.password);
 	}
 
-	getJwtToken() {
-		return jwt.sign({ id: this.id }, process.env.JWT_SECRET, {
-			expiresIn: process.env.JWT_EXPIRES_IN,
-		});
-	}
 }
 
 module.exports = User;
