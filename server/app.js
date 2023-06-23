@@ -83,16 +83,16 @@ app.post("/find_hotel", function(req, res) {
 
     console.log(checkin);
     const sql = `
-        select hotel.id, hotel.room_id, hotel.rating, hotel.name, room.adults, room.children
+        select hotel.id, room.id as room_id, hotel.rating, hotel.name, room.adults, room.children
         from hotel
-        join room on room.id = hotel.room_id
+        join room on room.hotel_id = hotel.id
         join city on city.id = hotel.city_id
         where (
             city.name like ? and
             adults >= ? and
             children >= ? and
-            hotel.room_id not in (
-                select room_id
+            room.id not in (
+                select id
                 from service
                 where (
                     (? BETWEEN checkin AND checkout) OR

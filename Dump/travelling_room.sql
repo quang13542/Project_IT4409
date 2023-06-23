@@ -26,8 +26,11 @@ CREATE TABLE `room` (
   `id` int NOT NULL AUTO_INCREMENT,
   `adults` int NOT NULL,
   `children` int NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `hotel_id` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `room_fk_1` (`hotel_id`),
+  CONSTRAINT `room_fk_1` FOREIGN KEY (`hotel_id`) REFERENCES `hotel` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,7 +39,7 @@ CREATE TABLE `room` (
 
 LOCK TABLES `room` WRITE;
 /*!40000 ALTER TABLE `room` DISABLE KEYS */;
-INSERT INTO `room` VALUES (1,1,1);
+INSERT INTO `room` VALUES (1,1,1,1),(101,2,1,1),(102,1,0,1),(103,1,2,1),(104,2,1,1),(105,2,0,1),(106,1,0,1),(107,2,1,1),(108,2,0,1),(109,3,2,1),(110,2,1,1),(111,2,0,1),(112,1,1,1),(113,2,2,1),(114,1,0,1),(115,2,1,1),(116,1,0,1),(117,2,2,1),(118,1,1,1),(119,2,0,1),(120,1,0,1);
 /*!40000 ALTER TABLE `room` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -49,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 20:07:17
+-- Dump completed on 2023-06-23 20:52:28

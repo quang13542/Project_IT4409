@@ -26,7 +26,7 @@ CREATE TABLE `city` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,6 +35,7 @@ CREATE TABLE `city` (
 
 LOCK TABLES `city` WRITE;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
+INSERT INTO `city` VALUES (1,'Hà Nội'),(2,'Hồ Chí Minh'),(3,'Đà Nẵng'),(4,'Huế'),(5,'Nha Trang'),(6,'Hội An'),(7,'Phú Quốc'),(8,'Đà Lạt'),(9,'Sapa'),(10,'Vũng Tàu'),(11,'Hải Phòng'),(12,'Cần Thơ'),(13,'Bắc Ninh'),(14,'Vinh'),(15,'Quảng Ninh'),(16,'Buôn Ma Thuột'),(17,'Long Xuyên'),(18,'Bà Rịa-Vũng Tàu'),(19,'Nam Định'),(20,'Tiền Giang');
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-05-23 20:07:17
+-- Dump completed on 2023-06-23 20:52:28

@@ -8,13 +8,12 @@ exports.createService = catchAsyncError(async (req, res, next) => {
 	try {
 		const newService = await service.save();
 		res.status(200).json({
-			status: "success",
-			data: newService,
+		status: "success"
 		});
 	} catch (err) {
 		console.log(err);
-		res.status(500).json({
-			err,
+		res.status(400).json({
+		  err,
 		});
-	}
+	}	  
 });
