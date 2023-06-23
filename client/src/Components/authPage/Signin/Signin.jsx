@@ -14,8 +14,8 @@ function Signin() {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        console.log(email, password);
         const data = { email: email, password: password }
+        console.log(data)
         try {
             setLoading(true)
             const res = await login(data);

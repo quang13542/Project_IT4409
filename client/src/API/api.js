@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getAccessToken, setAccessToken } from '../Configs/localStorage';
 
 export const api = axios.create({
-    baseURL:"https://dummyjson.com/",
+    baseURL:"http://localhost:8000",
     headers: {
         "Content-Type": "application/json",
         Accept: "*/*",

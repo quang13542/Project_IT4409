@@ -5,7 +5,7 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import { TbGridDots } from 'react-icons/tb'
 import { Link } from "react-router-dom"
 
-const Navbar = () => {
+const Navbar = (bgColor) => {
     const [active, setActive] = useState('navBar');
     const showNav = () => {
         setActive('navBar activeNavbar');
@@ -29,7 +29,7 @@ const Navbar = () => {
 
 
     return (
-        <section className="navBarSection">
+        <section className="navBarSection" style={{backgroundColor:`red`}}>
             <div className={transparent}>
 
                 <div className="logoDiv">
@@ -44,7 +44,7 @@ const Navbar = () => {
                             <Link to="/" className="navLink">Trang chủ</Link>
                         </li>
                         <li className="navItem">
-                            <Link to="/popular" className="navLink">Kế hoạch</Link>
+                            <Link to="/cart" className="navLink">Kế hoạch</Link>
                         </li>
                         <div className="navBtn">
                             <button className="btn loginBtn">

@@ -23,9 +23,9 @@ function Signup() {
             return;
         }
         const formData = {
-            // username:username,
+            username:username,
             email: email,
-            password: password
+            password1: password
         }
         console.log(formData);
         // formData.role = "user";
@@ -40,7 +40,7 @@ function Signup() {
             // }
         } catch (error) {
             console.log(error);
-            alert(error.errMessage || "Xảy ra lỗi khi tạo tài khoản")
+            alert(error.errMessage )
         } finally {
             setLoading(false);
         }
