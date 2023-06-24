@@ -20,9 +20,11 @@ app.get("/", (req, res) => {
 const authRoute = require("./routes/auth");
 const hotelRoute = require("./routes/hotel");
 const serviceRoute = require("./routes/service");
+const roomRoute = require("./routes/room");
 app.use("/api/v1", authRoute);
 app.use("/api/v1", hotelRoute);
 app.use("/api/v1", serviceRoute);
+app.use("/api/v1", roomRoute);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Application listen on port ${PORT}!`))

@@ -14,14 +14,13 @@ exports.register = catchAsyncError(async (req, res, next) => {
 
 exports.loginUser = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
-  console.log("req", req)
-  console.log("body", req.body);
-  console.log(email, password);
-  const sql = "SELECT COUNT(*) FROM user WHERE email = ? AND password = ?";
+  const sql = "SELECT COUNT(*), id FROM user WHERE email = ? AND password = ? group by id";
   connection.query(sql, [email, password], function(err, result) {
     if (err) throw err;
     const num = result[0]['COUNT(*)'];
-    if (num == 1) res.send("ACCEPT");
-    else res.send("Không tồn tại tài khoản");
+    if (num == 1) res.status(200).json({
+      user_id: result[0]['id']
+    });
+    else res.status(400).send("Không tồn tại tài khoản");
   });
 });

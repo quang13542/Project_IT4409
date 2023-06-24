@@ -3,9 +3,9 @@ const express = require("express");
 const router = express.Router();
 
 const {
-	filterHotel
-} = require("../controllers/hotel");
+	getSingleRoom
+} = require("../controllers/room");
 
-router.get("/find_hotel", filterHotel);
+router.get("/room", getSingleRoom);
 
 module.exports = router;

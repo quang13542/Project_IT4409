@@ -57,7 +57,6 @@ app.post("/signin", function(req, res) {
       const num = result[0]['COUNT(*)'];
       if (num==1) res.send("ACCEPT");
       else res.send("ERROR");
-      console.log(num);
     });
 });
 
