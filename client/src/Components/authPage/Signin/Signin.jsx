@@ -30,6 +30,8 @@ function Signin() {
             if (result == 'ACCEPT') {
 
                 navigate("/");
+            } else if (result == 'Không tồn tại tài khoản') {
+                alert(`${result}`);
             }
 
 

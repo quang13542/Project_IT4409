@@ -22,6 +22,6 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     if (err) throw err;
     const num = result[0]['COUNT(*)'];
     if (num == 1) res.send("ACCEPT");
-    else res.send("ERROR");
+    else res.send("Không tồn tại tài khoản");
   });
 });

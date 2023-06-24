@@ -1,51 +1,246 @@
-import React, { Component } from 'react';
-import "./cart.css"
-import PropTypes from 'prop-types';
-import SearchItem from '../Result/Result';
-import List from '../ResultList/ResultList';
-import Navbar from '../../publicPage/Navbar/Navbar';
-
+import React, { useState } from "react";
+import "./cart.css";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import {faTrash, faStar, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
 const Cart = () => {
+    const [totalPrice, setTotalPrice] = useState(0);
 
+    const handleCheckboxChange = (event, price) => {
+        const isChecked = event.target.checked;
+        if (isChecked) {
+            setTotalPrice((prevTotalPrice) => prevTotalPrice + price);
+        } else {
+            setTotalPrice((prevTotalPrice) => prevTotalPrice - price);
+        }
+    };
+    const hotelImage = ""
+    const item = "hotel"; // Define the value of the item variable
 
     return (
-            <div className="searchItem">
-                <img src="" alt="" className="siImg" />
-                <div className="siDesc">
-                    <h1 className="siTitle">toa nha AAA</h1>
-                    <span className="siDistance">500m tu trung tam</span>
-                    <span className="taxi0p">co taxi</span>
-                    <span className="siSubtitle">
-                        AAAA
-                    </span>
-                    <span className="siFeatures">
-                        dien tich 21m2 ca phong ngu
-                    </span>
-                    <span className="siCancel0p">Huy mien phi</span>
-                    <span className="siCancel0pSubtitle">
-                        Ban co th huy phong
-                    </span>
-
+        <div className="app-container">
+            <div className="left-section">
+                <div className="rectangle" key={item}>
+                    <div className="rectangle-top">
+                        <div className="hotel-info">
+                            <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                            <div className="contentMax">
+                                <div className="hotel-details">
+                                    <h3 className="hotel-title">Thông tin Khách sạn</h3>
+                                    <div className="star-rating">
+                                        {[...Array(5)].map((_, index) => (
+                                            <FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
+                                        ))}
+                                    </div>
+                                    <div className="location">
+                                        <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                        <p className="location-name">Tên vị trí</p>
+                                    </div>
+                                    <FontAwesomeIcon icon={faTrash} className="hotel-title trash-icon" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rectangle-bottom">
+                        <p className="item-info">Thông tin mặt hàng</p>
+                        <p className="item-price">Giá tiền: $10</p>
+                        <div className="checkbox-container">
+                            <input
+                                type="checkbox"
+                                value={10}
+                                onChange={(e) => handleCheckboxChange(e, 10)}
+                                id={`checkbox-${item}`}
+                            />
+                            <label htmlFor={`checkbox-${item}`}>Điều kiện của khách sạn</label>
+                        </div>
+                    </div>
                 </div>
-                <div className="siDetails">
-                    <div className="siRating">
-                        <span className="Excellent">Excellent</span>
-                        <button>8.9</button>
+                <div className="rectangle" key={item}>
+                    <div className="rectangle-top">
+                        <div className="hotel-info">
+                            <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                            <div className="contentMax">
+                                <div className="hotel-details">
+                                    <h3 className="hotel-title">Thông tin Khách sạn</h3>
+                                    <div className="star-rating">
+                                        {[...Array(5)].map((_, index) => (
+                                            <FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
+                                        ))}
+                                    </div>
+                                    <div className="location">
+                                        <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                        <p className="location-name">Tên vị trí</p>
+                                    </div>
+                                    <FontAwesomeIcon icon={faTrash} className="hotel-title trash-icon" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div className="siDetailTexts">
-                        <span className="siPrice">3.000.000đ</span>
-                        <span className="siTaxi0p">Đã bao gồm phí Taxi</span>
-                        <button className="siCheckButton">Xem thêm</button>
+                    <div className="rectangle-bottom">
+                        <p className="item-info">Thông tin mặt hàng</p>
+                        <p className="item-price">Giá tiền: $10</p>
+                        <div className="checkbox-container">
+                            <input
+                                type="checkbox"
+                                value={10}
+                                onChange={(e) => handleCheckboxChange(e, 10)}
+                                id={`checkbox-${item}`}
+                            />
+                            <label htmlFor={`checkbox-${item}`}>Điều kiện của khách sạn</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="rectangle" key={item}>
+                    <div className="rectangle-top">
+                        <div className="hotel-info">
+                            <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                            <div className="contentMax">
+                                <div className="hotel-details">
+                                    <h3 className="hotel-title">Thông tin Khách sạn</h3>
+                                    <div className="star-rating">
+                                        {[...Array(5)].map((_, index) => (
+                                            <FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
+                                        ))}
+                                    </div>
+                                    <div className="location">
+                                        <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                        <p className="location-name">Tên vị trí</p>
+                                    </div>
+                                    <FontAwesomeIcon icon={faTrash} className="hotel-title trash-icon" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rectangle-bottom">
+                        <p className="item-info">Thông tin mặt hàng</p>
+                        <p className="item-price">Giá tiền: $10</p>
+                        <div className="checkbox-container">
+                            <input
+                                type="checkbox"
+                                value={10}
+                                onChange={(e) => handleCheckboxChange(e, 10)}
+                                id={`checkbox-${item}`}
+                            />
+                            <label htmlFor={`checkbox-${item}`}>Điều kiện của khách sạn</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="rectangle" key={item}>
+                    <div className="rectangle-top">
+                        <div className="hotel-info">
+                            <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                            <div className="contentMax">
+                                <div className="hotel-details">
+                                    <h3 className="hotel-title">Thông tin Khách sạn</h3>
+                                    <div className="star-rating">
+                                        {[...Array(5)].map((_, index) => (
+                                            <FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
+                                        ))}
+                                    </div>
+                                    <div className="location">
+                                        <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                        <p className="location-name">Tên vị trí</p>
+                                    </div>
+                                    <FontAwesomeIcon icon={faTrash} className="hotel-title trash-icon" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rectangle-bottom">
+                        <p className="item-info">Thông tin mặt hàng</p>
+                        <p className="item-price">Giá tiền: $10</p>
+                        <div className="checkbox-container">
+                            <input
+                                type="checkbox"
+                                value={10}
+                                onChange={(e) => handleCheckboxChange(e, 10)}
+                                id={`checkbox-${item}`}
+                            />
+                            <label htmlFor={`checkbox-${item}`}>Điều kiện của khách sạn</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="rectangle" key={item}>
+                    <div className="rectangle-top">
+                        <div className="hotel-info">
+                            <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                            <div className="contentMax">
+                                <div className="hotel-details">
+                                    <h3 className="hotel-title">Thông tin Khách sạn</h3>
+                                    <div className="star-rating">
+                                        {[...Array(5)].map((_, index) => (
+                                            <FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
+                                        ))}
+                                    </div>
+                                    <div className="location">
+                                        <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                        <p className="location-name">Tên vị trí</p>
+                                    </div>
+                                    <FontAwesomeIcon icon={faTrash} className="hotel-title trash-icon" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rectangle-bottom">
+                        <p className="item-info">Thông tin mặt hàng</p>
+                        <p className="item-price">Giá tiền: $10</p>
+                        <div className="checkbox-container">
+                            <input
+                                type="checkbox"
+                                value={10}
+                                onChange={(e) => handleCheckboxChange(e, 10)}
+                                id={`checkbox-${item}`}
+                            />
+                            <label htmlFor={`checkbox-${item}`}>Điều kiện của khách sạn</label>
+                        </div>
+                    </div>
+                </div>
+                <div className="rectangle" key={item}>
+                    <div className="rectangle-top">
+                        <div className="hotel-info">
+                            <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                            <div className="contentMax">
+                                <div className="hotel-details">
+                                    <h3 className="hotel-title">Thông tin Khách sạn</h3>
+                                    <div className="star-rating">
+                                        {[...Array(5)].map((_, index) => (
+                                            <FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
+                                        ))}
+                                    </div>
+                                    <div className="location">
+                                        <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                        <p className="location-name">Tên vị trí</p>
+                                    </div>
+                                    <FontAwesomeIcon icon={faTrash} className="hotel-title trash-icon" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="rectangle-bottom">
+                        <p className="item-info">Thông tin mặt hàng</p>
+                        <p className="item-price">Giá tiền: $10</p>
+                        <div className="checkbox-container">
+                            <input
+                                type="checkbox"
+                                value={10}
+                                onChange={(e) => handleCheckboxChange(e, 10)}
+                                id={`checkbox-${item}`}
+                            />
+                            <label htmlFor={`checkbox-${item}`}>Điều kiện của khách sạn</label>
+                        </div>
+                    </div>
+                </div>
 
-                    </div>
+
+            </div>
+            <div className="right-section">
+                <div className="total-price">
+                    <h3 className="pen">Tổng giá tiền:<p className="pen2">{totalPrice}$</p> </h3>
+
+                    <button className="">CONTINUE</button>
                 </div>
             </div>
-
+        </div>
     );
-}
-
-Cart.propTypes = {
-
 };
 
 export default Cart;

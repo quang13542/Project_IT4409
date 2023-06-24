@@ -78,11 +78,11 @@ const AppRoutes = () => {
                 } />
             <Route path="/cart"
                 element={
-                    <>
-                        <Navbar bgColor="red"/>
-                        
-                        <Cart/>
-                    </>
+                    <ProtectedRoute role={"user"}>
+                        <Navbar />
+                        <Cart />
+                    </ProtectedRoute>
+
                 } />
         </Routes>
     )
