@@ -1,9 +1,10 @@
-const { query } = require("../db/database");
+const { query, connection } = require("../db/database");
 
 const ErrorHandler = require("../utils/errorHandler");
 
 class Hotel {
 	constructor(hotel) {
+		this.id = hotel.hotel_id || "";
 		this.name = hotel.name || "";
 		this.city_id = hotel.city_id || null;
         this.rating = hotel.rating || 0;
@@ -41,6 +42,42 @@ class Hotel {
 			return (
 				await query("SELECT * FROM hotel WHERE id = ? ", [res.insertId])
 			)[0];
+		} catch (err) {
+			console.log(err);
+		}
+	}
+
+	async updateRating() {
+		try {
+			const sql =
+				`
+					select 
+						sum(
+							case
+								when service.rating is not null then service.rating
+								else 0
+							end
+						)/sum(
+							case
+								when service.rating is not null then 1
+								else 0
+							end
+						) as rating
+					from hotel
+					join room on room.hotel_id = hotel.id
+					join service on service.room_id = room.id
+					where hotel.id = ?;
+				`;
+			const newRating = await new Promise((resolve, reject) => {
+				connection.query(sql, [this.id], function(err, result) {
+					if (err) {
+						reject(err);
+					} else {
+						resolve(result[0]['rating']);
+					}
+				});
+			});
+			return newRating;
 		} catch (err) {
 			console.log(err);
 		}

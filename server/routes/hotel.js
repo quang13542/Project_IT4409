@@ -6,6 +6,6 @@ const {
 	filterHotel
 } = require("../controllers/hotel");
 
-router.post("/find_hotel", filterHotel);
+router.get("/find_hotel", filterHotel);
 
 module.exports = router;

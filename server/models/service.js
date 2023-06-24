@@ -52,6 +52,25 @@ class Service {
 		return result;
 	  }	  
 
+	  async rate(rating, service_id) {
+	  
+		const result = await new Promise((resolve, reject) => {
+		  connection.query(
+			"update service set rating = ? where id = ?",
+			[rating, service_id],
+			function(err, result) {
+			  if (err) {
+				console.log(err.message);
+				reject(err.message); // reject the Promise with the error message
+			  } else {
+				resolve(result);
+			  }
+			}
+		  );
+		});
+
+		return result;
+	  }	  
 	static async findById(id) {
 		const sql = "SELECT * FROM service WHERE id =?";
 		const params = [id];
