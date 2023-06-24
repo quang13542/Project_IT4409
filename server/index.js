@@ -1,24 +1,7 @@
 const express = require("express");
 const app = express();
-var http = require('http'),
-    fs = require('fs');
 
 const mysql = require('mysql');
-
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'Quang301',
-    database: 'travelling'
-});
-
-connection.connect((error) => {
-    if (error) {
-    console.log('Error connecting to MySQL database!', error);
-    } else {
-    console.log('Connected to MySQL database!');
-    }
-});
 
 const bodyParser = require('body-parser');
 const { compileFunction } = require("vm");
