@@ -8,26 +8,35 @@ import ClipLoader from 'react-spinners/ClipLoader';
 function Signin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [loading, setLoading] =useState(false);
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch
-
+    const data = { email: email, password: password };
     const handleLogin = async (e) => {
         e.preventDefault();
-        const data = { email: email, password: password }
-        console.log(data)
         try {
             setLoading(true)
-            const res = await login(data);
-            console.log(res);
-            if (res.token) {
-                dispatch(loginRedux(res));
+            const result = await login({ email: email, password: password });
+            // const response = await fetch("https://reqres.in/api/login", {
+            //     method: "POST",
+            //     headers: {
+            //         "Content-Type": "application/json"
+            //     },
+            //     body: JSON.stringify(data)
+            // });
+
+            // const result = await response.json();
+            console.log(result);
+            if (result == 'ACCEPT') {
+
                 navigate("/");
             }
 
+
+
         } catch (error) {
             alert("Đăng nhập không thành công");
-        }finally{
+        } finally {
             setLoading(false);
         }
     }
@@ -67,9 +76,9 @@ function Signin() {
                             loading={loading}
                             size={15}
                         />
-                    ):(
+                    ) : (
                         <>
-                        Đăng nhập
+                            Đăng nhập
                         </>
                     )}
                 </button>

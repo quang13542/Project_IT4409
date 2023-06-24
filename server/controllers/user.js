@@ -14,7 +14,9 @@ exports.register = catchAsyncError(async (req, res, next) => {
 
 exports.loginUser = catchAsyncError(async (req, res, next) => {
   const { email, password } = req.body;
-  
+  console.log("req", req)
+  console.log("body", req.body);
+  console.log(email, password);
   const sql = "SELECT COUNT(*) FROM user WHERE email = ? AND password = ?";
   connection.query(sql, [email, password], function(err, result) {
     if (err) throw err;
