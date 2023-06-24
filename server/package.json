@@ -29,6 +29,6 @@
     "http": "^0.0.1-security",
     "mysql": "^2.18.1",
     "mysql2": "^3.4.0",
-    "nodemon": "^2.0.22"
+    "nodemon": "^1.14.9"
   }
 }
