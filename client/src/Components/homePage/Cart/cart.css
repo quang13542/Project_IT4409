@@ -1,11 +1,10 @@
 .app-container {
+  position: absolute;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  margin-top: 40px;
-  margin-left: 40px;
-  margin-right: 40px;
-
+  margin: 5rem auto;
+  
 }
 
 .left-section {

@@ -1,4 +1,4 @@
-import React, {useState} from "react"
+import React, { useState } from "react"
 import './navbar.css'
 import { MdOutlineModeOfTravel } from 'react-icons/md'
 import { AiFillCloseCircle } from 'react-icons/ai'
@@ -10,17 +10,17 @@ const Navbar = (bgColor) => {
     const showNav = () => {
         setActive('navBar activeNavbar');
     }
-    const closeNav= () => {
+    const closeNav = () => {
         setActive('navBar');
 
     }
-    
-    const[transparent, setTransparent] =useState('header');
-    const addBackground= () =>{
-        if(window.scrollY >=100) {
+
+    const [transparent, setTransparent] = useState('header');
+    const addBackground = () => {
+        if (window.scrollY >= 100) {
             setTransparent('header activeHeader')
         }
-        else{
+        else {
             setTransparent('header')
         }
     }
@@ -29,7 +29,7 @@ const Navbar = (bgColor) => {
 
 
     return (
-        <section className="navBarSection" style={{backgroundColor:`red`}}>
+        <section className="navBarSection" style={{ backgroundColor: `red` }}>
             <div className={transparent}>
 
                 <div className="logoDiv">
@@ -50,13 +50,15 @@ const Navbar = (bgColor) => {
                             <button className="btn loginBtn">
                                 <Link to="/signin">Đăng nhập</Link>
                             </button>
+                        </div>
+                        <div className="navBtn">
                             <button className="btn">
                                 <Link to="/signup">Đăng ký</Link>
                             </button>
                         </div>
 
                     </ul>
-                    <div onClick={closeNav}  className="closeNavbar">
+                    <div onClick={closeNav} className="closeNavbar">
                         <AiFillCloseCircle className="icon" />
                     </div>
                 </div>

@@ -64,7 +64,7 @@
   }
   .navBarSection .header .navBar .navList .navBtn {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
   }
   .navBarSection .header .navBar .navList .navBtn .btn {
     margin-top: 1rem;
