@@ -3,22 +3,23 @@ import "./roomList.css"
 import {FaLongArrowAltLeft,FaLongArrowAltRight} from 'react-icons/fa'
 import { useNavigate } from "react-router";
 import BeatLoader from 'react-spinners/BeatLoader'
-import { getAllRoom } from "../../../API/rooms";
+import { getAllRooms } from "../../../API/rooms";
 const RoomList = () => {
     const [roomList, setRoomList] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [page, setPage] = useState(0);
+    const [disabled, setDisabled] = useState(false);
+    const [page, setPage] = useState(1);
     const navigate = useNavigate();
     const fetchData = async () => {
         try {
             setLoading(true)
-            const res = await getAllRoom({
-                limit:4,
-                skip:page*4
+            const res = await getAllRooms({
+                page:page
+                
             });
             console.log(">>check res:", res);
             // if(res.status === "success") {
-            setRoomList(res.products);
+            setRoomList(res);
             // }
         }
         catch (error) {
@@ -33,7 +34,7 @@ const RoomList = () => {
     }, [page])
 
     const handlePrevPage= (page) => {
-        if(page<=0) setPage(0);
+        if(page<=0) setPage(1);
         else setPage((prev) => prev-1);
         console.log("pre, page:", page);
     }
@@ -49,8 +50,13 @@ const RoomList = () => {
             <div className="listHeader">
                 <h2>Những phòng nổi bật</h2>
                 <div>
-                    <FaLongArrowAltLeft className="icon" onClick={handlePrevPage}/>
-                    <FaLongArrowAltRight className="icon" onClick={handleNextPage}/>
+                    {page >1? (<FaLongArrowAltLeft className="icon" onClick={handlePrevPage}/>) :(
+                        <FaLongArrowAltLeft className="icon"/>)
+                    }
+                    {roomList.length >=1 && roomList.length <4? (<FaLongArrowAltRight className="icon" />):(
+                        <FaLongArrowAltRight className="icon" onClick={handleNextPage}/>
+                    )}
+                    
                 </div>
             </div>
             {loading ? (
@@ -66,15 +72,15 @@ const RoomList = () => {
                                     <>
                                         <div className="listItem">
                                             <div className="rate">
-                                                <h3>{room.rating}</h3>
+                                                <h3>{room.rating_hotel}</h3>
                                             </div>
                                             <img
                                              className="listImg" 
-                                             src={room.thumbnail}
+                                             src="https://dummyimage.com/600x400/000/fff"
                                              onClick={()=> navigate(`/room/${room.id}`)} />
                                             <div className="listDetail">
-                                                <h3>{room.id}{room.title}</h3>
-                                                <p>{room.description}</p>
+                                                <h3>{room.room_id}{room.hotel_name}</h3>
+                                                <p>{room.city_name}</p>
                                                 <span>USD {room.price}</span>
                                             </div>
                                         </div>

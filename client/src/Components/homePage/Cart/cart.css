@@ -3,8 +3,11 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  width: 75%;
   margin: 5rem auto;
-  
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, 0%);
 }
 
 .left-section {
@@ -23,7 +26,8 @@
 }
 
 .rectangle-top {
-  background-color: #ffffff; /* Màu nền trắng */
+  background-color: #ffffff;
+  /* Màu nền trắng */
   border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   border-radius: 10px;
@@ -35,7 +39,8 @@
 }
 
 .rectangle-bottom {
-  background-color: rgba(255, 255, 255, 0.8); /* Màu trắng đục */
+  background-color: rgba(255, 255, 255, 0.8);
+  /* Màu trắng đục */
   padding: 10px;
   border-radius: 8px;
   margin-top: 10px;
@@ -84,15 +89,15 @@
 button {
   margin-top: 10px;
   padding: 10px;
-  background-color: rgb(89, 89, 242);
-  color: white;
+  background-color: var(--PrimaryColor);
+  color: var(--whiteColor);
   border: none;
   width: 100%;
   font-weight: 500;
   border-radius: 10px;
 }
 
-.hotelImage{
+.hotelImage {
 
   object-fit: cover;
   float: left;
@@ -112,15 +117,16 @@ button {
 
 
 .contentMax {
-  overflow: auto; /* Đảm bảo nội dung không bị tràn ra khỏi phần tử cha */
+  overflow: auto;
+  /* Đảm bảo nội dung không bị tràn ra khỏi phần tử cha */
 }
 
-.body{
+.body {
   background-color: #b63030;
 }
 
 
-.pen2{
+.pen2 {
   color: #f30000;
   font-weight: 600;
 }
@@ -144,4 +150,3 @@ button {
 .checkbox-container {
   order: -1;
 }
-

@@ -33,7 +33,7 @@ const Room = () => {
     const getRoom = async () => {
         try {
             setLoading(true);
-            const res = await getRoomById(params.id);
+            const res = await getRoomById(params.room_id);
 
             // if (res.status === "success") {
             setSelectedRoom(res);
@@ -53,7 +53,7 @@ const Room = () => {
         getRoom();
     }, [params.id])
     console.log("selected: ", selectedRoom);
-    console.log("id: ", params.id);
+    console.log("id: ", params.room_id);
     console.log(typeof (selectedRoom.images))
     return loading ? (
         <div style={{textAlign:"center"}}>
@@ -112,9 +112,9 @@ const Room = () => {
                     
                     <div className="roomDetails">
                         <div className="roomDetailsTexts" style={{border:"rgb(221, 223, 226) solid grey", borderRadius:"10px"}}>
-                            <h1 className="roomTitle">Stay in the heart of City</h1>
+                            <h1 className="roomTitle">{selectedRoom.hotel_name}</h1>
                             <p className="roomDesc">
-                                {selectedRoom.description}
+                                {selectedRoom.city_name}
                             </p>
                         </div>
                         <div className="roomDetailsPrice">

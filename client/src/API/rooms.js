@@ -1,10 +1,10 @@
 import { api } from "./api";
-const url = '/products';
-export const getRoomById = async (id) => {
+const url = '/rooms';
+export const getRoomById = async (room_id) => {
     
-    return await api.get(`${url}/${id}`);
+    return await api.get(url, {room_id});
 };
 
-export const getAllRoom = async (params) => {
+export const getAllRooms = async (params) => {
     return await api.get(url, { params });
 }

@@ -44,7 +44,7 @@ exports.getSingleRoom = catchAsyncError(async (req, res, next) => {
 exports.getAllRoom = catchAsyncError(async (req, res, next) => {
 
     const page = req.query.page || 1;
-	const limit = req.query.limit || 10;
+	const limit = req.query.limit || 4;
 
 	const startIndex = (page - 1) * limit;
 	const endIndex = page * limit;

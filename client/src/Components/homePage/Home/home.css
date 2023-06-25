@@ -76,6 +76,36 @@
   width: 100%;
   padding: 0.6rem 1.5rem;
 }
+.home .homeCard .peopleDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: relative;
+  z-index: 1;
+}
+.home .homeCard .peopleDiv .drop-icon {
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+}
+.home .homeCard .dropItem {
+  position: absolute;
+  top: 110%;
+  width: 100%;
+  border-radius: 1rem;
+  background: var(--greyBg);
+  padding: 10px;
+}
+.home .homeCard .dropItem p {
+  color: var(--textColor);
+  padding: 0.7rem 0;
+}
+.home .homeCard .dropItem .item-icon {
+  cursor: pointer;
+}
+.home .homeCard .dropItem input {
+  width: 30%;
+}
 
 @media screen and (min-width: 1023px) {
   .home .homeContainer .homeCard {

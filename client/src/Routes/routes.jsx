@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Routes, Route, Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Error404 from "../Components/publicPage/Error404";
@@ -27,6 +27,10 @@ const ProtectedRoute = ({ children, roles }) => {
 };
 
 const AppRoutes = () => {
+    const [result, setResult] = useState([]);
+    const handleResult = (newResult) => {
+        setResult(newResult);
+    }
     return (
         <Routes>
             <Route path="/*" element={<Error404 />} />
@@ -64,8 +68,8 @@ const AppRoutes = () => {
                 element={
                     <>
                         <Navbar />
-                        <Home />
-                        <List />
+                        <Home handleResult={handleResult} />
+                        <List resultList={result} />
                     </>
                 } />
             <Route path="/room/:id"

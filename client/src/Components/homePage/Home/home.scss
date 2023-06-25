@@ -81,13 +81,42 @@
                     opacity: .5;
                     font-weight: 400;
                 }
-
-            
             }
         }
         .btn {
             width: 100%;
             padding: .6rem 1.5rem;
+        }
+        .peopleDiv{
+            display: flex;
+            flex-direction: row;
+            align-items: center ;
+            position: relative;
+            z-index: 1;
+            .drop-icon{
+                position: absolute;
+                right: 10px;
+                cursor: pointer;
+            }
+        }
+        .dropItem{
+            position: absolute;
+            top:110%;
+            width: 100%;
+            border-radius: 1rem;
+            background: var(--greyBg);
+            padding:10px;
+            p{
+                color:var(--textColor);
+                padding: 0.7rem 0;
+            }
+            .item-icon{
+                cursor: pointer;
+            }
+            input{
+                width: 30%;
+            }
+
         }
     }
 }
