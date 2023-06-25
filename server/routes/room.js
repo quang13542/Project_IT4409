@@ -6,7 +6,7 @@ const {
 	getSingleRoom, getAllRoom
 } = require("../controllers/room");
 
-router.get("/room", getSingleRoom);
+router.get("/room/:id", getSingleRoom);
 router.get("/rooms", getAllRoom);
 
 module.exports = router;

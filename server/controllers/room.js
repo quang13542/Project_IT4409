@@ -3,9 +3,9 @@ const Room = require("../models/room");
 const { connection } = require("../db/database");
 
 exports.getSingleRoom = catchAsyncError(async (req, res, next) => {
-	const { room_id } = req.body;
+    const id = req.params.id;
 
-    if(typeof(room_id)==undefined){
+    if(typeof(id)==undefined){
         res.status(400);
         return;
     }
@@ -22,7 +22,7 @@ exports.getSingleRoom = catchAsyncError(async (req, res, next) => {
         join city on city.id = hotel.city_id
         where room.id = ?;
 	`;
-	connection.query(sql, [room_id], function(err, result) {
+	connection.query(sql, [id], function(err, result) {
 		if (err) throw err;
 		// To do: if success, redirect to the list of hotel url
         room = []
@@ -37,7 +37,7 @@ exports.getSingleRoom = catchAsyncError(async (req, res, next) => {
 			});
 		});
 		if(room.length==1) res.status(200).json(room[0]);
-        else res.status(400);
+        else res.status(400).json({error: "Room not found."});
 	});
 });
 
