@@ -16,7 +16,10 @@ exports.getSingleRoom = catchAsyncError(async (req, res, next) => {
             children,
             hotel.name as hotel_name,
             rating,
-            city.name as city_name
+            city.name as city_name,
+            room.url,
+            room.position_detail,
+            room.price
         from room
         join hotel on hotel.id = room.hotel_id
         join city on city.id = hotel.city_id
@@ -33,7 +36,10 @@ exports.getSingleRoom = catchAsyncError(async (req, res, next) => {
 				hotel_name: row.hotel_name,
 				number_of_adults: row.adults,
 				number_of_children: row.children,
-                city_name: row.city_name
+                city_name: row.city_name,
+                url: row.url,
+                position_detail: row.position_detail,
+                price: row.price
 			});
 		});
 		if(room.length==1) res.status(200).json(room[0]);
@@ -56,7 +62,10 @@ exports.getAllRoom = catchAsyncError(async (req, res, next) => {
             children,
             hotel.name as hotel_name,
             rating,
-            city.name as city_name
+            city.name as city_name,
+            room.url,
+            room.position_detail,
+            room.price
         from room
         join hotel on hotel.id = room.hotel_id
         join city on city.id = hotel.city_id;
@@ -72,7 +81,10 @@ exports.getAllRoom = catchAsyncError(async (req, res, next) => {
 				hotel_name: row.hotel_name,
 				number_of_adults: row.adults,
 				number_of_children: row.children,
-                city_name: row.city_name
+                city_name: row.city_name,
+                url: row.url,
+                position_detail: row.position_detail,
+                price: row.price
 			});
 		});
         const resultRoom = room.slice(startIndex, endIndex);

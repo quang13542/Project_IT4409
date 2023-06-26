@@ -37,7 +37,7 @@ CREATE TABLE `service` (
   CONSTRAINT `service_ibfk_1` FOREIGN KEY (`room_id`) REFERENCES `room` (`id`) ON DELETE CASCADE,
   CONSTRAINT `service_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
   CONSTRAINT `checkin_smaller_than_checkout` CHECK ((`checkin` < `checkout`))
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +46,7 @@ CREATE TABLE `service` (
 
 LOCK TABLES `service` WRITE;
 /*!40000 ALTER TABLE `service` DISABLE KEYS */;
-INSERT INTO `service` VALUES (2,1,'2011-08-25 14:15:00','2023-05-23 19:55:16',NULL,1,NULL,NULL);
+INSERT INTO `service` VALUES (2,1,'2011-08-25 14:15:00','2023-05-23 19:55:16',NULL,1,NULL,NULL),(3,101,'2023-06-23 20:46:00','2023-06-24 20:46:00',NULL,1,1,1001),(4,101,'2023-06-24 20:47:00','2023-06-25 20:46:00',NULL,1,1,1001),(5,101,'2023-06-25 20:47:00','2023-06-26 20:46:00',4,1,1,1001),(6,101,'2023-06-26 20:47:00','2023-06-27 20:46:00',5,1,1,1001);
 /*!40000 ALTER TABLE `service` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -115,4 +115,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-23 20:52:29
+-- Dump completed on 2023-06-26 10:23:15
