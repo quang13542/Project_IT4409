@@ -77,7 +77,7 @@ const RoomList = () => {
                                             <img
                                              className="listImg" 
                                              src="https://dummyimage.com/600x400/000/fff"
-                                             onClick={()=> navigate(`/room/${room.id}`)} />
+                                             onClick={()=> navigate(`/room/${room.room_id}`)} />
                                             <div className="listDetail">
                                                 <h3>{room.room_id}{room.hotel_name}</h3>
                                                 <p>{room.city_name}</p>
