@@ -67,7 +67,7 @@ const RoomList = () => {
                 <>
                     {roomList && roomList.length > 0 ? (
                         <div className="roomList">
-                            {roomList.map((room) => {
+                            {roomList.map((room, index) => {
                                 return (
                                     <>
                                         <div className="listItem">

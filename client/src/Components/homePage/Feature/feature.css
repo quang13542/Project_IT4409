@@ -15,8 +15,6 @@
   top: 150px;
   width: 75%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
 }
 .feature .featureHeader {
   margin-bottom: 1.5rem;
@@ -51,4 +49,20 @@
   bottom: 1.5rem;
   left: 1rem;
   color: var(--whiteColor);
+}
+
+@media screen and (max-width: 1024px) {
+  .feature .featureList {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media screen and (max-width: 769px) {
+  .feature {
+    margin-top: 3rem;
+  }
+  .feature .featureList {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }/*# sourceMappingURL=feature.css.map */

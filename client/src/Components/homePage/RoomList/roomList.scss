@@ -92,3 +92,20 @@
 
 
 }
+@media screen and (max-width:1024px) {
+    .listContainer {
+
+        .roomList{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+@media screen and (max-width:769px) {
+    .listContainer {
+        .roomList{
+            display: grid;
+            grid-template-columns:1fr;
+        }
+    }
+}

@@ -52,4 +52,11 @@
   bottom: 1.5rem;
   left: 1rem;
   color: var(--whiteColor);
+}
+
+@media screen and (max-width: 769px) {
+  .prop .propList {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
 }/*# sourceMappingURL=roomProp.css.map */

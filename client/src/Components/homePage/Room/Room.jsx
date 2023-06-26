@@ -113,13 +113,13 @@ const Room = () => {
                     <div className="roomDetails">
                         <div className="roomTextDiv">
                             <div className="roomDetailsTexts">
-                                <h1 className="roomTitle" >{selectedRoom.hotel_name}</h1>
+                                <h1 className="roomTitle" >{selectedRoom.hotel_name} <small>{renderDivs(selectedRoom.rating_hotel)}</small></h1>
                                 <h3 className="roomLoc">
                                     Phạm Hùng, Mễ Trì, Nam Từ Liêm, {selectedRoom.city_name}
                                 </h3>
                                 <p className="roomDetail">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos quos ducimus eligendi dicta nobis natus beatae voluptatum quod rem consectetur? Soluta minus voluptates inventore fugiat quas vero error ea laborum!</p>
                                 <h5 style={{ marginTop: "5px" }}>
-                                    Rating: {renderDivs(selectedRoom.rating_hotel)}
+                                    Rating: {selectedRoom.rating_hotel}
                                 </h5>
                                 <h5 style={{ marginTop: "5px" }}>
                                     Số lượng: {selectedRoom.number_of_adults} người lớn - {selectedRoom.number_of_children} trẻ em

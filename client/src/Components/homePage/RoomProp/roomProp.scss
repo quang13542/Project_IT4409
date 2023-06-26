@@ -58,3 +58,11 @@
     
 
 }
+@media screen and (max-width:769px) {
+    .prop {
+        .propList{
+            display: grid;
+            grid-template-columns:1fr;
+        }
+    }
+}
