@@ -70,12 +70,11 @@
 .listContainer .roomList .listItem .listDetail {
   padding: 0.5rem;
 }
-.listContainer .roomList .listItem .listDetail p {
+.listContainer .roomList .listItem .listDetail .locationDetail {
   color: var(--HoverColor);
 }
-.listContainer .roomList .listItem .listDetail span {
+.listContainer .roomList .listItem .listDetail .priceDetail {
   color: red;
-  font-weight: 300;
 }
 
 @media screen and (max-width: 1024px) {

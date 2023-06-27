@@ -59,16 +59,16 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
 
     if(result.length == 0){
       res.status(401).json({
-        error: "email does not exist"
+        error: "Email không tồn tại"
       });
       return;
     }
     const findUser = await query(findUserEmailPassword, [email, password]);
     if (findUser.length == 1) res.status(200).json({
       msg: "Success",
-      user_id: findUser[0]['id']
+      user: result[0]
     });
-    else res.status(400).json({msg: "Password is not correct"});
+    else res.status(400).json({msg: "Mật khẩu không chính xác"});
 
   } catch (error) {
     next(error);

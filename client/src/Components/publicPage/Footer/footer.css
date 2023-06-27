@@ -11,8 +11,9 @@
 }
 
 .footer {
+  position: fixed;
   width: 100%;
-  background: var(--greyBg);
+  background: black;
   padding: 2rem 0;
 }
 .footer .footerContainer {

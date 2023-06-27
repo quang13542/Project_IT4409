@@ -10,34 +10,23 @@ function Signin() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
-    const dispatch = useDispatch
+    const dispatch = useDispatch();
     const data = { email: email, password: password };
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
             setLoading(true)
             const result = await login({ email: email, password: password });
-            // const response = await fetch("https://reqres.in/api/login", {
-            //     method: "POST",
-            //     headers: {
-            //         "Content-Type": "application/json"
-            //     },
-            //     body: JSON.stringify(data)
-            // });
-
-            // const result = await response.json();
             console.log(result);
-            if (result == 'ACCEPT') {
-
+            if (result.msg === "Success") {
+                dispatch(loginRedux(result.user));
+                alert("Đăng nhập thành công")
                 navigate("/");
-            } else if (result == 'Không tồn tại tài khoản') {
-                alert(`${result}`);
-            }
-
+            } 
 
 
         } catch (error) {
-            alert("Đăng nhập không thành công");
+            alert("Tài khoản không tồn tại hoặc mật khẩu sai");
         } finally {
             setLoading(false);
         }

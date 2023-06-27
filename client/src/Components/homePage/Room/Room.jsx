@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getRoomById } from "../../../API/rooms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBroom, faDoorOpen, faLocationDot, faRankingStar, faStar, faWifi, faCircleXmark, faCircleArrowLeft,faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faBroom, faDoorOpen, faLocationDot, faRankingStar, faStar, faWifi, faCircleXmark, faCircleArrowLeft, faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
 const Room = () => {
     const [slideNumber, setSlideNumber] = useState(0);
     const [open, setOpen] = useState(false);
@@ -19,9 +19,9 @@ const Room = () => {
         let newSlideNumber;
 
         if (direction === "l") {
-            newSlideNumber = slideNumber === 0 ? 5 : slideNumber - 1;
-        } else {
-            newSlideNumber = slideNumber === 5 ? 0 : slideNumber + 1;
+            newSlideNumber = slideNumber === 0 ? 2 : slideNumber - 1;
+        } else if (direction === "r") {
+            newSlideNumber = slideNumber === 2 ? 0 : slideNumber + 1;
         }
 
         setSlideNumber(newSlideNumber)
@@ -58,15 +58,20 @@ const Room = () => {
         }
         return stars;
     };
-
+    const formatPrice = (price) => {
+        const formattedPrice = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+        const currencySymbol = formattedPrice + " VND";
+        return currencySymbol;
+    }
     useEffect(() => {
         getRoom();
     }, [params.id])
     const dummyImg = [
-        "https://dummyimage.com/600x400/345/fff",
-        "https://dummyimage.com/600x400/765/ff0",
-        "https://dummyimage.com/600x400/f21/012"
+        `${selectedRoom.url}`,
+        "https://www.perlentravel.com/photos/29-2-ArenaBeachHotelatMaafushiDeluxeDoubleRoomwithBalconyandSeaViewDoubleRoomwithBalconyandSeaview-bad232a2e4b3a631d6f3ec13ac56e9ba4-med.jpg",
+        "https://www.marmomac.com/wp-content/uploads/2020/12/Ritz-Carlton-bathroom-1.jpeg",
     ]
+
     return loading ? (
         <div style={{ textAlign: "center" }}>
             <BeatLoader color={'#2596be'} loading={loading} size={100} />
@@ -87,7 +92,7 @@ const Room = () => {
                             onClick={() => handleMove("l")}
                         />
                         <div className="sliderWrapper">
-                            <img src={dummyImg[slideNumber].src} alt="" className="sliderImg" />
+                            <img src={dummyImg[slideNumber]} alt="ảnh vippro" className="sliderImg" />
                         </div>
                         <FontAwesomeIcon
                             icon={faCircleArrowRight}
@@ -117,7 +122,7 @@ const Room = () => {
                                 <h3 className="roomLoc">
                                     Phạm Hùng, Mễ Trì, Nam Từ Liêm, {selectedRoom.city_name}
                                 </h3>
-                                <p className="roomDetail">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos quos ducimus eligendi dicta nobis natus beatae voluptatum quod rem consectetur? Soluta minus voluptates inventore fugiat quas vero error ea laborum!</p>
+                                <p className="roomDetail">{selectedRoom.position_detail}</p>
                                 <h5 style={{ marginTop: "5px" }}>
                                     Rating: {selectedRoom.rating_hotel}
                                 </h5>
@@ -153,13 +158,9 @@ const Room = () => {
                             </div>
                         </div>
                         <div className="roomDetailsPrice">
-                            <h1>Perfect for a 9-night stay!</h1>
-                            <span>
-                                Located in the real heart of Krakow, this property has an
-                                excellent location score of 9.8!
-                            </span>
+                            <h1>Đặt phòng ngay!</h1>
                             <h2>
-                                <b> {selectedRoom.price} </b> (9 nights)
+                                <b> {formatPrice(selectedRoom.price)}</b>
                             </h2>
                             <button>Reserve or Book Now!</button>
                         </div>

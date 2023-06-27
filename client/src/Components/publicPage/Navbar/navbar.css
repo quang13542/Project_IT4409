@@ -1,15 +1,3 @@
-:root {
-  --PrimaryColor: rgb(37, 150, 190);
-  --HoverColor: rgba(37, 150, 190,255);
-  --whiteColor: hsl(0, 0%, 100%);
-  --blackColor: hsl(0, 0%, 18%);
-  --textColor: hsl(240, 1%, 48%);
-  --whiteColorDeam: hsl(0, 0%, 93%);
-  --greyBg: hsl(0, 0%, 96%);
-  --greyText: rgb(190, 190, 190);
-  --inputColor: hsl(330, 12%, 97%);
-}
-
 .navBarSection .header {
   position: fixed;
   display: flex;
@@ -64,10 +52,6 @@
   }
   .navBarSection .header .navBar .navList .navBtn {
     display: flex;
-    flex-direction: row;
-  }
-  .navBarSection .header .navBar .navList .navBtn .btn {
-    margin-top: 1rem;
   }
   .navBarSection .header .navBar .navList .navBtn .btn a {
     font-weight: 600;

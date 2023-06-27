@@ -1,12 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { setUser } from "../Configs/localStorage";
+import { setUser, removeUser } from "../Configs/localStorage";
 
 
 const userLogined = JSON.parse(localStorage.getItem("user")) || {};
 
 const userSlice = createSlice({
 	name: "user",
-	initialState: {},
+	initialState: userLogined,
 	reducers: {
 		loginRedux: (state, payload) => {
 			console.log(">>>check payload: ", payload.payload);
@@ -14,7 +14,8 @@ const userSlice = createSlice({
 			setUser(payload.payload);
 		},
 		logout: (state, payload) => {
-			// removeUser();
+			removeUser();
+			alert("Bạn đã đăng xuất")
 			return {};
 		},
 	},

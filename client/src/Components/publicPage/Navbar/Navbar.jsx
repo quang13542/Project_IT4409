@@ -3,18 +3,22 @@ import './navbar.css'
 import { MdOutlineModeOfTravel } from 'react-icons/md'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { TbGridDots } from 'react-icons/tb'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { logout } from "../../../Redux/userSlice"
 
-const Navbar = ({bgColor}) => {
+const Navbar = ({ bgColor }) => {
     const [active, setActive] = useState('navBar');
     const showNav = () => {
         setActive('navBar activeNavbar');
     }
+    const user = useSelector((state) => state.user);
     const closeNav = () => {
         setActive('navBar');
 
     }
-
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [transparent, setTransparent] = useState('header');
     const addBackground = () => {
         if (window.scrollY >= 100) {
@@ -24,7 +28,13 @@ const Navbar = ({bgColor}) => {
             setTransparent('header')
         }
     }
-
+    const handleLogout = (e) => {
+        e.preventDefault();
+        dispatch(logout());
+        setTimeout(() => {
+            navigate("/signin");
+        }, 500);
+    };
     window.addEventListener('scroll', addBackground)
 
 
@@ -46,16 +56,29 @@ const Navbar = ({bgColor}) => {
                         <li className="navItem">
                             <Link to="/cart" className="navLink">Kế hoạch</Link>
                         </li>
-                        <div className="navBtn">
-                            <button className="btn loginBtn">
-                                <Link to="/signin">Đăng nhập</Link>
-                            </button>
-                        </div>
-                        <div className="navBtn">
-                            <button className="btn">
-                                <Link to="/signup">Đăng ký</Link>
-                            </button>
-                        </div>
+                        {user && user.id ? (
+
+                            <div className="navBtn">
+                                <div>{user.username}</div>
+                                <button className="btn loginBtn" onClick={handleLogout}>
+                                    Đăng xuất
+                                </button>
+                            </div>
+
+                        ) : (
+                            <>
+                                <div className="navBtn">
+                                    <button className="btn">
+                                        <Link to="/signin">Đăng nhập</Link>
+                                    </button>
+                                </div>
+                                <div className="navBtn">
+                                    <button className="btn" style={{marginLeft:"30px"}} >
+                                        <Link to="/signup">Đăng ký</Link>
+                                    </button>
+                                </div>
+                            </>
+                        )}
 
                     </ul>
                     <div onClick={closeNav} className="closeNavbar">

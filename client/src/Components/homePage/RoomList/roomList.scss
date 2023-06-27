@@ -71,16 +71,15 @@
 
             .listDetail {
                 padding: 0.5rem;
-                p {
+                .locationDetail {
                     color: var(--HoverColor)
                 }
 
-                ;
-
-                span {
-                    color: red;
-                    font-weight: 300;
+                .priceDetail{
+                    color:red;
                 }
+
+                
             }
 
 

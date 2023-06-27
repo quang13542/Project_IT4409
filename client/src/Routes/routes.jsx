@@ -13,6 +13,7 @@ import RoomList from "../Components/homePage/RoomList/RoomList";
 import List from "../Components/homePage/ResultList/ResultList";
 import Room from "../Components/homePage/Room/Room";
 import Cart from "../Components/homePage/Cart/Cart";
+import Footer from "../Components/publicPage/Footer/Footer";
 
 const ProtectedRoute = ({ children, roles }) => {
     const user = useSelector((state) => state.user);
@@ -44,7 +45,7 @@ const AppRoutes = () => {
                         <Feature />
                         <RoomProp />
                         <RoomList />
-                        {/* <Footer /> */}
+                        <Footer/>
                     </>
                 }
             />
