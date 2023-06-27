@@ -1,4 +1,4 @@
-const { query } = require("../db/database");
+const { connection } = require("../db/database");
 
 const bcrypt = require("bcryptjs");
 const ErrorHandler = require("../utils/errorHandler");
@@ -78,11 +78,22 @@ class User {
 	static async findByEmail(email) {
 		const sql = "SELECT * FROM user WHERE email = ?";
 		const params = [email];
-		const res = await query(sql, params);
+		const res = connection.query(sql, params);
+		// if (res.length > 0) {
+		// 	return new User(res[0]);
+		// } else return null;
+		return res;
+	}
 
-		if (res.length > 0) {
-			return new User(res[0]);
-		} else throw new ErrorHandler("User not found", 400);
+	static async findByUserName(username) {
+		const sql = "SELECT * FROM user WHERE username = ?";
+		const params = [username];
+		const res = await connection.query(sql, params);
+		// console.log(res.length);
+		// if (res.length > 0) {
+		// 	return new User(res[0]);
+		// } else return null;
+		return res;
 	}
 	static async findById(id) {
 		const sql = "SELECT * FROM user WHERE id =?";
