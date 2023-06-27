@@ -21,10 +21,12 @@ const authRoute = require("./routes/auth");
 const hotelRoute = require("./routes/hotel");
 const serviceRoute = require("./routes/service");
 const roomRoute = require("./routes/room");
+const cityRoute = require("./routes/city");
 app.use("/api/v1", authRoute);
 app.use("/api/v1", hotelRoute);
 app.use("/api/v1", serviceRoute);
 app.use("/api/v1", roomRoute);
+app.use("/api/v1", cityRoute);
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => console.log(`Application listen on port ${PORT}!`))
