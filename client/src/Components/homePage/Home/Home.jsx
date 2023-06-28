@@ -1,35 +1,38 @@
 import React, { useState } from "react"
-import "./home.css"
+import "./home.scss"
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { Link } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowDown, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { getAllRooms } from "../../../API/rooms"
+import { useSelector } from "react-redux"
 
 const Home = () => {
     const [openDiv, setOpenDiv] = useState(false);
-    const [adult, setAdult] =useState(0);
+    const [adult, setAdult] = useState(0);
     const [children, setChildren] = useState(0);
-    const [city, setCity] =useState("");
-    const [checkin, setCheckin] =useState("");
+    const [city, setCity] = useState("");
+    const [checkin, setCheckin] = useState("");
     const [checkout, setCheckout] = useState("");
-    let placeholder=`${adult} người lớn - ${children} trẻ em`
+    let placeholder = `${adult} người lớn - ${children} trẻ em`
     const toggleDiv = () => {
         setOpenDiv(!openDiv);
     }
-    const filter= {
+    const filter = {
         city: city,
         checkin: checkin,
         checkout: checkout,
         adults: adult,
-        children:children,
+        children: children,
         duty: true,
     }
     const [roomList, setRoomList] = useState([]);
     const [loading, setLoading] = useState(false);
     const [disabled, setDisabled] = useState(false);
     const [page, setPage] = useState(1);
-    const handleSearch = async () => {
+    const user = useSelector((state) => state.user);
+    const handleSearch = async (e) => {
+        e.preventDefault();
         try {
             setLoading(true)
             const res = await getAllRooms(filter);
@@ -45,18 +48,24 @@ const Home = () => {
             setLoading(false);
         }
     }
-    
+
 
 
     console.log(roomList);
-   
+
     return (
         <section className="home">
-            <div className="homeContainer"> 
+            <div className="homeContainer">
                 <div className="homeText">
-                    <h1 className="title">
-                        Khách sạn, homestay, khu nghỉ dưỡng & hơn thế nữa
-                    </h1>
+                    {user && user.id ? (
+                        <h1 className="title">
+                            Chào mừng {user.username}, hãy bắt đầu kỳ nghỉ của bạn!
+                        </h1>
+                    ) : (
+                        <h1 className="title">
+                            Khách sạn, homestay, khu nghỉ dưỡng & hơn thế nữa
+                        </h1>
+                    )}
 
 
                 </div>
@@ -78,19 +87,19 @@ const Home = () => {
 
                     <div>
                         <div className="peopleDiv">
-                            <input type="dropdown" placeholder={placeholder}/>
+                            <input type="dropdown" placeholder={placeholder} />
                             <FontAwesomeIcon icon={faArrowDown} className="drop-icon" onClick={toggleDiv} />
 
                             {openDiv &&
                                 <div className="dropItem">
-                                    <div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                         <p>Adult</p>
-                                        <input type="number" min={0} value={adult} onChange={e=> setAdult(e.target.value)} />
-                                        
+                                        <input type="number" min={0} value={adult} onChange={e => setAdult(e.target.value)} />
+
                                     </div>
-                                    <div style={{display:"flex", alignItems:"center", justifyContent:"space-between"}}>
+                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                                         <p>Children</p>
-                                        <input type="number" min={0} value={children} onChange={e=> setChildren(e.target.value)}/>
+                                        <input type="number" min={0} value={children} onChange={e => setChildren(e.target.value)} />
                                     </div>
                                 </div>}
                         </div>

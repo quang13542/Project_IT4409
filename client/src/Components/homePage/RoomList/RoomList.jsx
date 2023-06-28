@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "./roomList.css"
+import "./roomList.scss"
 import { FaLongArrowAltLeft, FaLongArrowAltRight } from 'react-icons/fa'
 import { useNavigate } from "react-router";
 import BeatLoader from 'react-spinners/BeatLoader'

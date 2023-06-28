@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './signup.css';
+import './signup.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import { createUser } from '../../../API/users';
 import ClipLoader from 'react-spinners/ClipLoader';

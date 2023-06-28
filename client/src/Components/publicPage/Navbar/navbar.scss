@@ -60,15 +60,21 @@
 
                     .navBtn {
                         display: flex;
+
                         .btn {
                             a {
                                 font-weight: 600;
+
                                 &:hover {
                                     color: var(--whiteColor);
                                 }
                             }
                         }
+
+
                     }
+
+
 
                 }
 
@@ -92,20 +98,23 @@
 
 
         }
-        .toggleNavbar{
-            .icon{
+
+        .toggleNavbar {
+            .icon {
                 font-size: 25px;
                 color: var(--whiteColor);
-                &:hover{
+
+                &:hover {
                     color: var(--PrimaryColor);
                 }
             }
         }
 
     }
-    .activeHeader{
-        background:var(--greyBg);
-        box-shadow: 0 2px 8px 2px rgba(178,178,178,0.04);
+
+    .activeHeader {
+        background: var(--greyBg);
+        box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.04);
         // .loginBtn{
         //     a{
         //         color: white;
@@ -116,58 +125,122 @@
 
 
 }
-@media screen and  (min-width: 769px) {
-    .toggleNavbar, .closeNavbar {
+
+@media screen and (min-width: 769px) {
+
+    .toggleNavbar,
+    .closeNavbar {
         display: none;
     }
 
     .header {
         padding: 1.5rem 2rem;
-        .navBar{
-          .navList{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: row;
 
-            .navItem{
-                .navLink{
-                    color: var(--whiteColor);
-                    padding: 0 0.5rem;
-                    font-size: 1rem;
-                    font-weight: 500;
-                    &:hover{
-                        color:var(--PrimaryColor);
+        .navBar {
+            .navList {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: row;
+
+                .toggleDiv {
+                    position: relative;
+                    display: flex;
+
+                    .userBtn {
+                        background-color: var(--PrimaryColor);
+                        padding: 1rem;
+                        border-radius: 50%;
+                        width: 1.5rem;
+                        height: 1.5rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        margin-left: 0.5rem;
                     }
                 }
-            }
-            .btn {
-                margin-left: 1rem;
-                a{
-                    color:var(--whiteColor);
-                    font-weight: 500;
-                }
-            }
-            // .loginBtn{
-            //     background: var(--PrimaryColor);
-            //     border: 2px solid var(--PrimaryColor);
-            //     a{
-            //         color: var(--whiteColor);
-            //     }
 
-            //     &:hover{
-            //         background: var(--PrimaryColor);
-            //         a{color: var(--whiteColor);}
-            //     }
-            // }
-          }  
+                .signoutDiv {
+                    width: max-content;
+                    background-color: white;
+                    padding: 10px 20px;
+                    position: absolute;
+                    right: 15px;
+                    top: 40px;
+                    border-radius: 10px 0px 10px 10px;
+
+                    .userName {
+                        color: darkgrey;
+                        font-size: 15px;
+                        padding-bottom: 0.5rem;
+                        border-bottom: 1px solid darkgrey;
+                    }
+
+                    .optionDiv {
+                        color: darkgrey;
+                        font-size: 15px;
+                        margin: 5px 0px;
+
+                        &:hover {
+                            cursor: pointer;
+                            color: var(--PrimaryColor);
+                        }
+                    }
+                }
+
+                .navItem {
+                    .navLink {
+                        color: var(--whiteColor);
+                        padding: 0 0.5rem;
+                        font-size: 1rem;
+                        font-weight: 500;
+
+                        &:hover {
+                            color: var(--PrimaryColor);
+                        }
+                    }
+                }
+
+                .btn {
+                    margin-left: 1rem;
+
+                    a {
+                        color: var(--whiteColor);
+                        font-weight: 500;
+                    }
+                }
+
+
+            }
         }
     }
-    
+
 }
+
 @media screen and (min-width: 1024px) {
-    .header{
+    .header {
         padding: 1rem 8.5rem !important;
-    }
+
+        .navList{
+            .toggleDiv {
+                position: relative;
+                display: flex;
     
+                .userBtn {
+                    background-color: var(--PrimaryColor);
+                    padding: 1rem;
+                    border-radius: 50%;
+                    width: 1.5rem;
+                    height: 1.5rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                }
+            }
+    
+            
+        }
+    }
+
+
 }

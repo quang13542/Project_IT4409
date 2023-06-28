@@ -15,7 +15,6 @@ const userSlice = createSlice({
 		},
 		logout: (state, payload) => {
 			removeUser();
-			alert("Bạn đã đăng xuất")
 			return {};
 		},
 	},

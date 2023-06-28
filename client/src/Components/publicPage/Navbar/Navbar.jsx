@@ -1,12 +1,13 @@
 import React, { useState } from "react"
-import './navbar.css'
+import './navbar.scss'
 import { MdOutlineModeOfTravel } from 'react-icons/md'
 import { AiFillCloseCircle } from 'react-icons/ai'
 import { TbGridDots } from 'react-icons/tb'
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../../../Redux/userSlice"
-
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faUser } from "@fortawesome/free-solid-svg-icons"
 const Navbar = ({ bgColor }) => {
     const [active, setActive] = useState('navBar');
     const showNav = () => {
@@ -36,7 +37,10 @@ const Navbar = ({ bgColor }) => {
         }, 500);
     };
     window.addEventListener('scroll', addBackground)
-
+    const [open, setOpen] = useState(false);
+    const toggleOpen = () => {
+        setOpen(!open);
+    }
 
     return (
         <section className="navBarSection">
@@ -58,12 +62,22 @@ const Navbar = ({ bgColor }) => {
                         </li>
                         {user && user.id ? (
 
-                            <div className="navBtn">
-                                <div>{user.username}</div>
-                                <button className="btn loginBtn" onClick={handleLogout}>
-                                    Đăng xuất
-                                </button>
-                            </div>
+                            <>
+                                <div className="toggleDiv">
+                                    <div className="userBtn" onClick={toggleOpen}>
+                                        <FontAwesomeIcon icon={faUser} className="location-icon" />
+                                    </div>
+                                    {open && (
+                                    <div className="signoutDiv" onMouseLeave={toggleOpen} >
+                                        <h3 className="userName">{user.username}</h3>
+                                        <h3 className="optionDiv">Sửa thông tin</h3>
+                                        <h3 className="optionDiv">Kế hoạch</h3>
+                                        <h3 className="optionDiv" onClick={handleLogout}>Đăng xuất</h3>
+                                    </div>
+                                )}
+                                </div>
+                                
+                            </>
 
                         ) : (
                             <>
@@ -73,7 +87,7 @@ const Navbar = ({ bgColor }) => {
                                     </button>
                                 </div>
                                 <div className="navBtn">
-                                    <button className="btn" style={{marginLeft:"30px"}} >
+                                    <button className="btn" style={{ marginLeft: "30px" }} >
                                         <Link to="/signup">Đăng ký</Link>
                                     </button>
                                 </div>

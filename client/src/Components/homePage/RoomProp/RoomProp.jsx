@@ -1,5 +1,5 @@
 import React from "react";
-import "./roomProp.css";
+import "./roomProp.scss"
 const RoomProp = () => {
     return (
         <div className="prop">

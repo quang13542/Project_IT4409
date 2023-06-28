@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './signin.css';
+import './signin.scss';
 import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../../API/users';
 import { useDispatch } from 'react-redux';
@@ -20,7 +20,6 @@ function Signin() {
             console.log(result);
             if (result.msg === "Success") {
                 dispatch(loginRedux(result.user));
-                alert("Đăng nhập thành công")
                 navigate("/");
             } 
 
