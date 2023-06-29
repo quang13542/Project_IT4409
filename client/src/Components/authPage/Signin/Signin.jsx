@@ -73,7 +73,7 @@ function Signin() {
                     )}
                 </button>
                 <div className='option'>
-                    <h5><Link to="/signup">Tạo tài khoản</Link></h5>
+                    <h5>Chưa có tài khoản? <Link to="/signup">Tạo tài khoản</Link></h5>
                     <h5><Link to="#">Quên mật khẩu</Link></h5>
                 </div>
             </form>

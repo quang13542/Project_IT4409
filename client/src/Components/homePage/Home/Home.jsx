@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import "./home.scss"
 import { AiOutlineArrowRight } from 'react-icons/ai'
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowDown, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
 import { getAllRooms } from "../../../API/rooms"
@@ -31,22 +31,13 @@ const Home = () => {
     const [disabled, setDisabled] = useState(false);
     const [page, setPage] = useState(1);
     const user = useSelector((state) => state.user);
+    const navigate = useNavigate();
     const handleSearch = async (e) => {
+
         e.preventDefault();
-        try {
-            setLoading(true)
-            const res = await getAllRooms(filter);
-            console.log(">>check resulst search:", res);
-            // if(res.status === "success") {
-            setRoomList(res);
-            // }
-        }
-        catch (error) {
-            console.log(error);
-        }
-        finally {
-            setLoading(false);
-        }
+        navigate(`/`, { replace: true });
+
+
     }
 
 
@@ -107,9 +98,7 @@ const Home = () => {
                     </div>
 
                     <button className="btn" type="submit">
-                        <Link to={"/result"}>
-                            <a>Tìm</a>
-                        </Link>
+                        Tìm
                     </button>
                 </form>
             </div>

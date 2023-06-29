@@ -120,9 +120,12 @@ const Room = () => {
                             <div className="roomDetailsTexts">
                                 <h1 className="roomTitle" >{selectedRoom.hotel_name} <small>{renderDivs(selectedRoom.rating_hotel)}</small></h1>
                                 <h3 className="roomLoc">
-                                    Phạm Hùng, Mễ Trì, Nam Từ Liêm, {selectedRoom.city_name}
+                                    {selectedRoom.position_detail}, {selectedRoom.city_name}
                                 </h3>
-                                <p className="roomDetail">{selectedRoom.position_detail}</p>
+                                <p className="roomDetail">{selectedRoom.room_detail}</p>
+                                <h5 style={{ marginTop: "5px" }}>
+                                    Loại phòng : {selectedRoom.type}
+                                </h5>
                                 <h5 style={{ marginTop: "5px" }}>
                                     Rating: {selectedRoom.rating_hotel}
                                 </h5>

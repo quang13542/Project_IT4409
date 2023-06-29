@@ -57,8 +57,9 @@ const Navbar = ({ bgColor }) => {
                         <li className="navItem">
                             <Link to="/" className="navLink">Trang chủ</Link>
                         </li>
-                        <li className="navItem">
+                        <li className="navItem cart">
                             <Link to="/cart" className="navLink">Kế hoạch</Link>
+                            <div className="cartAmount">3</div>
                         </li>
                         {user && user.id ? (
 
@@ -69,7 +70,7 @@ const Navbar = ({ bgColor }) => {
                                     </div>
                                     {open && (
                                     <div className="signoutDiv" onMouseLeave={toggleOpen} >
-                                        <h3 className="userName">{user.username}</h3>
+                                        <h3 className="userName">{user.role}: {user.username}</h3>
                                         <h3 className="optionDiv">Sửa thông tin</h3>
                                         <h3 className="optionDiv">Kế hoạch</h3>
                                         <h3 className="optionDiv" onClick={handleLogout}>Đăng xuất</h3>

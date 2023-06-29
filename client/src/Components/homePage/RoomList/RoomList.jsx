@@ -45,11 +45,11 @@ const RoomList = () => {
         else setPage((prev) => prev + 1);
         console.log("next, page:", page);
     }
-    const formatPrice=(price) => {
+    const formatPrice = (price) => {
         const formattedPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-        const currencySymbol = formattedPrice+ " VND";        
+        const currencySymbol = formattedPrice + " VND";
         return currencySymbol;
-      }
+    }
 
     console.log(roomList);
     return (
@@ -66,42 +66,49 @@ const RoomList = () => {
 
                 </div>
             </div>
-            {loading ? (
-                <div style={{ textAlign: "center" }}>
-                    <BeatLoader color={'#2596be'} loading={loading} size={20} />
-                </div>
-            ) : (
-                <>
-                    {roomList && roomList.length > 0 ? (
-                        <div className="roomList">
-                            {roomList.map((room, index) => {
-                                return (
-                                    <>
-                                        <div className="listItem">
-                                            <div className="rate">
-                                                <h3>{room.rating_hotel}</h3>
-                                            </div>
-                                            <img
-                                                className="listImg"
-                                                src={room.url}
-                                                onClick={() => navigate(`/room/${room.room_id}`)} />
-                                            <div className="listDetail">
-                                                <h3>{room.hotel_name}</h3>
-                                                <p className="locationDetail"><FontAwesomeIcon icon={faLocationDot}/>
-                                                    {""}{room.city_name}</p>
-                                                <small>Giá mỗi đêm rẻ nhất từ</small>
-                                                <p className="priceDetail"><b>{formatPrice(room.price)}</b></p>
-                                            </div>
-                                        </div>
-                                    </>
-                                )
-                            })}
-                        </div>
-                    ) : (
-                        <h2>Không có phòng nào</h2>
-                    )}
-                </>
-            )}
+
+            <>
+                {roomList && roomList.length > 0 ? (
+                    <div className="roomList">
+                        {loading ? (
+                            <div style={{ textAlign: "center" }}>
+                                <BeatLoader color={'#2596be'} loading={loading} size={20} />
+                            </div>
+                        ) : (
+                            <>
+                                {
+                                    roomList.map((room, index) => {
+                                        return (
+                                            <>
+                                                <div className="listItem">
+                                                    <div className="rate">
+                                                        <h3>{room.rating_hotel}</h3>
+                                                    </div>
+                                                    <img
+                                                        className="listImg"
+                                                        src={room.url}
+                                                        onClick={() => navigate(`/room/${room.room_id}`)} />
+                                                    <div className="listDetail">
+                                                        <h3>{room.hotel_name}</h3>
+                                                        <p className="locationDetail"><FontAwesomeIcon icon={faLocationDot} />
+                                                            {""}{room.city_name}</p>
+                                                        <small>Giá mỗi đêm rẻ nhất từ</small>
+                                                        <p className="priceDetail"><b>{formatPrice(room.price)}</b></p>
+                                                    </div>
+                                                </div>
+                                            </>
+                                        )
+                                    })
+                                }
+                            </>
+                        )
+                        }
+                    </div>
+                ) : (
+                    <h2>Không có phòng nào</h2>
+                )}
+            </>
+
 
 
 

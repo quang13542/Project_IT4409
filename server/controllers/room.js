@@ -18,8 +18,9 @@ exports.getSingleRoom = catchAsyncError(async (req, res, next) => {
             rating,
             city.name as city_name,
             room.url,
-            room.position_detail,
-            room.price
+            room.position_detaill,
+            room.price,
+            room.room_detail
         from room
         join hotel on hotel.id = room.hotel_id
         join city on city.id = hotel.city_id
@@ -38,8 +39,9 @@ exports.getSingleRoom = catchAsyncError(async (req, res, next) => {
 				number_of_children: row.children,
                 city_name: row.city_name,
                 url: row.url,
-                position_detail: row.position_detail,
-                price: row.price
+                position_detail: row.position_detaill,
+                price: row.price,
+                room_detail:row.room_detail
 			});
 		});
 		if(room.length==1) res.status(200).json(room[0]);
@@ -64,7 +66,7 @@ exports.getAllRoom = catchAsyncError(async (req, res, next) => {
             rating,
             city.name as city_name,
             room.url,
-            room.position_detail,
+            room.position_detaill,
             room.price
         from room
         join hotel on hotel.id = room.hotel_id
@@ -83,7 +85,7 @@ exports.getAllRoom = catchAsyncError(async (req, res, next) => {
 				number_of_children: row.children,
                 city_name: row.city_name,
                 url: row.url,
-                position_detail: row.position_detail,
+                position_detail: row.position_detaill,
                 price: row.price
 			});
 		});

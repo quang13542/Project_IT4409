@@ -27,8 +27,8 @@ function Signup() {
             email: email,
             password1: password
         }
+        formData.role = "user";
         console.log(formData);
-        // formData.role = "user";
         try {
             setLoading(true);
 
