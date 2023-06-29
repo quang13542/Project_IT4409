@@ -45,7 +45,7 @@ const AppRoutes = () => {
                         <Feature />
                         <RoomProp />
                         <RoomList />
-                        <Footer/>
+                        <Footer />
                     </>
                 }
             />
@@ -84,7 +84,7 @@ const AppRoutes = () => {
             <Route path="/cart"
                 element={
                     <>
-                        <Navbar />
+                        <Navbar background="var(--PrimaryColor)" />
                         <Cart />
 
                     </>

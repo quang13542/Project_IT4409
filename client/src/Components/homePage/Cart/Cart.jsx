@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import "./cart.css";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrash, faStar, faMapMarkerAlt} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash, faStar, faMapMarkerAlt, faXmark } from '@fortawesome/free-solid-svg-icons'
+import Navbar from "../../publicPage/Navbar/Navbar";
 const Cart = () => {
     const [totalPrice, setTotalPrice] = useState(0);
 
@@ -17,55 +18,138 @@ const Cart = () => {
     const item = "hotel"; // Define the value of the item variable
 
     return (
-        <div className="app-container">
-            <div className="left-section">
+        <>
+            <div className="app-container">
+                <div className="left-section">
                 <div className="rectangle" key={item}>
-                    <div className="rectangle-top">
-                        <div className="hotel-info">
-                            <img src={hotelImage} alt="Hotel" className="hotelImage" />
-                            <div className="contentMax">
-                                <div className="hotel-details">
-                                    <h3 className="hotel-title">Thông tin Khách sạn</h3>
-                                    <div className="star-rating">
-                                        {[...Array(5)].map((_, index) => (
-                                            <FontAwesomeIcon key={index} icon={faStar} className="star-icon" />
-                                        ))}
+                        <div className="rectangle-top">
+                            <div className="hotel-info">
+                                <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                                <div className="contentMax">
+                                    <div className="hotel-details">
+                                        <h4 className="hotel-title">Khách sạn ABCSCA</h4>
+                                        <div className="star-rating">
+                                            {[...Array(5)].map((_, index) => (
+                                                <FontAwesomeIcon key={index} icon={faStar} color="#fcbda1" className="star-icon" />
+                                            ))}
+                                        </div>
+                                        <div className="location">
+                                            <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                            <span>Địa chỉ Khách sạn</span>
+                                        </div>
                                     </div>
-                                    <div className="location">
-                                        <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
-                                        <p className="location-name">Tên vị trí</p>
-                                    </div>
-                                    <FontAwesomeIcon icon={faTrash} className="hotel-title trash-icon" />
+
+                                    <FontAwesomeIcon icon={faXmark} size="20px" className="trash-icon" />
+
+                                </div>
+                            </div>
+                            <div className="rectangle-bottom">
+                                {/* <p className="item-info">Thông tin mặt hàng</p> */}
+                                <p className="item-price">Giá tiền: 100000</p>
+                                <div className="checkbox-container">
+                                    <input
+                                        type="checkbox"
+                                        value={10}
+                                        onChange={(e) => handleCheckboxChange(e, 100000)}
+                                        id={`checkbox-${item}`}
+                                    />
+                                    <label htmlFor={`checkbox-${item}`} className="checkBox">Chọn để thanh toán</label>
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                    <div className="rectangle-bottom">
-                        <p className="item-info">Thông tin mặt hàng</p>
-                        <p className="item-price">Giá tiền: $10</p>
-                        <div className="checkbox-container">
-                            <input
-                                type="checkbox"
-                                value={10}
-                                onChange={(e) => handleCheckboxChange(e, 10)}
-                                id={`checkbox-${item}`}
-                            />
-                            <label htmlFor={`checkbox-${item}`}>Điều kiện của khách sạn</label>
+                    <div className="rectangle" key={item}>
+                        <div className="rectangle-top">
+                            <div className="hotel-info">
+                                <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                                <div className="contentMax">
+                                    <div className="hotel-details">
+                                        <h4 className="hotel-title">Khách sạn ABCSCA</h4>
+                                        <div className="star-rating">
+                                            {[...Array(5)].map((_, index) => (
+                                                <FontAwesomeIcon key={index} icon={faStar} color="#fcbda1" className="star-icon" />
+                                            ))}
+                                        </div>
+                                        <div className="location">
+                                            <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                            <span>Địa chỉ Khách sạn</span>
+                                        </div>
+                                    </div>
+
+                                    <FontAwesomeIcon icon={faXmark} size="20px" className="trash-icon" />
+
+                                </div>
+                            </div>
+                            <div className="rectangle-bottom">
+                                {/* <p className="item-info">Thông tin mặt hàng</p> */}
+                                <p className="item-price">Giá tiền: 100000</p>
+                                <div className="checkbox-container">
+                                    <input
+                                        type="checkbox"
+                                        value={10}
+                                        onChange={(e) => handleCheckboxChange(e, 100000)}
+                                        id={`checkbox-${item}`}
+                                    />
+                                    <label htmlFor={`checkbox-${item}`} className="checkBox">Chọn để thanh toán</label>
+                                </div>
+                            </div>
                         </div>
+
+                    </div>
+                    <div className="rectangle" key={item}>
+                        <div className="rectangle-top">
+                            <div className="hotel-info">
+                                <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                                <div className="contentMax">
+                                    <div className="hotel-details">
+                                        <h4 className="hotel-title">Khách sạn ABCSCA</h4>
+                                        <div className="star-rating">
+                                            {[...Array(5)].map((_, index) => (
+                                                <FontAwesomeIcon key={index} icon={faStar} color="#fcbda1" className="star-icon" />
+                                            ))}
+                                        </div>
+                                        <div className="location">
+                                            <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                            <span>Địa chỉ Khách sạn</span>
+                                        </div>
+                                    </div>
+
+                                    <FontAwesomeIcon icon={faXmark} size="20px" className="trash-icon" />
+
+                                </div>
+                            </div>
+                            <div className="rectangle-bottom">
+                                {/* <p className="item-info">Thông tin mặt hàng</p> */}
+                                <p className="item-price">Giá tiền: 100000</p>
+                                <div className="checkbox-container">
+                                    <input
+                                        type="checkbox"
+                                        value={10}
+                                        onChange={(e) => handleCheckboxChange(e, 100000)}
+                                        id={`checkbox-${item}`}
+                                    />
+                                    <label htmlFor={`checkbox-${item}`} className="checkBox">Chọn để thanh toán</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    
+
+
+
+                </div>
+                <div className="right-section">
+                    <div className="total-price">
+                        <h4 className="pen">Tổng hóa đơn:<p className="pen2">{totalPrice}VND</p> </h4>
+
+                        <button className="paymentBtn">Thanh toán</button>
                     </div>
                 </div>
-                
-                
-
             </div>
-            <div className="right-section">
-                <div className="total-price">
-                    <h3 className="pen">Tổng giá tiền:<p className="pen2">{totalPrice}$</p> </h3>
+        </>
 
-                    <button className="">CONTINUE</button>
-                </div>
-            </div>
-        </div>
     );
 };
 

@@ -3,11 +3,15 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  width: 75%;
-  margin: 5rem auto;
-  top: 0%;
-  left: 50%;
+  width: 50%;
+  top: 70%;
+  left: 60%;
   transform: translate(-50%, 0%);
+  background-color: white;
+  overflow: scroll;
+  padding:20px;
+  height: 90vh;
+  border-radius: 10px;
 }
 
 .left-section {
@@ -15,20 +19,20 @@
   flex-direction: column;
   width: 68%;
   gap: 30px;
+  height: 100vh;
 }
 
 .rectangle {
   display: flex;
   flex-direction: column;
-  background-color: #f2f2f2;
-  padding: 10px;
+  box-shadow: 0 2px 8px 4px rgba(178,178,178, 0.5);
+   padding: 10px;
   border-radius: 8px;
 }
 
 .rectangle-top {
   background-color: #ffffff;
   /* Màu nền trắng */
-  border-bottom: 1px solid #ccc;
   padding-bottom: 10px;
   border-radius: 10px;
   height: max-content;
@@ -39,12 +43,9 @@
 }
 
 .rectangle-bottom {
-  background-color: rgba(255, 255, 255, 0.8);
-  /* Màu trắng đục */
-  padding: 10px;
-  border-radius: 8px;
-  margin-top: 10px;
+  /* background-color:var(--greyBg); */
   border-radius: 10px;
+  padding:0px 10px;
 }
 
 .item-info {
@@ -72,14 +73,15 @@
 }
 
 .total-price {
-  background-color: #e8e0e0;
+  box-shadow: 0 2px 8px 4px rgba(178,178,178, 0.5);
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .total-price p {
   font-size: 24px;
   font-weight: bold;
+  margin: 10px 0px 20px 0px;
 }
 
 .total-price-value {
@@ -105,7 +107,7 @@ button {
   margin-bottom: 10px;
   margin-left: 10px;
   height: 200px;
-  width: 200px;
+  width: 40%;
   border-radius: 10px;
 
 }
@@ -118,6 +120,8 @@ button {
 .contentMax {
   overflow: auto;
   /* Đảm bảo nội dung không bị tràn ra khỏi phần tử cha */
+  padding:10px;
+  position: relative;
 }
 
 .body {
@@ -148,4 +152,12 @@ button {
 
 .checkbox-container {
   order: -1;
+}
+
+.trash-icon{
+  position: absolute;
+  top:10px;
+  right:10px;
+  color: darkgrey;
+  cursor: pointer;
 }

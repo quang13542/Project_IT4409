@@ -7,8 +7,9 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../../../Redux/userSlice"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser } from "@fortawesome/free-solid-svg-icons"
-const Navbar = ({ bgColor }) => {
+import { faUser, faX } from "@fortawesome/free-solid-svg-icons"
+import Cart from '../../homePage/Cart/Cart';
+const Navbar = () => {
     const [active, setActive] = useState('navBar');
     const showNav = () => {
         setActive('navBar activeNavbar');
@@ -38,12 +39,15 @@ const Navbar = ({ bgColor }) => {
     };
     window.addEventListener('scroll', addBackground)
     const [open, setOpen] = useState(false);
+    const [cart, setCart] = useState(false);
     const toggleOpen = () => {
         setOpen(!open);
     }
-
+    const toggleCart = () => {
+        setCart(!cart);
+    }
     return (
-        <section className="navBarSection">
+        <section className="navBarSection" >
             <div className={transparent}>
 
                 <div className="logoDiv">
@@ -58,9 +62,16 @@ const Navbar = ({ bgColor }) => {
                             <Link to="/" className="navLink">Trang chủ</Link>
                         </li>
                         <li className="navItem cart">
-                            <Link to="/cart" className="navLink">Kế hoạch</Link>
+                            <div className="navLink" style={{cursor:"pointer "}} onClick={toggleCart}>Kế hoạch</div>
                             <div className="cartAmount">3</div>
                         </li>
+                        {cart && (
+                            <>
+                                <div className="toggleCart">
+                                    <Cart />
+                                </div>
+                            </>
+                        )}
                         {user && user.id ? (
 
                             <>
@@ -69,15 +80,14 @@ const Navbar = ({ bgColor }) => {
                                         <FontAwesomeIcon icon={faUser} className="location-icon" />
                                     </div>
                                     {open && (
-                                    <div className="signoutDiv" onMouseLeave={toggleOpen} >
-                                        <h3 className="userName">{user.role}: {user.username}</h3>
-                                        <h3 className="optionDiv">Sửa thông tin</h3>
-                                        <h3 className="optionDiv">Kế hoạch</h3>
-                                        <h3 className="optionDiv" onClick={handleLogout}>Đăng xuất</h3>
-                                    </div>
-                                )}
+                                        <div className="signoutDiv" onMouseLeave={toggleOpen} >
+                                            <h3 className="userName">{user.role}: {user.username}</h3>
+                                            <h3 className="optionDiv">Sửa thông tin</h3>
+                                            <h3 className="optionDiv" onClick={handleLogout}>Đăng xuất</h3>
+                                        </div>
+                                    )}
                                 </div>
-                                
+
                             </>
 
                         ) : (

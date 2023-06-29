@@ -22,7 +22,9 @@
     --boxShadow: box-shadow: 0 2px 8px 2px rgba(178, 178, 178, 0.189);
 
 }
-
+.body{
+    background: url('./Assets/background.jpg');
+}
 
 a {
     text-decoration: none;
