@@ -96,28 +96,51 @@ exports.getAllRoom = catchAsyncError(async (req, res, next) => {
 
 exports.addRoom = catchAsyncError(async (req, res, next) => {
 
-	const { username, email, password1 } = req.body;
+	const { adults, children, hotel_id, url, position_detail, price, type } = req.body;
 
   // const hashPassword = bcrypt.hashSync(password1, salt);
   
-    const insertUserSql = "INSERT INTO room (username, email, password) VALUES (?, ?, ?)";
-    const findUserSql = "SELECT * FROM user WHERE email = ?";
-    const params = [email];
+    const sql = "INSERT INTO room (adults, children, hotel_id, url, position_detail, price, type) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     try {
-        const result = await query(findUserSql, params);
+        await connection.query(sql, [adults, children, hotel_id, url, position_detail, price, type]);
 
-        if(result.length > 0){
-        res.status(409).json({
-            error: "Email already exists"
-        });
-        return;
-        }
-    
-        await query(insertUserSql, [username, email, password1]);
+        console.log("Room registered!");
+        res.status(200).json({detail: "Room registered!"});
 
-        console.log("User registered!");
-        res.send("User registered!");
+    } catch (error) {
+        next(error);
+    }
+});
+
+exports.deleteRoom = catchAsyncError(async (req, res, next) => {
+
+	const { room_id } = req.body;
+  
+    const sql = "delete from room where id = ?";
+
+    try {
+        await connection.query(sql, [room_id]);
+
+        console.log("Room deleted!");
+        res.status(200).json({detail: "Room deleted!"});
+
+    } catch (error) {
+        next(error);
+    }
+});
+
+exports.updateRoom = catchAsyncError(async (req, res, next) => {
+
+	const { room_id, adults, children, url, position_detail, price, type} = req.body;
+  
+    const sql = "update room set adults=?, children=?, url=?, position_detail=?, price=?, type=? where id = ?";
+
+    try {
+        await connection.query(sql, [adults||0, children||0, url||'', position_detail||'', price||0, type||'', room_id]);
+
+        console.log("Room updated!");
+        res.status(200).json({detail: "Room updated!"});
 
     } catch (error) {
         next(error);

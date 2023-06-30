@@ -97,3 +97,37 @@ exports.loginUser = catchAsyncError(async (req, res, next) => {
     next(error);
   }
 });
+
+exports.deleteUser = catchAsyncError(async (req, res, next) => {
+
+	const { user_id } = req.body;
+  
+    const sql = "delete from user where id = ?";
+
+    try {
+        await connection.query(sql, [user_id]);
+
+        console.log("User deleted!");
+        res.status(200).json({detail: "User deleted!"});
+
+    } catch (error) {
+        next(error);
+    }
+});
+
+exports.updateUser = catchAsyncError(async (req, res, next) => {
+
+	const { user_id, username, password, role} = req.body;
+  
+    const sql = "update room set username=?, password=?, role=? where id = ?";
+
+    try {
+        await connection.query(sql, [username, password, role, user_id]);
+
+        console.log("USer updated!");
+        res.status(200).json({detail: "User updated!"});
+
+    } catch (error) {
+        next(error);
+    }
+});
