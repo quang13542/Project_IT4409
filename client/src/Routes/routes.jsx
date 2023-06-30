@@ -10,10 +10,10 @@ import Signin from "../Components/authPage/Signin/Signin";
 import Signup from "../Components/authPage/Signup/Signup";
 import RoomProp from "../Components/homePage/RoomProp/RoomProp";
 import RoomList from "../Components/homePage/RoomList/RoomList";
-import List from "../Components/homePage/ResultList/ResultList";
 import Room from "../Components/homePage/Room/Room";
 import Cart from "../Components/homePage/Cart/Cart";
 import Footer from "../Components/publicPage/Footer/Footer";
+import SearchList from "../Components/homePage/Result/Result";
 
 const ProtectedRoute = ({ children, roles }) => {
     const user = useSelector((state) => state.user);
@@ -69,8 +69,8 @@ const AppRoutes = () => {
                 element={
                     <>
                         <Navbar />
-                        <Home handleResult={handleResult} />
-                        <List resultList={result} />
+                        <Home/>
+                        <SearchList/>
                     </>
                 } />
             <Route path="/room/:id"

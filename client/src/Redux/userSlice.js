@@ -13,7 +13,7 @@ const userSlice = createSlice({
 			Object.assign(state, payload.payload);
 			setUser(payload.payload);
 		},
-		logout: (state, payload) => {
+		logout: () => {
 			removeUser();
 			return {};
 		},

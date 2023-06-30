@@ -6,3 +6,7 @@ export const getRoomById = async (room_id) => {
 export const getAllRooms = async (params) => {
     return await api.get('/rooms', { params });
 }
+export const filterRooms = async (params) => {
+    return await api.get(`/find_hotel`,{params});
+
+}

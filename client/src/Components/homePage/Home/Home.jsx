@@ -1,11 +1,12 @@
 import React, { useState } from "react"
 import "./home.scss"
 import { AiOutlineArrowRight } from 'react-icons/ai'
-import { Link, useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faArrowDown, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { getAllRooms } from "../../../API/rooms"
-import { useSelector } from "react-redux"
+import { filterRooms, getAllRooms } from "../../../API/rooms"
+import { useDispatch, useSelector } from "react-redux"
+import { setRooms } from "../../../Redux/roomSlice"
 
 const Home = () => {
     const [openDiv, setOpenDiv] = useState(false);
@@ -20,10 +21,10 @@ const Home = () => {
     }
     const filter = {
         city: city,
-        checkin: checkin,
-        checkout: checkout,
-        adults: adult,
-        children: children,
+        checkin: checkin || "2023-06-23T20:46",
+        checkout: checkout || "2023-06-24T20:46",
+        adults: adult || 0,
+        children: children || 0,
         duty: true,
     }
     const [roomList, setRoomList] = useState([]);
@@ -32,12 +33,25 @@ const Home = () => {
     const [page, setPage] = useState(1);
     const user = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    console.log(filter);
     const handleSearch = async (e) => {
-
         e.preventDefault();
-        navigate(`/`, { replace: true });
-
-
+        try {
+            setLoading(true)
+            const res = await filterRooms(filter);
+            console.log(">>check resulst search:", res);
+            setRoomList(res);
+            dispatch(setRooms(res));
+            navigate("/result");
+            
+        }
+        catch (error) {
+            console.log(error);
+        }
+        finally {
+            setLoading(false);
+        }
     }
 
 
@@ -62,7 +76,7 @@ const Home = () => {
                 </div>
                 <form className="homeCard grid" onSubmit={handleSearch}>
                     <div className="locationDiv">
-                        <input type="text" placeholder="Địa điểm" />
+                        <input type="text" placeholder="Địa điểm" onChange={e=> setCity(e.target.value)} />
                     </div>
                     <div className="flex">
                         <div className="timeDiv">
