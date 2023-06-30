@@ -91,7 +91,7 @@ app.post("/find_hotel", function(req, res) {
             adults >= ? and
             children >= ? and
             room.id not in (
-                select id
+                select room_id
                 from service
                 where (
                     (? BETWEEN checkin AND checkout) OR
