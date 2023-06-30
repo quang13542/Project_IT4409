@@ -41,7 +41,7 @@ exports.filterHotel = catchAsyncError(async (req, res, next) => {
 		)
 		order by hotel.rating desc
 	`;
-	connection.query(sql, [`%${city}%`, adults||'0', children||'0', checkin.replace("T", " "), checkout.replace("T", " ")], function(err, result) {
+	connection.query(sql, [`%${city||''}%`, adults||'0', children||'0', checkin.replace("T", " "), checkout.replace("T", " ")], function(err, result) {
 		if (err) throw err;
 		// To do: if success, redirect to the list of hotel url
 		hotelList = [];
