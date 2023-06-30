@@ -30,7 +30,7 @@ CREATE TABLE `hotel` (
   PRIMARY KEY (`id`),
   KEY `city_id` (`city_id`),
   CONSTRAINT `hotel_ibfk_1` FOREIGN KEY (`city_id`) REFERENCES `city` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `hotel` (
 
 LOCK TABLES `hotel` WRITE;
 /*!40000 ALTER TABLE `hotel` DISABLE KEYS */;
-INSERT INTO `hotel` VALUES (1,'InterContinental Hanoi Westlake',1,4.5),(2,'Park Hyatt Saigon',2,3.8),(3,'Vinpearl Luxury',3,4.2),(4,'Pilgrimage Village Boutique Resort & Spa',4,4.4),(5,'Amiana Resort ',5,4.1),(6,'Sunrise Premium Resort ',6,3.9),(7,'La Veranda Resort Phu Quoc - MGallery',7,4.4),(8,'Terracotta Hotel ',8,3.7),(9,'Victoria Sapa Resort',9,4.2),(10,'Pullman Vung Tau',10,4.6),(11,'Pearl River Hai Phong Hotel',11,4.3),(12,'Vinpearl Hotel Can Tho',12,4.6),(13,'Ruby Hotel Bac Ninh',13,3.9),(14,'Vinpearl Hotel',14,4.1),(15,'Wyndham Legend Halong Hotel',15,4.4),(16,'Dakruco Hotel',16,4.7),(17,'The River Resort',17,3.8),(18,'Anoasis Beach Resort',18,4.2),(19,'Nam Cuong Hotel ',19,4.5),(20,'Van Phat Riverside Hotel',20,3.7);
+INSERT INTO `hotel` VALUES (1,'Starry Sky Hotel',32,3),(2,'Dream Oasis Hotel',23,4),(3,'Paradise Meadows Hotel',41,3),(4,'Mystical Manor Hotel',21,4),(5,'Tranquility Shores Hotel',32,4),(6,'Willow Tree Hotel',49,3),(7,'Starstruck Sands Hotel',18,5),(8,'Ivory Breeze Hotel',40,3),(9,'Lily Blossom Hotel',3,4),(10,'Mountain Retreat Hotel',22,5),(11,'Radiant Orchid Hotel',28,3),(12,'Spring Serenade Hotel',1,4),(13,'Enchanted Paradise Hotel',44,5),(14,'Crystal Haven Hotel',6,5),(15,'Tranquil Retreat Hotel',31,5),(16,'Aurora Sky Hotel',47,4),(17,'Meadowbrook Hotel',50,3),(18,'Secret Garden Hotel',42,4),(19,'Lily Springs Hotel',48,3),(20,'Sunrise Sanctuary Hotel',11,5),(21,'Paradise Manor Hotel',34,4),(22,'Silver Pine Hotel',24,4),(23,'Aurora Valley Hotel',6,4),(24,'Harmony Gardens Hotel',8,4),(25,'Tranquil Haven Hotel',16,5),(26,'Dreamland Retreat Hotel',18,5),(27,'Spring Symphony Hotel',11,4),(28,'Secret Sanctuary Hotel',22,4),(29,'Sunset Beach Hotel',40,4),(30,'Azure Bay Hotel',38,4),(31,'Dreamland Meadows Hotel',33,3),(32,'Coastal Crest Hotel',24,3),(33,'Harmony Cove Hotel',8,3),(34,'Harmony Heights Hotel',2,3),(35,'Sunset Haven Hotel',49,3),(36,'Velvet Breeze Hotel',45,4),(37,'Emerald City Hotel',4,4),(38,'Velvet View Hotel',12,3),(39,'Moonlit Haven Hotel',49,3),(40,'Tranquility Point Hotel',16,5),(41,'Silver Star Hotel',12,3),(42,'Azure Dream Hotel',30,4),(43,'Serendipity Sands Hotel',24,5),(44,'Whispering Woods Hotel',11,5),(45,'Diamond Haven Hotel',37,3),(46,'Aurora Borealis Hotel',22,4),(47,'Radiant Woods Hotel',45,4),(48,'Harmony View Hotel',6,3),(49,'Tranquility Pines Hotel',46,4),(50,'Crystal Waters Hotel',39,3);
 /*!40000 ALTER TABLE `hotel` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -52,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-26 10:23:15
+-- Dump completed on 2023-06-30  8:19:58

@@ -3,8 +3,7 @@ const Hotel = require("../models/hotel");
 const { connection } = require("../db/database");
 
 exports.filterHotel = catchAsyncError(async (req, res, next) => {
-	const { city, checkin, checkout, adults, children, duty } = req.body;
-
+	const { city, checkin, checkout, adults, children, duty } = req.query;
 	// find_hotel?page=...&limit=...
 	const page = req.query.page || 1;
 	const limit = req.query.limit || 10;
@@ -13,7 +12,7 @@ exports.filterHotel = catchAsyncError(async (req, res, next) => {
 	const endIndex = page * limit;
 
 	const sql = `
-		select hotel.id, room.id as room_id, hotel.rating, hotel.name, room.adults, room.children
+		select hotel.id, room.id as room_id, hotel.rating, hotel.name, room.adults, room.children, city.name as city_name
 		from hotel
 		join room on room.hotel_id = hotel.id
 		join city on city.id = hotel.city_id
@@ -43,10 +42,38 @@ exports.filterHotel = catchAsyncError(async (req, res, next) => {
 				rating_hotel: row.rating,
 				hotel_name: row.name,
 				number_of_adults: row.adults,
-				number_of_children: row.children
+				number_of_children: row.children,
+				city_name: row.city_name
 			});
 		});
 		const resultHotel = hotelList.slice(startIndex, endIndex);
+		res.status(200).json(resultHotel);
+	});
+});
+
+exports.getAllHotel = catchAsyncError(async (req, res, next) => {
+
+    const page = req.query.page || 1;
+	const limit = req.query.limit || 4;
+
+	const startIndex = (page - 1) * limit;
+	const endIndex = page * limit;
+
+	const sql = `
+        select * from hotel
+	`;
+	connection.query(sql, [], function(err, result) {
+		if (err) throw err;
+		// To do: if success, redirect to the list of hotel url
+        hotel = []
+        result.forEach((row) => {
+			hotel.push({
+				hotel_id: row.id,
+				name: row.name,
+				rating: row.rating
+			});
+		});
+        const resultHotel = hotel.slice(startIndex, endIndex);
 		res.status(200).json(resultHotel);
 	});
 });

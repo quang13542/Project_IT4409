@@ -93,3 +93,44 @@ exports.getAllRoom = catchAsyncError(async (req, res, next) => {
 		res.status(200).json(resultRoom);
 	});
 });
+
+// exports.addRoomcatchAsyncError(async (req, res, next) => {
+
+    
+
+// 	const sql = `
+//         select 
+//             room.id as room_id,
+//             adults,
+//             children,
+//             hotel.name as hotel_name,
+//             rating,
+//             city.name as city_name,
+//             room.url,
+//             room.position_detail,
+//             room.price
+//         from room
+//         join hotel on hotel.id = room.hotel_id
+//         join city on city.id = hotel.city_id;
+// 	`;
+// 	connection.query(sql, [], function(err, result) {
+// 		if (err) throw err;
+// 		// To do: if success, redirect to the list of hotel url
+//         room = []
+//         result.forEach((row) => {
+// 			room.push({
+// 				room_id: row.room_id,
+// 				rating_hotel: row.rating,
+// 				hotel_name: row.hotel_name,
+// 				number_of_adults: row.adults,
+// 				number_of_children: row.children,
+//                 city_name: row.city_name,
+//                 url: row.url,
+//                 position_detail: row.position_detail,
+//                 price: row.price
+// 			});
+// 		});
+//         const resultRoom = room.slice(startIndex, endIndex);
+// 		res.status(200).json(resultRoom);
+// 	});
+// });

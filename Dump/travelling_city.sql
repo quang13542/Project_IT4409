@@ -26,7 +26,7 @@ CREATE TABLE `city` (
   `id` int NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +35,7 @@ CREATE TABLE `city` (
 
 LOCK TABLES `city` WRITE;
 /*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES (1,'Hà Nội'),(2,'Hồ Chí Minh'),(3,'Đà Nẵng'),(4,'Huế'),(5,'Nha Trang'),(6,'Hội An'),(7,'Phú Quốc'),(8,'Đà Lạt'),(9,'Sapa'),(10,'Vũng Tàu'),(11,'Hải Phòng'),(12,'Cần Thơ'),(13,'Bắc Ninh'),(14,'Vinh'),(15,'Quảng Ninh'),(16,'Buôn Ma Thuột'),(17,'Long Xuyên'),(18,'Bà Rịa-Vũng Tàu'),(19,'Nam Định'),(20,'Tiền Giang');
+INSERT INTO `city` VALUES (1,'Cà Mau'),(2,'Bắc Ninh'),(3,'Kiên Giang'),(4,'Phú Yên'),(5,'Tiền Giang'),(6,'Sóc Trăng'),(7,'Cần Thơ'),(8,'Thái Nguyên'),(9,'Hà Nam'),(10,'Hà Nội'),(11,'Bình Thuận'),(12,'Lạng Sơn'),(13,'Bạc Liêu'),(14,'Thừa Thiên-Huế'),(15,'Tuyên Quang'),(16,'Ninh Bình'),(17,'Hậu Giang'),(18,'Bến Tre'),(19,'Đồng Nai'),(20,'Lào Cai'),(21,'Trà Vinh'),(22,'Nam Định'),(23,'Yên Bái'),(24,'Khánh Hòa'),(25,'Bà Rịa-Vũng Tàu'),(26,'Hòa Bình'),(27,'Đà Nẵng'),(28,'Ninh Thuận'),(29,'Quảng Nam'),(30,'Vĩnh Long'),(31,'TP. Hồ Chí Minh'),(32,'Đồng Tháp'),(33,'Thanh Hóa'),(34,'Hà Tĩnh'),(35,'Sơn La'),(36,'Quảng Ninh'),(37,'Quảng Ngãi'),(38,'Nghệ An'),(39,'Phú Thọ'),(40,'Hải Phòng'),(41,'Long An'),(42,'Quảng Bình'),(43,'Vĩnh Phúc'),(44,'Bình Định'),(45,'Hải Dương'),(46,'Bắc Giang'),(47,'Quảng Trị'),(48,'An Giang'),(49,'Hòa Bình'),(50,'Bắc Kạn');
 /*!40000 ALTER TABLE `city` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-06-26 10:23:14
+-- Dump completed on 2023-06-30  8:19:59
