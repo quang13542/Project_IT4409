@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Routes, Route, Navigate, Outlet } from "react-router-dom";
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Error404 from "../Components/publicPage/Error404";
 import Error403 from "../Components/publicPage/Error403";
@@ -14,6 +14,7 @@ import Room from "../Components/homePage/Room/Room";
 import Cart from "../Components/homePage/Cart/Cart";
 import Footer from "../Components/publicPage/Footer/Footer";
 import SearchList from "../Components/homePage/Result/Result";
+import AdminHome from "../Components/adminPage/AdminHome/AdminHome";
 
 const ProtectedRoute = ({ children, roles }) => {
     const user = useSelector((state) => state.user);
@@ -28,14 +29,16 @@ const ProtectedRoute = ({ children, roles }) => {
 };
 
 const AppRoutes = () => {
-    const [result, setResult] = useState([]);
-    const handleResult = (newResult) => {
-        setResult(newResult);
-    }
     return (
         <Routes>
             <Route path="/*" element={<Error404 />} />
             <Route path="/403" element={<Error403 />} />
+            <Route
+                path="/admin"
+                element={
+                    <AdminHome/>
+                }
+            />
             <Route
                 path="/"
                 element={

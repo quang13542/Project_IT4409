@@ -6,12 +6,14 @@ import BeatLoader from 'react-spinners/BeatLoader'
 import { getAllRooms } from "../../../API/rooms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { setRooms } from "../../../Redux/roomSlice";
 const RoomList = () => {
     const [roomList, setRoomList] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [disabled, setDisabled] = useState(false);
     const [page, setPage] = useState(1);
     const navigate = useNavigate();
+    const dispatch =useDispatch();
     const fetchData = async () => {
         try {
             setLoading(true)
@@ -20,9 +22,8 @@ const RoomList = () => {
 
             });
             console.log(">>check res:", res);
-            // if(res.status === "success") {
+            dispatch(setRooms(res));
             setRoomList(res);
-            // }
         }
         catch (error) {
             console.log(error);

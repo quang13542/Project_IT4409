@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import "./room.css";
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useEffect, useState } from "react";
@@ -28,7 +27,6 @@ const Room = () => {
     };
     const [selectedRoom, setSelectedRoom] = useState({});
     const [loading, setLoading] = useState(false);
-    const dispatch = useDispatch();
     const params = useParams();
 
     const getRoom = async () => {

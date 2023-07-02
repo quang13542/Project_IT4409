@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const roomSlice = createSlice({
 	name: "room",
-	initialState: {},
+	initialState: [],
 	reducers: {
 		setRooms: (state, payload) => {
 			console.log(">>>check room payload: ", payload.payload);
@@ -11,6 +11,6 @@ const roomSlice = createSlice({
 	},
 });
 
-export const { setRooms } = roomSlice.actions;
+export const { setRooms, resetRooms } = roomSlice.actions;
 
 export const roomReducer = roomSlice.reducer;

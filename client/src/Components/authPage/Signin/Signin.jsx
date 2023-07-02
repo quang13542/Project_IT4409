@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './signin.scss';
 import { Link, useNavigate } from "react-router-dom";
 import { login } from '../../../API/users';
@@ -11,7 +11,6 @@ function Signin() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const data = { email: email, password: password };
     const handleLogin = async (e) => {
         e.preventDefault();
         try {

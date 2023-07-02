@@ -1,7 +1,59 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./feature.scss";
+import { filterRooms, mostCity } from "../../../API/rooms";
+import { Navigate, useAsyncError, useNavigate } from "react-router";
+import { setRooms } from "../../../Redux/roomSlice";
+import { useDispatch } from "react-redux";
 
 const Feature = () => {
+    const [cityList, setCityList] = useState([]);
+    const fetchData = async () => {
+        try {
+            const res = await mostCity();
+            console.log("most city:", res);
+            setCityList(res);
+        }
+        catch (error) {
+            console.log(error);
+        }
+        finally {
+        }
+    }
+    const img = {
+        0:"https://vcdn1-dulich.vnecdn.net/2022/05/13/hohoabinh-1652415316-5109-1652415499.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=8KCD1P1Rg6b2V-MINSu3Bw",
+        1:"https://kenhhomestay.com/wp-content/uploads/2019/01/du-lich-thai-nguyen-8.jpg",
+        2:"https://afamilycdn.com/150157425591193600/2020/7/27/dsc8959-15958388098111098476186.jpg",
+        3:"https://ik.imagekit.io/tvlk/blog/2022/02/dia-diem-du-lich-binh-thuan.jpg"
+
+    }
+    
+    const [city, setCity] =useState("")
+    const navigate =useNavigate();  
+    const handleSearch = async (cityname) => {
+        try {
+            const filter = {
+                city: city,
+                checkin:"2023-06-23T20:46",
+                checkout:"2023-06-24T20:46",
+                adults: 0,
+                children: 0,
+                duty: true,
+            }
+            console.log(filter);
+            const query =new URLSearchParams(filter).toString();
+            navigate(`/result?${query}`);
+            
+        }
+        catch (error) {
+            console.log(error);
+        }
+        finally {
+            // setLoading(false);
+        }
+    }
+    useEffect(() => {
+        fetchData();
+    })
     return (
         <>
             <div className="feature">
@@ -9,34 +61,19 @@ const Feature = () => {
                     <h2>Điểm đến du lịch thu hút ở Việt Nam</h2>
                 </div>
                 <div className="featureList">
-                    <div className="featureItem">
-                        <img className="featureImg" src="https://vcdn1-dulich.vnecdn.net/2022/06/03/cauvang-1654247842-9403-1654247849.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=Swd6JjpStebEzT6WARcoOA" alt="" />
-                        <div className="featureTitle">
-                            <h2>Đà Nẵng</h2>
-                            <h3>asdasd.</h3>
-                        </div>
-                    </div>
-                    <div className="featureItem">
-                        <img className="featureImg" src="https://vcdn1-dulich.vnecdn.net/2022/05/07/vinhHaLongQuangNinh-1651912066-8789-1651932294.jpg?w=0&h=0&q=100&dpr=2&fit=crop&s=bAYE9-ifwt-9mB2amIjnqg" alt="" />
-                        <div className="featureTitle">
-                            <h2>Quảng Ninh</h2>
-                            <h3>Vịnh Hạ Long</h3>
-                        </div>
-                    </div>
-                    <div className="featureItem">
-                        <img className="featureImg" src="https://cdn.vntrip.vn/cam-nang/wp-content/uploads/2017/08/hoi-an-quang-nam-vntrip-1.jpg" alt="" />
-                        <div className="featureTitle">
-                            <h2>Quảng Nam</h2>
-                            <h3>Tp. Hội An</h3>
-                        </div>
-                    </div>
-                    <div className="featureItem">
-                        <img className="featureImg" src="https://vcdn1-dulich.vnecdn.net/2022/05/09/shutterstock-280926449-6744-15-3483-9174-1652070682.jpg?w=0&h=0&q=100&dpr=1&fit=crop&s=bGCo6Rv6DseMDE_07TT1Aw" alt="" />
-                        <div className="featureTitle">
-                            <h2>Nha Trang</h2>
-                            <h3>Du lich</h3>
-                        </div>
-                    </div>
+                    {cityList.map((city, index) => {
+                        return (
+                            <>
+                                <div className="featureItem" >
+                                    <img className="featureImg" src={img[index]} alt="" />
+                                    <div className="featureTitle">
+                                        <h2>{city.city_name}</h2>
+                                        <h3>{city.count_room}0</h3>
+                                    </div>
+                                </div>
+                            </>
+                        )
+                    })}
                 </div>
 
             </div>

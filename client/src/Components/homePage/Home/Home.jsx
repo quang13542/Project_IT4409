@@ -1,12 +1,10 @@
 import React, { useState } from "react"
 import "./home.scss"
 import { AiOutlineArrowRight } from 'react-icons/ai'
-import { Link, Navigate, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faArrowDown, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { filterRooms, getAllRooms } from "../../../API/rooms"
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons'
 import { useDispatch, useSelector } from "react-redux"
-import { setRooms } from "../../../Redux/roomSlice"
 
 const Home = () => {
     const [openDiv, setOpenDiv] = useState(false);
@@ -29,8 +27,6 @@ const Home = () => {
     }
     const [roomList, setRoomList] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [disabled, setDisabled] = useState(false);
-    const [page, setPage] = useState(1);
     const user = useSelector((state) => state.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -39,11 +35,8 @@ const Home = () => {
         e.preventDefault();
         try {
             setLoading(true)
-            const res = await filterRooms(filter);
-            console.log(">>check resulst search:", res);
-            setRoomList(res);
-            dispatch(setRooms(res));
-            navigate("/result");
+            const query =new URLSearchParams(filter).toString();
+            navigate(`/result?${query}`);
             
         }
         catch (error) {

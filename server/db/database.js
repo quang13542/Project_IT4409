@@ -7,7 +7,7 @@ const connection = mysql.createConnection({
     host: process.env.HOST || "localhost",
 	user: process.env.USER || "root",
 	// password: process.env.PASSWORD || "quang1201",
-    password:"Quang301",
+    password:"quang1201",
 	database: process.env.DATABASE || "travelling",
 });
 

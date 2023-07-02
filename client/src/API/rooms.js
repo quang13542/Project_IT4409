@@ -10,3 +10,7 @@ export const filterRooms = async (params) => {
     return await api.get(`/find_hotel`,{params});
 
 }
+
+export const mostCity = async () => {
+    return await api.get('/find_most_room_city');
+}

@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { logout } from "../../../Redux/userSlice"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faUser, faX } from "@fortawesome/free-solid-svg-icons"
+import { faUser} from "@fortawesome/free-solid-svg-icons"
 import Cart from '../../homePage/Cart/Cart';
 const Navbar = () => {
     const [active, setActive] = useState('navBar');
@@ -62,7 +62,7 @@ const Navbar = () => {
                             <Link to="/" className="navLink">Trang chủ</Link>
                         </li>
                         <li className="navItem cart">
-                            <div className="navLink" style={{cursor:"pointer "}} onClick={toggleCart}>Kế hoạch</div>
+                            <div className="navLink" style={{ cursor: "pointer " }} onClick={toggleCart}>Kế hoạch</div>
                             <div className="cartAmount">3</div>
                         </li>
                         {cart && (
@@ -72,6 +72,7 @@ const Navbar = () => {
                                 </div>
                             </>
                         )}
+
                         {user && user.id ? (
 
                             <>
@@ -82,7 +83,13 @@ const Navbar = () => {
                                     {open && (
                                         <div className="signoutDiv" onMouseLeave={toggleOpen} >
                                             <h3 className="userName">{user.role}: {user.username}</h3>
+                                            {user.role === "admin" && (
+                                                <Link to={'/admin'}>
+                                                    <h3 className="optionDiv">Admin</h3>
+                                                </Link>
+                                            )}
                                             <h3 className="optionDiv">Sửa thông tin</h3>
+
                                             <h3 className="optionDiv" onClick={handleLogout}>Đăng xuất</h3>
                                         </div>
                                     )}
