@@ -123,7 +123,7 @@ exports.updateUser = catchAsyncError(async (req, res, next) => {
 
 	const { user_id, username, password, role} = req.body;
   
-    const sql = "update room set username=?, password=?, role=? where id = ?";
+    const sql = "update user set username=?, password=?, role=? where id = ?";
 
     try {
         await connection.query(sql, [username, password, role, user_id]);
@@ -134,4 +134,32 @@ exports.updateUser = catchAsyncError(async (req, res, next) => {
     } catch (error) {
         next(error);
     }
+});
+
+exports.getAllUser = catchAsyncError(async (req, res, next) => {
+
+  const page = req.query.page || 1;
+  const limit = req.query.limit || 4;
+
+  const startIndex = (page - 1) * limit;
+  const endIndex = page * limit;
+
+  const sql = `
+        select * from user;
+  `;
+  connection.query(sql, [], function(err, result) {
+    if (err) throw err;
+    // To do: if success, redirect to the list of hotel url
+    user = []
+    result.forEach((row) => {
+      user.push({
+        user_id: row.id,
+        username: row.username,
+        email: row.email,
+        role: row.role
+      });
+    });
+    const resultUser = user.slice(startIndex, endIndex);
+    res.status(200).json(resultUser);
+  });
 });
