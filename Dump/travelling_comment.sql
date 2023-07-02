@@ -16,27 +16,30 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `city`
+-- Table structure for table `comment`
 --
 
-DROP TABLE IF EXISTS `city`;
+DROP TABLE IF EXISTS `comment`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `city` (
+CREATE TABLE `comment` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `service_id` int NOT NULL,
+  `message` varchar(1023) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `service_id` (`service_id`),
+  CONSTRAINT `comment_ibfk_1` FOREIGN KEY (`service_id`) REFERENCES `service` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `city`
+-- Dumping data for table `comment`
 --
 
-LOCK TABLES `city` WRITE;
-/*!40000 ALTER TABLE `city` DISABLE KEYS */;
-INSERT INTO `city` VALUES (1,'Cà Mau'),(2,'Bắc Ninh'),(3,'Kiên Giang'),(4,'Phú Yên'),(5,'Tiền Giang'),(6,'Sóc Trăng'),(7,'Cần Thơ'),(8,'Thái Nguyên'),(9,'Hà Nam'),(10,'Hà Nội'),(11,'Bình Thuận'),(12,'Lạng Sơn'),(13,'Bạc Liêu'),(14,'Thừa Thiên-Huế'),(15,'Tuyên Quang'),(16,'Ninh Bình'),(17,'Hậu Giang'),(18,'Bến Tre'),(19,'Đồng Nai'),(20,'Lào Cai'),(21,'Trà Vinh'),(22,'Nam Định'),(23,'Yên Bái'),(24,'Khánh Hòa'),(25,'Bà Rịa-Vũng Tàu'),(26,'Hòa Bình'),(27,'Đà Nẵng'),(28,'Ninh Thuận'),(29,'Quảng Nam'),(30,'Vĩnh Long'),(31,'TP. Hồ Chí Minh'),(32,'Đồng Tháp'),(33,'Thanh Hóa'),(34,'Hà Tĩnh'),(35,'Sơn La'),(36,'Quảng Ninh'),(37,'Quảng Ngãi'),(38,'Nghệ An'),(39,'Phú Thọ'),(40,'Hải Phòng'),(41,'Long An'),(42,'Quảng Bình'),(43,'Vĩnh Phúc'),(44,'Bình Định'),(45,'Hải Dương'),(46,'Bắc Giang'),(47,'Quảng Trị'),(48,'An Giang'),(49,'Hòa Bình'),(50,'Bắc Kạn');
-/*!40000 ALTER TABLE `city` ENABLE KEYS */;
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES (1,24,'test comment'),(2,20,'test comment'),(3,10,'testest');
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
