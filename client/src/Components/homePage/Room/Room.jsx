@@ -2,18 +2,24 @@ import "./room.css";
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getRoomById } from "../../../API/rooms";
+import { getAllComments, getRoomById } from "../../../API/rooms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBroom, faDoorOpen, faLocationDot, faRankingStar, faStar, faWifi, faCircleXmark, faCircleArrowLeft, faCircleArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { faBroom, faDoorOpen, faLocationDot, faRankingStar, faStar, faWifi, faCircleXmark, faCircleArrowLeft, faCircleArrowRight, faUser, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { useSelector } from "react-redux";
+import Box from '@mui/material/Box';
+import Rating from '@mui/material/Rating';
+import Typography from '@mui/material/Typography';
+
 const Room = () => {
     const [slideNumber, setSlideNumber] = useState(0);
     const [open, setOpen] = useState(false);
-
+    const [comments, setComments] = useState([]);
     const handleOpen = (i) => {
         setSlideNumber(i);
         setOpen(true);
     };
-
+    const [star, setStar] = useState(0);
+    const user = useSelector((state) => state.user);
     const handleMove = (direction) => {
         let newSlideNumber;
 
@@ -33,19 +39,29 @@ const Room = () => {
         try {
             setLoading(true);
             const res = await getRoomById(params.id);
-
-            // if (res.status === "success") {
             setSelectedRoom(res);
             //suggestion go here
             //...
             ///
-
             // }
+
         } catch (err) {
             console.log(err);
         } finally {
             setLoading(false);
         }
+    }
+
+    const getComments = async () => {
+        try {
+            const res = await getAllComments(params.id);
+            console.log(res);
+            setComments(res);
+        }
+        catch (err) {
+            console.log(err);
+        }
+
     }
 
     const renderDivs = (count) => {
@@ -60,15 +76,21 @@ const Room = () => {
         const formattedPrice = price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
         const currencySymbol = formattedPrice + " VND";
         return currencySymbol;
+    };
+
+    const sendComment= () => {
+        console.log("send");
     }
     useEffect(() => {
         getRoom();
+        getComments();
     }, [params.id])
     const dummyImg = [
         `${selectedRoom.url}`,
         "https://www.perlentravel.com/photos/29-2-ArenaBeachHotelatMaafushiDeluxeDoubleRoomwithBalconyandSeaViewDoubleRoomwithBalconyandSeaview-bad232a2e4b3a631d6f3ec13ac56e9ba4-med.jpg",
         "https://www.marmomac.com/wp-content/uploads/2020/12/Ritz-Carlton-bathroom-1.jpeg",
     ]
+    console.log("danh sách comment", comments);
 
     return loading ? (
         <div style={{ textAlign: "center" }}>
@@ -156,6 +178,58 @@ const Room = () => {
                                     </div>
 
                                 </h3>
+                            </div><div className="roomDetailsTexts" style={{ marginTop: "20px" }}>
+                                <div className="commentDiv">
+                                    <FontAwesomeIcon icon={faUser} size="3x" className="commentAva" />
+                                    <form className="inputDiv">
+                                        <label htmlFor="commentInput" style={{ fontWeight: "bolder" }}>{user.username}</label>
+                                        <input id="commentInput" type="text" className="commentInput" />
+                                        <FontAwesomeIcon icon={faPaperPlane} size="1x" className="sendIcon" onClick={sendComment()}/>
+                                        <div className="starInput">
+                                            <Box
+                                                sx={{
+                                                    '& > legend': { mt: 2 },
+                                                }}
+                                            >
+                                                <Typography component="legend"></Typography>
+                                                <Rating
+                                                    name="simple-controlled"
+                                                    value={star}
+                                                    onChange={(event, newValue) => {
+                                                        setStar(newValue);
+                                                    }}
+                                                />
+                                            </Box>
+                                        </div>
+                                    </form>
+                                </div>
+                                <h5 className="roomTitle">Đánh giá từ khách hàng</h5>
+                                <div className="commentList">
+                                    {comments.length > 0 ? (
+                                        <>
+                                            {comments.map((comment) => {
+                                                return (
+                                                    <>
+                                                        <div className="commentDiv commentItem">
+                                                            <FontAwesomeIcon icon={faUser} className="commentAva listAva" />
+                                                            <div className="inputDiv">
+                                                                <label htmlFor="commentInput" style={{ fontWeight: "bolder" }}>UserId: {comment.user_id}</label>
+                                                                <p>{comment.comment}</p>
+                                                                <p>Đánh giá: {renderDivs(comment.rating)}</p>
+                                                            </div>
+                                                        </div>
+                                                    </>
+                                                )
+                                            })}
+                                        </>
+                                    ) : (
+                                        <p>Chưa có đánh giá nào</p>
+                                    )}
+
+
+
+                                </div>
+
                             </div>
                         </div>
                         <div className="roomDetailsPrice">
