@@ -1,0 +1,21 @@
+.orderDiv{
+    padding:10px;
+    .orderForm{
+        margin-top: 10px;
+        display: flex;
+        gap:10px;
+        flex-direction: column;
+        .orderInput{
+            padding:5px;
+            border-radius: 5px;
+        }
+        .orderBtn{
+            width: 40%;
+            margin:10px auto;
+            cursor: pointer;
+        }
+    }
+    .orderInfo{
+        margin-top: 10px;
+    }
+}

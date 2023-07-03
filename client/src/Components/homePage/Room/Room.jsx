@@ -4,21 +4,39 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import { getAllComments, getRoomById } from "../../../API/rooms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBroom, faDoorOpen, faLocationDot, faRankingStar, faStar, faWifi, faCircleXmark, faCircleArrowLeft, faCircleArrowRight, faUser, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { faBroom, faDoorOpen, faLocationDot, faRankingStar, faStar, faWifi, faCircleXmark, faCircleArrowLeft, faCircleArrowRight, faUser, faPaperPlane, faL } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
 import Box from '@mui/material/Box';
 import Rating from '@mui/material/Rating';
 import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Cart from "../Cart/Cart";
+import Order from "../Order/Order";
+const style = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 'max-content',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+};
 
 const Room = () => {
     const [slideNumber, setSlideNumber] = useState(0);
+    const [openZoom, setOpenZoom] = useState(false);
     const [open, setOpen] = useState(false);
     const [comments, setComments] = useState([]);
-    const handleOpen = (i) => {
+    const handleZoom = (i) => {
         setSlideNumber(i);
-        setOpen(true);
+        setOpenZoom(true);
     };
-    const [star, setStar] = useState(0);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
+    const [rating, setRating] = useState(0);
     const user = useSelector((state) => state.user);
     const handleMove = (direction) => {
         let newSlideNumber;
@@ -78,8 +96,8 @@ const Room = () => {
         return currencySymbol;
     };
 
-    const sendComment= () => {
-        console.log("send");
+    const sendComment = () => {
+
     }
     useEffect(() => {
         getRoom();
@@ -91,7 +109,8 @@ const Room = () => {
         "https://www.marmomac.com/wp-content/uploads/2020/12/Ritz-Carlton-bathroom-1.jpeg",
     ]
     console.log("danh sách comment", comments);
-
+    console.log("rating:", rating);
+    console.log("selected room", selectedRoom);
     return loading ? (
         <div style={{ textAlign: "center" }}>
             <BeatLoader color={'#2596be'} loading={loading} size={100} />
@@ -99,12 +118,12 @@ const Room = () => {
     ) : (
         <div>
             <div className="roomContainer">
-                {open && (
+                {openZoom && (
                     <div className="slider">
                         <FontAwesomeIcon
                             icon={faCircleXmark}
                             className="close"
-                            onClick={() => setOpen(false)}
+                            onClick={() => setOpenZoom(false)}
                         />
                         <FontAwesomeIcon
                             icon={faCircleArrowLeft}
@@ -126,7 +145,7 @@ const Room = () => {
                         {dummyImg?.map((photo, i) => (
                             <div className="roomImgWrapper" key={i}>
                                 <img
-                                    onClick={() => handleOpen(i)}
+                                    onClick={() => handleZoom(i)}
                                     src={photo}
                                     alt=""
                                     className="roomImg"
@@ -184,7 +203,9 @@ const Room = () => {
                                     <form className="inputDiv">
                                         <label htmlFor="commentInput" style={{ fontWeight: "bolder" }}>{user.username}</label>
                                         <input id="commentInput" type="text" className="commentInput" />
-                                        <FontAwesomeIcon icon={faPaperPlane} size="1x" className="sendIcon" onClick={sendComment()}/>
+                                        <button className="sendBtn" type="submit">
+                                            Gửi
+                                        </button>
                                         <div className="starInput">
                                             <Box
                                                 sx={{
@@ -194,9 +215,9 @@ const Room = () => {
                                                 <Typography component="legend"></Typography>
                                                 <Rating
                                                     name="simple-controlled"
-                                                    value={star}
-                                                    onChange={(event, newValue) => {
-                                                        setStar(newValue);
+                                                    value={rating}
+                                                    onChange={(e) => {
+                                                        setRating(e.target.value);
                                                     }}
                                                 />
                                             </Box>
@@ -237,10 +258,25 @@ const Room = () => {
                             <h2>
                                 <b> {formatPrice(selectedRoom.price)}</b>
                             </h2>
-                            <button>Reserve or Book Now!</button>
+                            <Button onClick={handleOpen}>Đặt phòng</Button>
+                            <Modal
+                                open={open}
+                                onClose={handleClose}
+                                aria-labelledby="modal-modal-title"
+                                aria-describedby="modal-modal-description"
+                            >
+                                <Box sx={style}>
+                                    <Order user_id={user.id} room_id={selectedRoom.room_id}/>
+                                </Box>
+                            </Modal>
+                            {/* <button onClick={handleOpen}>Đặt phòng</button>
+                            {open && (
+                                <Order user_id={user.id} room_id={selectedRoom.room_id} />
+                            )} */}
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
     );

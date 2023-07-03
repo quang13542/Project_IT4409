@@ -9,7 +9,7 @@ export const createUser = async (body) => {
     return response;
 }
 
-export const login = async (body) =>{
+export const login = async (body) => {
     console.log(body);
     const response = await api.post("/signin", body);
     return response;

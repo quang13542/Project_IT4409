@@ -62,7 +62,7 @@ const Navbar = () => {
                             <Link to="/" className="navLink">Trang chủ</Link>
                         </li>
                         <li className="navItem cart">
-                            <div className="navLink" style={{ cursor: "pointer " }} onClick={toggleCart}>Kế hoạch</div>
+                            <div className="navLink" style={{ cursor: "pointer " }} onClick={toggleCart}>Bookmark</div>
                             <div className="cartAmount">3</div>
                         </li>
                         {cart && (

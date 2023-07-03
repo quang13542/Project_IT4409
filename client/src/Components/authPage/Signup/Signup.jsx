@@ -25,9 +25,9 @@ function Signup() {
         const formData = {
             username:username,
             email: email,
-            password1: password
+            password1: password,
+            role:"user"
         }
-        formData.role = "user";
         console.log(formData);
         try {
             setLoading(true);

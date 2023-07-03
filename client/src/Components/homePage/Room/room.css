@@ -224,9 +224,10 @@
   top:-25%;
   right: 0;
 }
-.sendIcon{
+.sendBtn{
   position: absolute;
-  right: -7%;
-  top:50%;
+  right: -20%;
+  top:40%;
   cursor: pointer;
+  width: min-content;
 }
