@@ -37,19 +37,3 @@ exports.getRoomComment = catchAsyncError(async (req, res, next) => {
 		res.status(200).json(resultComment);
 	});
 });
-
-exports.addComment = catchAsyncError(async (req, res, next) => {
-	var { service_id, message } = req.body;
-  
-    const sql = "INSERT INTO \`comment\` (service_id, message) VALUES (?, ?)";
-
-    try {
-        await connection.query(sql, [service_id, message]);
-
-        console.log("Comment added!");
-        res.status(200).json({detail: "Comment added!"});
-
-    } catch (error) {
-        next(error);
-    }
-});

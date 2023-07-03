@@ -21,21 +21,35 @@ exports.createService = catchAsyncError(async (req, res, next) => {
 });
 
 exports.rateService = catchAsyncError(async (req, res, next) => {
-    const { rating, service_id, room_id, hotel_id} = req.body; 
+    const { rating, message, room_id, user_id, hotel_id} = req.body; 
 
 	const service = new Service(req.body);
 	const hotel = new Hotel(req.body);
 	try {
-		const ratingService = await service.rate(rating, service_id);
+		const ratingService = await service.rate(rating, room_id, user_id);
 		const ratingHotel = await hotel.updateRating();
 		res.status(200).json({
 			status: "success",
 			rating_hotel_after_rating: ratingHotel
 		});
+		const sql = `
+			INSERT INTO \`comment\` (message, service_id)
+			SELECT ?, id
+			FROM service
+			WHERE room_id = ?
+			AND user_id = ?;
+		`;
+
+		try {
+			await connection.query(sql, [message, room_id, user_id]);
+			console.log("Comment and rating were added!");
+		} catch (error) {
+			next(error);
+		}
 	} catch (err) {
 		console.log(err);
 		res.status(400).json({
 		  	err,
 		});
-	}	  
+	}
 });

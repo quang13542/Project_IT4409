@@ -52,12 +52,12 @@ class Service {
 		return result;
 	  }	  
 
-	  async rate(rating, service_id) {
+	  async rate(rating, room_id, user_id) {
 	  
 		const result = await new Promise((resolve, reject) => {
 		  connection.query(
-			"update service set rating = ? where id = ?",
-			[rating, service_id],
+			"update service set rating = ? where room_id = ? and user_id = ?",
+			[rating, room_id, user_id],
 			function(err, result) {
 			  if (err) {
 				console.log(err.message);
