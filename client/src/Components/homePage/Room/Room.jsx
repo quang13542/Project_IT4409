@@ -2,7 +2,7 @@ import "./room.css";
 import BeatLoader from 'react-spinners/BeatLoader';
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { getAllComments, getRoomById } from "../../../API/rooms";
+import { createComment, getAllComments, getRoomById } from "../../../API/rooms";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBroom, faDoorOpen, faLocationDot, faRankingStar, faStar, faWifi, faCircleXmark, faCircleArrowLeft, faCircleArrowRight, faUser, faPaperPlane, faL } from "@fortawesome/free-solid-svg-icons";
 import { useSelector } from "react-redux";
@@ -29,7 +29,6 @@ const Room = () => {
     const [slideNumber, setSlideNumber] = useState(0);
     const [openZoom, setOpenZoom] = useState(false);
     const [open, setOpen] = useState(false);
-    const [comments, setComments] = useState([]);
     const handleZoom = (i) => {
         setSlideNumber(i);
         setOpenZoom(true);
@@ -37,6 +36,8 @@ const Room = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     const [rating, setRating] = useState(0);
+    const [comments, setComments] = useState([]);
+    const [newComments, setNewComments] = useState("");
     const user = useSelector((state) => state.user);
     const handleMove = (direction) => {
         let newSlideNumber;
@@ -96,8 +97,23 @@ const Room = () => {
         return currencySymbol;
     };
 
-    const sendComment = () => {
+    const commentInfo= {
+        rating: rating,
+        room_id: selectedRoom.room_id,
+        user_id: user.id,
+        message: newComments,
+        hotel_id: selectedRoom.hotel_id
 
+    }
+    const sendComment = async () => {
+        try{
+            console.log("comment: ",commentInfo)
+            const res = await createComment(commentInfo);
+            alert("Đánh giá thành công");
+            selectedRoom.rating_hotel = res.rating_hotel_after_rating || selectedRoom.rating_hotel;
+        }catch(err){
+            alert("Để comment thì bạn cần phải từng sử dụng qua dịch vụ");
+        }
     }
     useEffect(() => {
         getRoom();
@@ -200,9 +216,15 @@ const Room = () => {
                             </div><div className="roomDetailsTexts" style={{ marginTop: "20px" }}>
                                 <div className="commentDiv">
                                     <FontAwesomeIcon icon={faUser} size="3x" className="commentAva" />
-                                    <form className="inputDiv">
+                                    <form className="inputDiv" onSubmit={sendComment}>
                                         <label htmlFor="commentInput" style={{ fontWeight: "bolder" }}>{user.username}</label>
-                                        <input id="commentInput" type="text" className="commentInput" />
+                                        <input
+                                            id="commentInput"
+                                            type="text"
+                                            className="commentInput"
+                                            value={newComments}
+                                            onChange={e => setNewComments(e.target.value)}
+                                        />
                                         <button className="sendBtn" type="submit">
                                             Gửi
                                         </button>
@@ -266,7 +288,7 @@ const Room = () => {
                                 aria-describedby="modal-modal-description"
                             >
                                 <Box sx={style}>
-                                    <Order user_id={user.id} room_id={selectedRoom.room_id}/>
+                                    <Order user_id={user.id} room_id={selectedRoom.room_id} />
                                 </Box>
                             </Modal>
                             {/* <button onClick={handleOpen}>Đặt phòng</button>

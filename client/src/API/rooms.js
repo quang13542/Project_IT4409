@@ -19,6 +19,6 @@ export const getAllComments = async (params) => {
     return await api.get(`/get_room_comment?room_id=${params}`);
 }
 
-export const postComment = async (body) => {
-    return await api.post('/add_comment', body);
+export const createComment = async (body) => {
+    return await api.post('/rate_service', body);
 }
