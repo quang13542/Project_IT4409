@@ -110,3 +110,12 @@
     cursor: pointer;
     border-radius: 10px; 
 }
+.sortIcon{
+    color: grey;
+    font-size: 30px;
+    margin: 0 10px;
+    &:hover{
+        color: var(--PrimaryColor);
+        cursor: pointer;
+    }
+}

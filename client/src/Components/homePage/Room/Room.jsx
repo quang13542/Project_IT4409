@@ -107,8 +107,8 @@ const Room = () => {
     }
     const sendComment = async () => {
         try{
-            console.log("comment: ",commentInfo)
             const res = await createComment(commentInfo);
+            console.log("comment: ",commentInfo)
             alert("Đánh giá thành công");
             selectedRoom.rating_hotel = res.rating_hotel_after_rating || selectedRoom.rating_hotel;
         }catch(err){

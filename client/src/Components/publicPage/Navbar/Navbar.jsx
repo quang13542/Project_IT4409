@@ -46,6 +46,7 @@ const Navbar = () => {
     const toggleCart = () => {
         setCart(!cart);
     }
+    console.log("user:", user);
     return (
         <section className="navBarSection" >
             <div className={transparent}>
@@ -84,7 +85,7 @@ const Navbar = () => {
                                         <div className="signoutDiv" onMouseLeave={toggleOpen} >
                                             <h3 className="userName">{user.role}: {user.username}</h3>
                                             {user.role === "admin" && (
-                                                <Link to={'/admin'}>
+                                                <Link to={'/users'}>
                                                     <h3 className="optionDiv">Admin</h3>
                                                 </Link>
                                             )}

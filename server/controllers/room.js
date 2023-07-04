@@ -152,8 +152,9 @@ exports.deleteRoom = catchAsyncError(async (req, res, next) => {
 
 	const { room_id } = req.body;
   
-    const sql = "delete from room where id = ?";
-
+    const sql = `
+        delete from room where id = ?;
+    `;
     try {
         await connection.query(sql, [room_id]);
 

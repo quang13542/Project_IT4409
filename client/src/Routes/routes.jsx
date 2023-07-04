@@ -2,7 +2,6 @@ import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Error404 from "../Components/publicPage/Error404";
-import Error403 from "../Components/publicPage/Error403";
 import Navbar from "../Components/publicPage/Navbar/Navbar";
 import Home from "../Components/homePage/Home/Home";
 import Feature from "../Components/homePage/Feature/Feature";
@@ -14,6 +13,10 @@ import Room from "../Components/homePage/Room/Room";
 import Cart from "../Components/homePage/Cart/Cart";
 import Footer from "../Components/publicPage/Footer/Footer";
 import SearchList from "../Components/homePage/Result/Result";
+import AdminNavbar from "../Components/adminPage/AdminNavbar/AdminNavbar";
+import Datatable from "../Components/adminPage/Datatable/Datatable";
+import { roomColumns, userColumns } from "../Components/adminPage/ColumnsNameSRC";
+import Error403 from "../Components/publicPage/Error403";
 
 const ProtectedRoute = ({ children, roles }) => {
     const user = useSelector((state) => state.user);
@@ -31,14 +34,26 @@ const AppRoutes = () => {
     return (
         <Routes>
             <Route path="/*" element={<Error404 />} />
-            <Route path="/403" element={<Error403 />} />
-            {/* <Route
-                path="/admin"
+            <Route path="/403" element={<Error403/>} />
+            <Route path="/users"
                 element={
-                    <AdminHome/>
+                    <>
+                        <ProtectedRoute roles={"admin"}>
+                            <Datatable columns={userColumns} getAll={"/find_all_user"} del={"/delete_user"} />
+                        </ProtectedRoute>
+                    </>
                 }
-            /> */}
-           
+            />
+            <Route path="/rooms"
+                element={
+                    <>
+                        <ProtectedRoute roles={"admin"}>
+                            <Datatable columns={roomColumns} getAll={"/rooms?limit=1000"} del={"/delete_room"} />
+                        </ProtectedRoute>
+                    </>
+                }
+            />
+
             <Route
                 path="/"
                 element={
@@ -72,23 +87,27 @@ const AppRoutes = () => {
                 element={
                     <>
                         <Navbar />
-                        <Home/>
-                        <SearchList/>
+                        <Home />
+                        <SearchList />
                     </>
                 } />
             <Route path="/room/:id"
                 element={
                     <>
-                        <Navbar />
-                        <Home />
-                        <Room />
+                        <ProtectedRoute>
+                            <Navbar />
+                            <Home />
+                            <Room />
+                        </ProtectedRoute>
                     </>
                 } />
             <Route path="/cart"
                 element={
                     <>
-                        <Navbar background="var(--PrimaryColor)" />
-                        <Cart />
+                        <ProtectedRoute>
+                            <Navbar background="var(--PrimaryColor)" />
+                            <Cart />
+                        </ProtectedRoute>
 
                     </>
 

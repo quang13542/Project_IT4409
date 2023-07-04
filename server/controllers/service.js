@@ -28,10 +28,14 @@ exports.rateService = catchAsyncError(async (req, res, next) => {
 	try {
 		const ratingService = await service.rate(rating, room_id, user_id);
 		const ratingHotel = await hotel.updateRating();
-		res.status(200).json({
-			status: "success",
-			rating_hotel_after_rating: ratingHotel
-		});
+		
+		const checkExistsql = `
+			SELECT count(*)
+			FROM service
+			WHERE room_id = ?
+			AND user_id = ?;
+		`;
+
 		const sql = `
 			INSERT INTO \`comment\` (message, service_id)
 			SELECT ?, id
@@ -41,11 +45,35 @@ exports.rateService = catchAsyncError(async (req, res, next) => {
 		`;
 
 		try {
-			await connection.query(sql, [message, room_id, user_id]);
-			console.log("Comment and rating were added!");
-		} catch (error) {
+			connection.query(checkExistsql, [room_id, user_id], function(err, result) {
+			  if (err) {
+				throw err;
+			  }
+			  // To do: if success, redirect to the list of hotel url
+			  if (result[0]['count(*)'] == 0) {
+				res.status(400).json({
+				  status: "User cannot rate",
+				});
+				return;
+			  } else {
+				connection.query(sql, [message, room_id, user_id], function(
+				  err,
+				  result2
+				) {
+				  if (err) {
+					throw err;
+				  }
+				  console.log("Comment and rating were added!");
+				  res.status(200).json({
+					status: "success",
+					rating_hotel_after_rating: ratingHotel,
+				  });
+				});
+			  }
+			});
+		  } catch (error) {
 			next(error);
-		}
+		  }
 	} catch (err) {
 		console.log(err);
 		res.status(400).json({

@@ -18,14 +18,13 @@ const Order = ({ room_id, user_id }) => {
         duty: duty,
 
     }
-    const handleOrder = async (e) => {
-        e.preventDefault();
+    const handleOrder = async () => {
         try {
             console.log(order);
             const res = await placeOrder(order);
             console.log("order: ",res);
             alert("Bạn đã đặt phòng thành công");
-            navigate("/successOrder");
+            // navigate("/successOrder");
         } catch (err) {
             alert("Phòng đã có người đặt trước");
         }

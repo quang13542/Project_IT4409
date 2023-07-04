@@ -18,7 +18,7 @@ function query(sql, params) {
 
 
 exports.register = catchAsyncError(async (req, res, next) => {
-  const { username, email, password1 } = req.body;
+  const { username, email, password1,role } = req.body;
 
   // const hashPassword = bcrypt.hashSync(password1, salt);
   
@@ -36,7 +36,7 @@ exports.register = catchAsyncError(async (req, res, next) => {
       return;
     }
     
-    await query(insertUserSql, [username, email, password1]);
+    await query(insertUserSql, [username, email, password1,role]);
 
     console.log("User registered!");
     res.send("User registered!");
@@ -106,7 +106,7 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
 
 	const { user_id } = req.body;
   
-    const sql = "delete from user where id = ?";
+    const sql = "update user set email = 'deleted_user' where id = ?";
 
     try {
         await connection.query(sql, [user_id]);
@@ -159,7 +159,6 @@ exports.getAllUser = catchAsyncError(async (req, res, next) => {
         role: row.role
       });
     });
-    const resultUser = user.slice(startIndex, endIndex);
-    res.status(200).json(resultUser);
+    res.status(200).json(user);
   });
 });

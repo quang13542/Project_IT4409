@@ -53,7 +53,7 @@ const Feature = () => {
     }
     useEffect(() => {
         fetchData();
-    })
+    },[])
     return (
         <>
             <div className="feature">
@@ -65,7 +65,7 @@ const Feature = () => {
                         return (
                             <>
                                 <div className="featureItem" >
-                                    <img className="featureImg" src={img[index]} alt="" />
+                                    <img className="featureImg" src={img[index]} alt=""/>
                                     <div className="featureTitle">
                                         <h2>{city.city_name}</h2>
                                         <h3>{city.count_room}0</h3>

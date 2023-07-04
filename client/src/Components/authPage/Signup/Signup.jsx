@@ -10,7 +10,7 @@ function Signup() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [password1, setPassword1] = useState("");
-
+    const [role, setRole] =useState("user");
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
@@ -26,12 +26,11 @@ function Signup() {
             username:username,
             email: email,
             password1: password,
-            role:"user"
+            role:role
         }
         console.log(formData);
         try {
             setLoading(true);
-
             const result = await createUser(formData);
             // console.log(result);
             // if (result.success) {
