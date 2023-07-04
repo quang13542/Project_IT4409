@@ -106,7 +106,7 @@ exports.deleteUser = catchAsyncError(async (req, res, next) => {
 
 	const { user_id } = req.body;
   
-    const sql = "delete from user where id = ?";
+    const sql = "update user set email = 'deleted_user' where id = ?";
 
     try {
         await connection.query(sql, [user_id]);
