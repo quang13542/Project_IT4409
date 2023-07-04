@@ -120,11 +120,10 @@ exports.deleteRoom = catchAsyncError(async (req, res, next) => {
 	const { room_id } = req.body;
   
     const sql = `
-        delete from service where room_id = ?;
-        delete from room where id = ?;`
-    ;
+        delete from room where id = ?;
+    `;
     try {
-        await connection.query(sql, [room_id, room_id]);
+        await connection.query(sql, [room_id]);
 
         console.log("Room deleted!");
         res.status(200).json({detail: "Room deleted!"});
