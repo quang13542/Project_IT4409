@@ -66,6 +66,28 @@ class Room {
 		return this;
 	}
 
+	static getRoomsByPriceAndSort(minPrice, maxPrice, sortBy, callback) {
+		const sql = `
+		  SELECT
+			room.id AS room_id,
+			adults,
+			children,
+			hotel.name AS hotel_name,
+			rating,
+			city.name AS city_name,
+			room.url,
+			room.position_detaill,
+			room.price
+		  FROM room
+		  JOIN hotel ON hotel.id = room.hotel_id
+		  JOIN city ON city.id = hotel.city_id
+		  WHERE room.price >= ? AND room.price <= ?
+		  ORDER BY room.price ${sortBy};
+		`;
+	
+		connection.query(sql, [minPrice, maxPrice], callback);
+	  }
+
 }
 
 module.exports = Room;

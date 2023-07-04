@@ -96,6 +96,39 @@ exports.getAllRoom = catchAsyncError(async (req, res, next) => {
 	});
 });
 
+exports.getRoomByPrice = catchAsyncError(async (req, res, next) => {
+    const page = req.query.page || 1;
+    const limit = req.query.limit || 4;
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+  
+    const minPrice = req.query.minPrice || 0;
+    const maxPrice = req.query.maxPrice || Infinity;
+    const sortBy = req.query.sortBy || "ASC";
+  
+    Room.getRoomsByPriceAndSort(minPrice, maxPrice, sortBy, function (err, result) {
+      if (err) throw err;
+  
+      const rooms = [];
+      result.forEach((row) => {
+        rooms.push({
+          room_id: row.room_id,
+          rating_hotel: row.rating,
+          hotel_name: row.hotel_name,
+          number_of_adults: row.adults,
+          number_of_children: row.children,
+          city_name: row.city_name,
+          url: row.url,
+          position_detail: row.position_detaill,
+          price: row.price,
+        });
+      });
+  
+      const resultRoom = rooms.slice(startIndex, endIndex);
+      res.status(200).json(resultRoom);
+    });
+});
+
 exports.addRoom = catchAsyncError(async (req, res, next) => {
 
 	const { adults, children, hotel_id, url, position_detail, price, type } = req.body;
