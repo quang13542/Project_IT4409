@@ -1,0 +1,68 @@
+
+.addnew {
+    .addnewContainer {
+        border-radius: 1rem;
+        padding: 2rem;
+        background: var(--whiteColor);
+        gap: 1rem;
+        justify-content: center;
+        
+
+        .flex {
+            justify-content: space-between;
+
+            .icon {
+                color: var(--textColor);
+            }
+
+        }
+
+        .title {
+            color: var(--PrimaryColor);
+        }
+
+        .newEmail,
+        .newPassword,
+        .newUsername {
+            border-radius: 1rem;
+            background: var(--greyBg);
+            width: 30rem;
+
+            input {
+                width: 100%;
+                background: var(--inputColor);
+                border-radius: 10px;
+                border: none;
+                padding: 10px;
+                font-size: 15px;
+                font-weight: 500;
+
+                &:placeholder {
+                    font-size: 15px;
+                    opacity: .5;
+                    font-weight: 400;
+                }
+
+
+            }
+        }
+
+        .option {
+            display: flex;
+            justify-content: space-between;
+
+            h5 {
+                a {
+                    color: var(--PrimaryColor);
+
+                }
+            }
+        }
+
+        .btn {
+            width: 100%;
+            padding: .6rem 1.5rem;
+            color: var(--whiteColor);
+        }
+    }
+}

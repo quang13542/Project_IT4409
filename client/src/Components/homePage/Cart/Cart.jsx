@@ -21,44 +21,6 @@ const Cart = () => {
         <>
             <div className="app-container">
                 <div className="left-section">
-                <div className="rectangle" key={item}>
-                        <div className="rectangle-top">
-                            <div className="hotel-info">
-                                <img src={hotelImage} alt="Hotel" className="hotelImage" />
-                                <div className="contentMax">
-                                    <div className="hotel-details">
-                                        <h4 className="hotel-title">Khách sạn ABCSCA</h4>
-                                        <div className="star-rating">
-                                            {[...Array(5)].map((_, index) => (
-                                                <FontAwesomeIcon key={index} icon={faStar} color="#fcbda1" className="star-icon" />
-                                            ))}
-                                        </div>
-                                        <div className="location">
-                                            <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
-                                            <span>Địa chỉ Khách sạn</span>
-                                        </div>
-                                    </div>
-
-                                    <FontAwesomeIcon icon={faXmark} size="20px" className="trash-icon" />
-
-                                </div>
-                            </div>
-                            <div className="rectangle-bottom">
-                                {/* <p className="item-info">Thông tin mặt hàng</p> */}
-                                <p className="item-price">Giá tiền: 100000</p>
-                                <div className="checkbox-container">
-                                    <input
-                                        type="checkbox"
-                                        value={10}
-                                        onChange={(e) => handleCheckboxChange(e, 100000)}
-                                        id={`checkbox-${item}`}
-                                    />
-                                    <label htmlFor={`checkbox-${item}`} className="checkBox">Chọn để thanh toán</label>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
                     <div className="rectangle" key={item}>
                         <div className="rectangle-top">
                             <div className="hotel-info">
@@ -135,7 +97,45 @@ const Cart = () => {
                         </div>
 
                     </div>
-                    
+                    <div className="rectangle" key={item}>
+                        <div className="rectangle-top">
+                            <div className="hotel-info">
+                                <img src={hotelImage} alt="Hotel" className="hotelImage" />
+                                <div className="contentMax">
+                                    <div className="hotel-details">
+                                        <h4 className="hotel-title">Khách sạn ABCSCA</h4>
+                                        <div className="star-rating">
+                                            {[...Array(5)].map((_, index) => (
+                                                <FontAwesomeIcon key={index} icon={faStar} color="#fcbda1" className="star-icon" />
+                                            ))}
+                                        </div>
+                                        <div className="location">
+                                            <FontAwesomeIcon icon={faMapMarkerAlt} className="location-icon" />
+                                            <span>Địa chỉ Khách sạn</span>
+                                        </div>
+                                    </div>
+
+                                    <FontAwesomeIcon icon={faXmark} size="20px" className="trash-icon" />
+
+                                </div>
+                            </div>
+                            <div className="rectangle-bottom">
+                                {/* <p className="item-info">Thông tin mặt hàng</p> */}
+                                <p className="item-price">Giá tiền: 100000</p>
+                                <div className="checkbox-container">
+                                    <input
+                                        type="checkbox"
+                                        value={10}
+                                        onChange={(e) => handleCheckboxChange(e, 100000)}
+                                        id={`checkbox-${item}`}
+                                    />
+                                    <label htmlFor={`checkbox-${item}`} className="checkBox">Chọn để thanh toán</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
 
 
 

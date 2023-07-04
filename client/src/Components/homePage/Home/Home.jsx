@@ -24,6 +24,7 @@ const Home = () => {
         adults: adult || 0,
         children: children || 0,
         duty: true,
+        limit:100
     }
     const [roomList, setRoomList] = useState([]);
     const [loading, setLoading] = useState(false);

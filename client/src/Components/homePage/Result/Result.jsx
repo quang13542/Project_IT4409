@@ -2,33 +2,46 @@ import React, { useEffect, useState } from "react";
 import './result.css';
 import { useNavigate } from "react-router";
 import { filterRooms } from "../../../API/rooms";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowDown, faArrowUp, faDollarSign, faLocation, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 
 const SearchList = ({ resultList }) => {
     const urlParams = new URLSearchParams(window.location.search);
     const filter = {
-        city:urlParams.get('city') ,
-        checkin:urlParams.get('checkin') || "2023-06-23T20:46",
-        checkout:urlParams.get('checkout') || "2023-06-24T20:46",
-        adults:urlParams.get('adults') || 0,
-        children:urlParams.get('children') || 0,
-        duty:urlParams.get('duty')
+        city: urlParams.get('city'),
+        checkin: urlParams.get('checkin') || "2023-06-23T20:46",
+        checkout: urlParams.get('checkout') || "2023-06-24T20:46",
+        adults: urlParams.get('adults') || 0,
+        children: urlParams.get('children') || 0,
+        duty: urlParams.get('duty')
 
     }
-    const [result, setResult] =useState([]);
+    const [sortByPrice, setSortByPrice] = useState("");
+    const priceUp = () => {
+        setResult(result.sort((a, b) => a.price - b.price));
+        console.log(result);
+    }
+
+    const priceDown = () => {
+        setResult(result.sort((a, b) => b.price - a.price));
+        console.log(result);
+    }
+    const [result, setResult] = useState([]);
     const getResultList = async () => {
         try {
             const res = await filterRooms(filter);
             console.log(">>check resulst search:", res);
             setResult(res);
         }
-        catch(err){
+        catch (err) {
             console.log(err);
         }
     }
     useEffect(() => {
         getResultList();
-    })
+    },[])
+    
     console.log("filter:", filter);
     console.log("Kết quả nè", result);
     const formatPrice = (price) => {
@@ -40,9 +53,13 @@ const SearchList = ({ resultList }) => {
 
     return (
         <>
-            {result && result.length > 0 ? (    
+            {result && result.length > 0 ? (
                 <>
                     <h1 style={{ textAlign: "center", marginTop: "5rem" }}>Có {result.length} phòng phù hợp:</h1>
+                    <h3 style={{ textAlign: "center", marginTop: "1rem" }}>
+                        <FontAwesomeIcon icon={faArrowDown} className="sortIcon" onClick={priceDown} />
+                        <FontAwesomeIcon icon={faArrowUp} className="sortIcon" onClick={priceUp} />
+                    </h3>
                     {result?.map((room) => {
                         return (
                             <>
